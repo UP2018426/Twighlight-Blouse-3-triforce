@@ -50,10 +50,10 @@ public class PlayerController : MonoBehaviour
         Vector3 move = transform.right * x + transform.forward * z;
         */
 
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        moveDirection.x = Input.GetAxis("Horizontal");
+        moveDirection.z = Input.GetAxis("Vertical");
 
-        moveDirection = (transform.right * x + transform.forward * z);
+        //moveDirection = (transform.right * moveDirection.x + transform.forward * moveDirection.z);
         //moveDirection = moveDirection.normalized * speed;
 
         //need normalised to work
