@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 12f;
 
+    public float runMultiplier = 0f;
+
     private Vector3 velocity;
 
     public float gravity = -9.81f;
@@ -23,10 +25,15 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
+
+    GameObject player;
+
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+
+        player = this.gameObject;
     }
 
     // Update is called once per frame
@@ -53,6 +60,24 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        if (Input.GetButtonDown("Fire3"))
+        {
+            runMultiplier = 12;
+        }
+        else if(Input.GetButtonUp("Fire3"))
+        {
+            runMultiplier = 0;
+        }
+
+        if(Input.GetButtonDown("Fire2"))
+        {
+            transform.localScale -= new Vector3 (1f,0.5f,1f); 
+        }
+        else if(Input.GetButtonUp("Fire2"))
+        {
+            transform.localScale += new Vector3(1f, 0.5f, 1f);
+        }
+
         moveDirection = (transform.right * x + transform.forward * z);
         //moveDirection = moveDirection.normalized * speed;
 
@@ -63,7 +88,7 @@ public class PlayerController : MonoBehaviour
 
         if (moveDirection.magnitude >= 0.1)
         {
-            controller.Move(moveDirection.normalized * speed * Time.deltaTime);
+            controller.Move(moveDirection.normalized * (speed + runMultiplier) * Time.deltaTime);
         }
         velocity.y += gravity * Time.deltaTime;
 
@@ -73,6 +98,9 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
+
+        
+
     }
 
     private void OnDrawGizmos()
