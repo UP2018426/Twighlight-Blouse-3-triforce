@@ -10,11 +10,11 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 12f;
 
-    public float runMultiplier = 0f;
+    public float moveMultiplier = 0f;
 
     private Vector3 velocity;
 
-    public float gravity = -9.81f;
+    public float gravity;
 
     public float jumpHeight = 10;
 
@@ -38,74 +38,78 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel"))
         {
             Cursor.lockState = CursorLockMode.None;
         }
 
-        isGrounded = Physics.CheckSphere(groundCheck.position,gCheckSize,groundMask);
+        isGrounded = Physics.CheckSphere(groundCheck.position, gCheckSize, groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
             velocity.y = -2f;
         }
 
-        /*
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-        Vector3 move = transform.right * x + transform.forward * z;
-        */
-
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
         if (Input.GetButtonDown("Fire3"))
         {
-            runMultiplier = 12;
+            moveMultiplier = 12;
         }
-        else if(Input.GetButtonUp("Fire3"))
+        else if (Input.GetButtonUp("Fire3"))
         {
-            runMultiplier = 0;
+            moveMultiplier = 0;
         }
 
-        if(Input.GetButtonDown("Fire2"))
+        
+        //crouching
+        if (Input.GetButtonDown("Fire2") && !isCrouching)
         {
-            controller.center = new Vector3(0,-0.7f,0);
 
-            controller.height = 1.5f;
 
-            //transform.localScale -= new Vector3 (1f,0.5f,1f); 
+            //controller.center = new Vector3(0, -0.7f, 0);
+
+            moveMultiplier = -6f;
+            isCrouching = true;
         }
-        else if(Input.GetButtonUp("Fire2"))
+        else if (Input.GetButtonDown("Fire2") && isCrouching)
         {
+
+
             controller.center = new Vector3(0, 0, 0);
 
-            controller.height = 3;
-            //transform.localScale += new Vector3(1f, 0.5f, 1f);
+
+            isCrouching = false;
+            moveMultiplier = 0f;
         }
 
         moveDirection = (transform.right * x + transform.forward * z);
-        //moveDirection = moveDirection.normalized * speed;
 
-        //need normalised to work
-
-        //moveDirection.y *= Time.fixedDeltaTime;
-        //moveDirection.x *= Time.fixedDeltaTime;//lines 49 to 53 move to fixed update
 
         if (moveDirection.magnitude >= 0.1)
         {
-            controller.Move(moveDirection.normalized * (speed + runMultiplier) * Time.deltaTime);
+            controller.Move(moveDirection.normalized * (speed + moveMultiplier) * Time.deltaTime);
         }
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
 
-        if(Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
-        
+        if (!isGrounded)
+        {
+
+            //moveMultiplier = -8;
+
+        }
+        else
+        {
+            moveMultiplier = 0;
+        }
 
     }
 

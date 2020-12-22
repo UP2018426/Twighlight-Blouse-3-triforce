@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!143 &131099184
 CharacterController:
   m_ObjectHideFlags: 0
@@ -173,8 +173,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 131099184}
   speed: 12
-  runMultiplier: 0
-  gravity: -14.715
+  moveMultiplier: 0
+  gravity: -58.86
   jumpHeight: 4
   groundCheck: {fileID: 1456282204}
   gCheckSize: 0.1
@@ -216,7 +216,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &303103077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -231,7 +231,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 303103078}
   speed: 12
-  runMultiplier: 0
+  moveMultiplier: 0
   gravity: -14.715
   jumpHeight: 4
   groundCheck: {fileID: 589868021}
@@ -657,7 +657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
-  Player: {fileID: 131099183}
+  player: {fileID: 131099183}
   minClamp: -69
   maxClamp: 69
 --- !u!1 &1025244188
@@ -1258,7 +1258,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
-  Player: {fileID: 303103076}
+  player: {fileID: 0}
   minClamp: -69
   maxClamp: 69
 --- !u!81 &2087605602
