@@ -70,11 +70,18 @@ public class PlayerController : MonoBehaviour
 
         if(Input.GetButtonDown("Fire2"))
         {
-            transform.localScale -= new Vector3 (1f,0.5f,1f); 
+            controller.center = new Vector3(0,-0.7f,0);
+
+            controller.height = 1.5f;
+
+            //transform.localScale -= new Vector3 (1f,0.5f,1f); 
         }
         else if(Input.GetButtonUp("Fire2"))
         {
-            transform.localScale += new Vector3(1f, 0.5f, 1f);
+            controller.center = new Vector3(0, 0, 0);
+
+            controller.height = 3;
+            //transform.localScale += new Vector3(1f, 0.5f, 1f);
         }
 
         moveDirection = (transform.right * x + transform.forward * z);
