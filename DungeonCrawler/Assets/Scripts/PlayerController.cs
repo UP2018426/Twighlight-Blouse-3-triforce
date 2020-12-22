@@ -25,15 +25,14 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
-
-    GameObject player;
+    bool isCrouching;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        player = this.gameObject;
+
     }
 
     // Update is called once per frame
