@@ -182,6 +182,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isGrounded: 0
+  ceilingCheck: {fileID: 1010655891}
+  cCheckSize: {x: 1, y: 1, z: 1}
+  ceilingMask:
+    serializedVersion: 2
+    m_Bits: 256
+  roofAbove: 0
+  isCrouching: 0
+  CamPos: {fileID: 1952708940}
+  SmoothSpeed: 20
+  Camera: {fileID: 963194225}
 --- !u!4 &131099188
 Transform:
   m_ObjectHideFlags: 0
@@ -190,12 +200,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 131099183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.3, z: 0}
+  m_LocalPosition: {x: 0, y: 3.355, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 747148434}
   - {fileID: 963194228}
   - {fileID: 1456282204}
+  - {fileID: 1010655891}
+  - {fileID: 1952708940}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -240,6 +252,16 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   isGrounded: 0
+  ceilingCheck: {fileID: 0}
+  cCheckSize: {x: 0, y: 0, z: 0}
+  ceilingMask:
+    serializedVersion: 2
+    m_Bits: 0
+  roofAbove: 0
+  isCrouching: 0
+  CamPos: {fileID: 0}
+  SmoothSpeed: 0
+  Camera: {fileID: 0}
 --- !u!143 &303103078
 CharacterController:
   m_ObjectHideFlags: 0
@@ -660,6 +682,36 @@ MonoBehaviour:
   player: {fileID: 131099183}
   minClamp: -69
   maxClamp: 69
+--- !u!1 &1010655890
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1010655891}
+  m_Layer: 0
+  m_Name: CeilingCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1010655891
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010655890}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.982, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 131099188}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1025244188
 GameObject:
   m_ObjectHideFlags: 0
@@ -1021,6 +1073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Standing: {x: 0, y: 0, z: 0}
   Crouching: {x: 0, y: 0, z: 0}
+  Player: {fileID: 0}
 --- !u!1 &1691896287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1128,7 +1181,7 @@ GameObject:
   - component: {fileID: 1764104933}
   - component: {fileID: 1764104932}
   - component: {fileID: 1764104931}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1211,6 +1264,52 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1952708939
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1952708940}
+  - component: {fileID: 1952708941}
+  m_Layer: 0
+  m_Name: CamPos
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1952708940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952708939}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 131099188}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1952708941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1952708939}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62b6924036045ff48b626d8d9e66d845, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Standing: {x: 0, y: 0, z: 0}
+  Crouching: {x: 0, y: 0, z: 0}
+  Player: {fileID: 131099183}
 --- !u!1 &2087605599
 GameObject:
   m_ObjectHideFlags: 0

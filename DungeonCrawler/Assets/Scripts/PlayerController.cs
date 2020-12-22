@@ -25,7 +25,19 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
-    bool isCrouching;
+    
+    public Transform ceilingCheck;
+    public Vector3 cCheckSize;
+    public LayerMask ceilingMask;
+    public bool roofAbove;
+
+    public bool isCrouching;
+
+    public Transform CamPos;
+    public float SmoothSpeed;
+
+    public GameObject Camera;
+
 
     // Start is called before the first frame update
     void Start()
@@ -62,27 +74,42 @@ public class PlayerController : MonoBehaviour
             moveMultiplier = 0;
         }
 
-        
+
+
+         roofAbove = Physics.CheckBox(ceilingCheck.position, cCheckSize, Quaternion.Euler(0,0,0), ceilingMask);
+
+
+
         //crouching
         if (Input.GetButtonDown("Fire2") && !isCrouching)
         {
-
-
-            //controller.center = new Vector3(0, -0.7f, 0);
-
+            controller.center = new Vector3(0, -0.7f, 0);
+            controller.height = 1.5f;
             moveMultiplier = -6f;
             isCrouching = true;
+
+
         }
-        else if (Input.GetButtonDown("Fire2") && isCrouching)
+        else if (Input.GetButtonDown("Fire2") && isCrouching &! roofAbove)
         {
 
 
             controller.center = new Vector3(0, 0, 0);
-
+            controller.height = 3;
 
             isCrouching = false;
             moveMultiplier = 0f;
         }
+
+        if (isCrouching == true)
+        {
+            Camera.transform.position = Vector3.Lerp(Camera.transform.position, CamPos.position, SmoothSpeed * Time.deltaTime);
+        }
+        if (isCrouching == false)
+        {
+            Camera.transform.position = Vector3.Lerp(Camera.transform.position, CamPos.position, SmoothSpeed * Time.deltaTime);
+        }
+
 
         moveDirection = (transform.right * x + transform.forward * z);
 
@@ -104,11 +131,12 @@ public class PlayerController : MonoBehaviour
         {
 
             //moveMultiplier = -8;
-
+            controller.stepOffset = 0;
         }
         else
         {
             moveMultiplier = 0;
+            controller.stepOffset = 0.3f;
         }
 
     }
@@ -117,7 +145,9 @@ public class PlayerController : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(groundCheck.position, gCheckSize);
-        
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireCube(ceilingCheck.position, cCheckSize);
     }
 
 }

@@ -9,7 +9,7 @@ public class FPS_Camera : MonoBehaviour
 
     public GameObject player;
 
-    private float vertRotation;
+    //private float vertRotation;
     
     
     float mouseX;
