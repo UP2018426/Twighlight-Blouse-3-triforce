@@ -38,6 +38,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Camera;
 
+    Vector3 temp; //this
 
     // Start is called before the first frame update
     void Start()
@@ -113,16 +114,18 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = (transform.right * x + transform.forward * z);
 
-
-        if (moveDirection.magnitude >= 0.1)
+        
+        if (moveDirection.magnitude >= 0.1 /*&& controller.isGrounded == true*/)
         {
             controller.Move(moveDirection.normalized * (speed + moveMultiplier) * Time.deltaTime);
         }
+
+
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && isGrounded) // the && grounded bit here
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
@@ -130,7 +133,7 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded)
         {
 
-            //moveMultiplier = -8;
+            moveMultiplier = 7;
             controller.stepOffset = 0;
         }
         else
@@ -139,6 +142,22 @@ public class PlayerController : MonoBehaviour
             controller.stepOffset = 0.3f;
         }
 
+        //this
+
+        
+
+        if (controller.isGrounded == true) 
+        {
+            temp = moveDirection;
+        }
+
+        if (controller.isGrounded != true)
+        {
+            moveMultiplier = 0.1f;
+            controller.Move(temp * speed * Time.deltaTime);
+            //airspeed = airspeed * 0.8f * Time.deltaTime;
+        }
+        //to this
     }
 
     private void OnDrawGizmos()
