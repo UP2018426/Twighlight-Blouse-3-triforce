@@ -10,7 +10,7 @@ public class PlayerController : MonoBehaviour
 
     public float speed = 12f;
 
-    public float moveMultiplier = 0f;
+    public float moveMultiplier = 1f;
 
     private Vector3 velocity;
 
@@ -25,11 +25,12 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundMask;
     public bool isGrounded;
 
-    
+
     public Transform ceilingCheck;
     public Vector3 cCheckSize;
     public LayerMask ceilingMask;
     public bool roofAbove;
+    //COULD BE MADE INTO ARRY WITH GROUND CHAECJ CASUWE IS SAME THIUNG
 
     public bool isCrouching;
 
@@ -38,14 +39,17 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Camera;
 
-    Vector3 temp; //this
+    private Vector3 moveDirJ;
+
+    private Vector3 moveChange;
 
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-
+        moveDirJ.x = Mathf.Clamp(moveDirJ.x, -1, 1);
+        moveDirJ.z = Mathf.Clamp(moveDirJ.z, -1, 1);
     }
 
     // Update is called once per frame
@@ -66,18 +70,19 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        //running
         if (Input.GetButtonDown("Fire3"))
         {
-            moveMultiplier = 12;
+            moveMultiplier = 1.5f;
         }
         else if (Input.GetButtonUp("Fire3"))
         {
-            moveMultiplier = 0;
+            moveMultiplier = 1;
         }
 
 
 
-         roofAbove = Physics.CheckBox(ceilingCheck.position, cCheckSize, Quaternion.Euler(0,0,0), ceilingMask);
+        roofAbove = Physics.CheckBox(ceilingCheck.position, cCheckSize, Quaternion.Euler(0, 0, 0), ceilingMask);
 
 
 
@@ -86,12 +91,12 @@ public class PlayerController : MonoBehaviour
         {
             controller.center = new Vector3(0, -0.7f, 0);
             controller.height = 1.5f;
-            moveMultiplier = -6f;
+            moveMultiplier = 0.5f;
             isCrouching = true;
 
 
         }
-        else if (Input.GetButtonDown("Fire2") && isCrouching &! roofAbove)
+        else if (Input.GetButtonDown("Fire2") && isCrouching & !roofAbove)
         {
 
 
@@ -99,7 +104,7 @@ public class PlayerController : MonoBehaviour
             controller.height = 3;
 
             isCrouching = false;
-            moveMultiplier = 0f;
+            moveMultiplier = 1f;
         }
 
         if (isCrouching == true)
@@ -114,39 +119,70 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = (transform.right * x + transform.forward * z);
 
-        
-        if (moveDirection.magnitude >= 0.1 /*&& controller.isGrounded == true*/)
-        {
-            controller.Move(moveDirection.normalized * (speed + moveMultiplier) * Time.deltaTime);
-        }
-
+        Debug.Log(moveDirection);
 
         velocity.y += gravity * Time.deltaTime;
+        //velocity.x = (x + speed * moveMultiplier) * Time.deltaTime;
+        //velocity.z = (z + speed * moveMultiplier) * Time.deltaTime;
+
+        //velocity = new Vector3(moveDirection.x += moveMultiplier, velocity.y, moveDirection.z += moveMultiplier);
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded) // the && grounded bit here
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
+
+
+        //var vari = (current - previous) / Time.deltaTime;
+
+        //Debug.Log(controller.velocity);
+
+        //moveDirJ = controller.velocity;
+
+
+
         if (!isGrounded)
         {
-
-            moveMultiplier = 7;
+            //moveMultiplier = -8;
             controller.stepOffset = 0;
+
+
+
+            //moveMultiplier = 0;
+
+            //moveDirJ.x -= 0.2f * Time.deltaTime;
+            //moveDirJ.z -= 0.5f * Time.deltaTime;
+
+            
+        
+            controller.Move((moveDirJ + (moveDirection * 2)) * Time.deltaTime);
+
+            //controller.Move(vari);
+
+            //moveMultiplier = 0.1f;
+            //controller.Move(velocity * 12 * Time.deltaTime);
         }
         else
         {
-            moveMultiplier = 0;
+            //moveMultiplier = 0;
             controller.stepOffset = 0.3f;
+
+
+            moveDirJ = moveDirection.normalized * (speed * moveMultiplier);
+
+            if (moveDirection.magnitude >= 0.1)
+            {
+                controller.Move(moveDirection.normalized * (speed * moveMultiplier) * Time.deltaTime);
+            }
+            //velocity = moveDirection;
         }
 
-        //this
 
-        
-
-        if (controller.isGrounded == true) 
+        /*
+        if (controller.isGrounded == true)
         {
             temp = moveDirection;
         }
@@ -154,11 +190,12 @@ public class PlayerController : MonoBehaviour
         if (controller.isGrounded != true)
         {
             moveMultiplier = 0.1f;
-            controller.Move(temp * speed * Time.deltaTime);
-            //airspeed = airspeed * 0.8f * Time.deltaTime;
+            controller.Move(temp * 12 * Time.deltaTime);
         }
-        //to this
+        */
     }
+
+
 
     private void OnDrawGizmos()
     {
