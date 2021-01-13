@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour
 {
     //add velocity to stats, gravity to stats, all ground check stuff too
 
+    CharcterStats stats;
+
+
     public CharacterController controller;
 
     public float speed = 12f;
@@ -13,15 +16,15 @@ public class PlayerController : MonoBehaviour
     public float moveMultiplier = 1f;
 
     private Vector3 velocity;
-
-    public float gravity;
+    
+    public float gravity = -56.86f;
 
     public float jumpHeight = 10;
 
     private Vector3 moveDirection;
 
     public Transform groundCheck;
-    public float gCheckSize;
+    public Vector3 gCheckSize;
     public LayerMask groundMask;
     public bool isGrounded;
 
@@ -41,26 +44,44 @@ public class PlayerController : MonoBehaviour
 
     private Vector3 moveDirJ;
 
-    private Vector3 moveChange;
+    public float airM;
 
     // Start is called before the first frame update
+
+    /*
+    void Awake()
+    {
+        stats.moveMultiplier = 1f;
+        stats.speed = 12f;
+        stats.jumpHeight = 10f;
+        stats.gravity = -58.86f;
+    }
+    */
+
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
         moveDirJ.x = Mathf.Clamp(moveDirJ.x, -1, 1);
         moveDirJ.z = Mathf.Clamp(moveDirJ.z, -1, 1);
+
+        controller.stepOffset = 0;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+
+
+
+
         if (Input.GetButtonDown("Cancel"))
         {
             Cursor.lockState = CursorLockMode.None;
         }
 
-        isGrounded = Physics.CheckSphere(groundCheck.position, gCheckSize, groundMask);
+        isGrounded = Physics.CheckBox(groundCheck.position, gCheckSize, Quaternion.Euler(0,0,0), groundMask);
 
         if (isGrounded && velocity.y < 0)
         {
@@ -119,7 +140,8 @@ public class PlayerController : MonoBehaviour
 
         moveDirection = (transform.right * x + transform.forward * z);
 
-        Debug.Log(moveDirection);
+        //Debug.Log(moveDirection);
+        //Debug.Log(moveDirJ);
 
         velocity.y += gravity * Time.deltaTime;
         //velocity.x = (x + speed * moveMultiplier) * Time.deltaTime;
@@ -134,7 +156,10 @@ public class PlayerController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
         }
 
-
+        if (moveDirection.magnitude >= 0.1)
+        {
+            controller.Move(moveDirection.normalized * (speed * moveMultiplier) * Time.deltaTime);
+        }
 
         //var vari = (current - previous) / Time.deltaTime;
 
@@ -147,7 +172,7 @@ public class PlayerController : MonoBehaviour
         if (!isGrounded)
         {
             //moveMultiplier = -8;
-            controller.stepOffset = 0;
+            //controller.stepOffset = 0;
 
 
 
@@ -156,9 +181,9 @@ public class PlayerController : MonoBehaviour
             //moveDirJ.x -= 0.2f * Time.deltaTime;
             //moveDirJ.z -= 0.5f * Time.deltaTime;
 
-            
-        
-            controller.Move((moveDirJ + (moveDirection * 2)) * Time.deltaTime);
+
+
+            //controller.Move(((moveDirJ + (moveDirection.normalized * airM))) * Time.deltaTime);//could be changed slightly to fix the extra speed
 
             //controller.Move(vari);
 
@@ -168,15 +193,16 @@ public class PlayerController : MonoBehaviour
         else
         {
             //moveMultiplier = 0;
-            controller.stepOffset = 0.3f;
+            //controller.stepOffset = 0.3f;
 
 
-            moveDirJ = moveDirection.normalized * (speed * moveMultiplier);
+            //moveDirJ = moveDirection.normalized * (speed * moveMultiplier);
+            //moveDirJA = moveDirJ;
 
-            if (moveDirection.magnitude >= 0.1)
-            {
-                controller.Move(moveDirection.normalized * (speed * moveMultiplier) * Time.deltaTime);
-            }
+            //if (moveDirection.magnitude >= 0.1)
+            //{
+            //    controller.Move(moveDirection.normalized * (speed * moveMultiplier) * Time.deltaTime);
+            //}
             //velocity = moveDirection;
         }
 
@@ -200,7 +226,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(groundCheck.position, gCheckSize);
+        Gizmos.DrawWireCube(groundCheck.position, gCheckSize);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(ceilingCheck.position, cCheckSize);
