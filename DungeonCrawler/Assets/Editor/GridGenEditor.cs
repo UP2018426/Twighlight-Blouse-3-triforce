@@ -2,16 +2,16 @@
 using UnityEditor;
 
 
-[CustomEditor(typeof(DungeonGenerator))]
-public class NewBehaviourScript : Editor
+[CustomEditor(typeof(GridGen))]
+public class GridGenEditor : Editor
 {
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
 
-        DungeonGenerator generator = (DungeonGenerator)target;
+        GridGen generator = (GridGen)target;
 
-        if(GUILayout.Button("GenerateDungeon"))
+        if (GUILayout.Button("GenerateDungeon"))
         {
             Debug.Log("click");
 

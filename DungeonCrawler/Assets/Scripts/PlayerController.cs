@@ -6,7 +6,49 @@ public class PlayerController : MonoBehaviour
 {
     //add velocity to stats, gravity to stats, all ground check stuff too
 
-    CharcterStats stats;
+    //CharcterStats stats;
+    /*
+    [System.Serializable]
+    class CharacterStats
+    {
+        public float gravity;
+
+        public float jumpHeight;
+
+        public float speed;
+
+        public float moveMultiplier;
+
+        public Transform groundCheck;
+        public Vector3 gCheckSize;
+        public LayerMask groundMask;
+        public bool isGrounded;
+
+
+        float maxHealth;
+        float currentHealth;
+        float health
+        {
+            get
+            {
+                return currentHealth;
+            }
+            set
+            {
+                if (value <= 0)
+                {
+                    currentHealth = 0;
+                }
+                if (value >= maxHealth)
+                {
+                    currentHealth = maxHealth;
+                }
+
+            }
+        }
+    }
+    */
+    CharacterStats characterStats = new CharacterStats();
 
 
     public CharacterController controller;
@@ -48,25 +90,27 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
 
-    /*
+    
     void Awake()
     {
-        stats.moveMultiplier = 1f;
-        stats.speed = 12f;
-        stats.jumpHeight = 10f;
-        stats.gravity = -58.86f;
+        //stats = GetComponent<CharcterStats>();
+        
+        //stats.gravity = -58.86f;
     }
-    */
+    
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
 
-        moveDirJ.x = Mathf.Clamp(moveDirJ.x, -1, 1);
-        moveDirJ.z = Mathf.Clamp(moveDirJ.z, -1, 1);
+        //moveDirJ.x = Mathf.Clamp(moveDirJ.x, -1, 1);
+        //moveDirJ.z = Mathf.Clamp(moveDirJ.z, -1, 1);
 
-        controller.stepOffset = 0;
+        controller.stepOffset = 0.3f;
 
+        characterStats.moveMultiplier = 1f;
+        characterStats.speed = 12f;
+        characterStats.jumpHeight = 10f;
     }
 
     // Update is called once per frame
@@ -81,9 +125,9 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        isGrounded = Physics.CheckBox(groundCheck.position, gCheckSize, Quaternion.Euler(0,0,0), groundMask);
+        //isGrounded = Physics.CheckBox(groundCheck.position, gCheckSize, Quaternion.Euler(0,0,0), groundMask);
 
-        if (isGrounded && velocity.y < 0)
+        if (/*isGrounded*/ controller.isGrounded && velocity.y < 0)
         {
             velocity.y = -10f;
         }
@@ -94,11 +138,11 @@ public class PlayerController : MonoBehaviour
         //running
         if (Input.GetButtonDown("Fire3"))
         {
-            moveMultiplier = 1.5f;
+            characterStats.moveMultiplier = 1.5f;
         }
         else if (Input.GetButtonUp("Fire3"))
         {
-            moveMultiplier = 1;
+            characterStats.moveMultiplier = 1;
         }
 
 
@@ -112,7 +156,7 @@ public class PlayerController : MonoBehaviour
         {
             controller.center = new Vector3(0, -0.7f, 0);
             controller.height = 1.5f;
-            moveMultiplier = 0.5f;
+            characterStats.moveMultiplier = 0.5f;
             isCrouching = true;
 
 
@@ -125,7 +169,7 @@ public class PlayerController : MonoBehaviour
             controller.height = 3;
 
             isCrouching = false;
-            moveMultiplier = 1f;
+            characterStats.moveMultiplier = 1f;
         }
 
         if (isCrouching == true)
@@ -151,14 +195,14 @@ public class PlayerController : MonoBehaviour
 
         controller.Move(velocity * Time.deltaTime);
 
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump") && controller.isGrounded/*isGrounded*/ && !isCrouching)
         {
-            velocity.y = Mathf.Sqrt(jumpHeight * -2 * gravity);
+            velocity.y = Mathf.Sqrt(characterStats.jumpHeight * -2 * gravity);
         }
 
         if (moveDirection.magnitude >= 0.1)
         {
-            controller.Move(moveDirection.normalized * (speed * moveMultiplier) * Time.deltaTime);
+            controller.Move(moveDirection.normalized * (characterStats.speed * characterStats.moveMultiplier) * Time.deltaTime);
         }
 
         //var vari = (current - previous) / Time.deltaTime;
@@ -169,10 +213,10 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (!isGrounded)
+        if (!controller.isGrounded)
         {
             //moveMultiplier = -8;
-            //controller.stepOffset = 0;
+            controller.stepOffset = 0;
 
 
 
@@ -193,7 +237,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             //moveMultiplier = 0;
-            //controller.stepOffset = 0.3f;
+            controller.stepOffset = 0.3f;
 
 
             //moveDirJ = moveDirection.normalized * (speed * moveMultiplier);
@@ -225,8 +269,8 @@ public class PlayerController : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireCube(groundCheck.position, gCheckSize);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireCube(groundCheck.position, gCheckSize);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireCube(ceilingCheck.position, cCheckSize);

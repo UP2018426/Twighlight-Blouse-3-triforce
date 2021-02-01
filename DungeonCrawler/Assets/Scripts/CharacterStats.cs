@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharcterStats
+public class CharacterStats
 {
     public float gravity;
 
