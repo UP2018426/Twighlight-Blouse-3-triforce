@@ -2,31 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonGenerator : MonoBehaviour
+public class GridGen : MonoBehaviour
 {
-
     public int Zsize;
     public int Xsize;
 
     public float gridSpacing;
 
-    private Vector3[] gPoints;
+    public Vector3[] gPoints;
 
 
-
-
-    // Start is called before the first frame update
     void Start()
     {
         CreateGrid();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     public void CreateGrid()
     {
