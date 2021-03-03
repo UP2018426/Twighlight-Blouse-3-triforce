@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Camera;
 
-    private Vector3 moveDirJ;
+    //private Vector3 moveDirJ;
 
     public float airM;
 
