@@ -14,7 +14,7 @@ public class EnemyFOV : MonoBehaviour
 
     private Vector3 direction;
 
-    private GameObject player;
+    private Transform player;
 
     [SerializeField]
     private float angleToPlayer;
@@ -27,12 +27,16 @@ public class EnemyFOV : MonoBehaviour
     public GameObject sliderObj; //delete
     public Slider slider; //delete
 
+
+
+    //public LayerMask layermask;
+
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         slider = sliderObj.GetComponent<Slider>(); //delete
 
