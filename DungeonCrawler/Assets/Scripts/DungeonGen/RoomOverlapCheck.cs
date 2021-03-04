@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RoomOverlapCheck : MonoBehaviour
 {
-    public float countdown;
+    //public float countdown;
 
     Vector3 oldTransform;
 
@@ -23,10 +23,10 @@ public class RoomOverlapCheck : MonoBehaviour
 
     private void Start()
     {
-        countdown = roomGen.timer;
+        //countdown = roomGen.timer;
 
-        countdown -= Time.deltaTime;
-        countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
+        //countdown -= Time.deltaTime;
+        //countdown = Mathf.Clamp(countdown, 0f, Mathf.Infinity);
 
         if(gameObject.transform.localScale.x >= roomGen.minMainRoomsSize && gameObject.transform.localScale.z >= roomGen.minMainRoomsSize)
         {
@@ -48,7 +48,18 @@ public class RoomOverlapCheck : MonoBehaviour
         {
             gameObject.GetComponent<MeshRenderer>().material.color = Color.red;
         }
+        //else
+        //{
+        //    Destroy(gameObject);
+        //}
+        //need to make a timer
+        //Debug.Log(roomCode);
+
     }
+
+    public string roomCode;
+
+    public GameObject[] conectedTo;
 
     private void OnTriggerEnter(Collider other)
     {

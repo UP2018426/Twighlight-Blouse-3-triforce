@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 822041553}
   - component: {fileID: 822041552}
+  - component: {fileID: 822041554}
   m_Layer: 0
   m_Name: Spawner
   m_TagString: Respawn
@@ -257,6 +258,10 @@ MonoBehaviour:
   rooms: []
   timer: 5
   minMainRoomsSize: 3
+  countDown: 5
+  Mainrooms: []
+  reached: []
+  unReached: []
 --- !u!4 &822041553
 Transform:
   m_ObjectHideFlags: 0
@@ -271,6 +276,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &822041554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822041551}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4cff2bd13896d340a5df0cedae40b94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  points: []
+  reached: []
+  unReached: []
 --- !u!1 &902669369
 GameObject:
   m_ObjectHideFlags: 0

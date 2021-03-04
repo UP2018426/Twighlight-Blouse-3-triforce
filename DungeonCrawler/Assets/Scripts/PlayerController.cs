@@ -84,7 +84,7 @@ public class PlayerController : MonoBehaviour
 
     public GameObject Camera;
 
-    private Vector3 moveDirJ;
+    //private Vector3 moveDirJ;
 
     public float airM;
 
@@ -154,7 +154,7 @@ public class PlayerController : MonoBehaviour
         //crouching
         if (Input.GetButtonDown("Fire2") && !isCrouching)
         {
-            controller.center = new Vector3(0, -0.7f, 0);
+            controller.center = new Vector3(0, -0.5f, 0);
             controller.height = 1.5f;
             characterStats.moveMultiplier = 0.5f;
             isCrouching = true;
