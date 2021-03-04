@@ -37,7 +37,7 @@ public class RoomGen : MonoBehaviour
     {
         for (int i = 0; i < numRoomsToGen; i++)
         {
-            CreateRoom(Random.Range(1, 4), Random.Range(1, 4), room.height);
+            CreateRoom(Random.Range(1, 5), Random.Range(1, 5), room.height);
         }
     }
 
