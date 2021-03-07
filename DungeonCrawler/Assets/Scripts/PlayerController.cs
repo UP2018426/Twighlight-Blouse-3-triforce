@@ -48,27 +48,30 @@ public class PlayerController : MonoBehaviour
         }
     }
     */
-    CharacterStats characterStats = new CharacterStats();
 
+    
+    public CharacterStats characterStats = new CharacterStats();
+
+    
 
     public CharacterController controller;
 
-    public float speed = 12f;
+    //public float speed = 12f;
 
-    public float moveMultiplier = 1f;
+    //public float moveMultiplier = 1f;
 
     private Vector3 velocity;
     
     public float gravity = -56.86f;
 
-    public float jumpHeight = 10;
+    //public float jumpHeight = 10;
 
     private Vector3 moveDirection;
 
-    public Transform groundCheck;
-    public Vector3 gCheckSize;
-    public LayerMask groundMask;
-    public bool isGrounded;
+    //public Transform groundCheck;
+    //public Vector3 gCheckSize;
+    //public LayerMask groundMask;
+    //public bool isGrounded;
 
 
     public Transform ceilingCheck;
@@ -86,7 +89,7 @@ public class PlayerController : MonoBehaviour
 
     //private Vector3 moveDirJ;
 
-    public float airM;
+    //public float airM;
 
     // Start is called before the first frame update
 
@@ -154,7 +157,7 @@ public class PlayerController : MonoBehaviour
         //crouching
         if (Input.GetButtonDown("Fire2") && !isCrouching)
         {
-            controller.center = new Vector3(0, -0.7f, 0);
+            controller.center = new Vector3(0, -0.5f, 0);
             controller.height = 1.5f;
             characterStats.moveMultiplier = 0.5f;
             isCrouching = true;

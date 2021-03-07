@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class CharacterStats
 {
     public float gravity;
@@ -28,18 +29,15 @@ public class CharacterStats
         }
         set
         {
-            if(value <= 0)
+            if (value <= 0)
             {
                 currentHealth = 0;
             }
-            if(value >= maxHealth)
+            if (value >= maxHealth)
             {
                 currentHealth = maxHealth;
             }
 
         }
     }
-
-
-
 }
