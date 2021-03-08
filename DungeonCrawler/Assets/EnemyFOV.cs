@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EnemyFOV : MonoBehaviour
 {
-    private float distance;
+    //private float distance;
     [SerializeField]
     public float range;
     [Range(0,360)]
@@ -27,6 +27,8 @@ public class EnemyFOV : MonoBehaviour
     public GameObject sliderObj; //delete
     public Slider slider; //delete
 
+    public LayerMask layermaskinnit;
+
 
 
     //public LayerMask layermask;
@@ -46,7 +48,12 @@ public class EnemyFOV : MonoBehaviour
         direction = player.transform.position - transform.position;
 
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, direction, out hit))
+
+
+
+        Collider[] target = Physics.OverlapSphere(this.transform.position, range, layermaskinnit);
+
+        if (Physics.Raycast(transform.position, direction, range, layermaskinnit))
         {
             if (hit.distance < range)
             {
@@ -55,7 +62,7 @@ public class EnemyFOV : MonoBehaviour
 
             if(hit.collider.tag == ("Player"))
             {
-                if(angleToPlayer <= FOV / 2 /*|| angleToPlayer >= FOV / 2*/)
+                if(angleToPlayer <= FOV / 2)
                 {
                     inFOV = true;
                 }
@@ -65,6 +72,7 @@ public class EnemyFOV : MonoBehaviour
         
 
         Debug.Log(hit.collider.tag);
+        Debug.Log(hit.distance.);
         angleToPlayer = Vector3.Angle(direction.normalized, transform.forward);
 
         if(inFOV && inRange == true)
@@ -80,7 +88,7 @@ public class EnemyFOV : MonoBehaviour
         if(inFOV == false)
         {
             slider.value -= (0.1f * Time.deltaTime); //delete
-            this.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0, 0.5f);
+            this.GetComponent<MeshRenderer>().material.color = new Color(1, 1, 1, 0.5f);
         }
     }
 }
