@@ -129,8 +129,13 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
+        //Istvan wrote this
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        //my bad bro
 
 
         if (Input.GetButtonDown("Cancel"))
