@@ -73,11 +73,14 @@ public class EnemyFOV : MonoBehaviour
             Debug.Log("Can be seen");
 
             slider.value += (0.1f * Time.deltaTime); //delete
+
+            this.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0, 1);
         }
 
         if(inFOV == false)
         {
             slider.value -= (0.1f * Time.deltaTime); //delete
+            this.GetComponent<MeshRenderer>().material.color = new Color(1, 0, 0, 0.5f);
         }
     }
 }
