@@ -33,10 +33,23 @@ public class EnemyFOV : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Transform>();
+        player = GameObject.Find("CamPos").GetComponent<Transform>();
+
+        StartCoroutine("Findplayer",0.02f);
     }
 
-    void FixedUpdate()
+
+    IEnumerator Findplayer(float delay)
+    {
+        while(true)
+        {
+            yield return new WaitForSeconds(delay);
+            Look();
+        }
+    }
+
+
+    void Look()
     {
         slider = sliderObj.GetComponent<Slider>(); //delete
 
@@ -46,28 +59,28 @@ public class EnemyFOV : MonoBehaviour
         direction = player.transform.position - transform.position;
 
         RaycastHit hit;
-        if(Physics.Raycast(transform.position, direction, out hit))
+        if (Physics.Raycast(transform.position, direction, out hit))
         {
             if (hit.distance < range)
             {
                 inRange = true;
             }
 
-            if(hit.collider.tag == ("Player"))
+            if (hit.collider.tag == ("Player"))
             {
-                if(angleToPlayer <= FOV / 2 /*|| angleToPlayer >= FOV / 2*/)
+                if (angleToPlayer <= FOV / 2 /*|| angleToPlayer >= FOV / 2*/)
                 {
                     inFOV = true;
                 }
             }
         }
 
-        
 
-        Debug.Log(hit.collider.tag);
+
+        //Debug.Log(hit.collider.tag);
         angleToPlayer = Vector3.Angle(direction.normalized, transform.forward);
 
-        if(inFOV && inRange == true)
+        if (inFOV && inRange == true)
         {
             Debug.DrawRay(transform.position, direction, Color.green);
             Debug.Log("Can be seen");
@@ -75,9 +88,54 @@ public class EnemyFOV : MonoBehaviour
             slider.value += (0.1f * Time.deltaTime); //delete
         }
 
-        if(inFOV == false)
+        if (inFOV == false)
         {
             slider.value -= (0.1f * Time.deltaTime); //delete
         }
     }
+
+    //void FixedUpdate()
+    //{
+    //    slider = sliderObj.GetComponent<Slider>(); //delete
+
+    //    inFOV = false;
+    //    inRange = false;
+
+    //    direction = player.transform.position - transform.position;
+
+    //    RaycastHit hit;
+    //    if (Physics.Raycast(transform.position, direction, out hit))
+    //    {
+    //        if (hit.distance < range)
+    //        {
+    //            inRange = true;
+    //        }
+
+    //        if (hit.collider.tag == ("Player"))
+    //        {
+    //            if (angleToPlayer <= FOV / 2 /*|| angleToPlayer >= FOV / 2*/)
+    //            {
+    //                inFOV = true;
+    //            }
+    //        }
+    //    }
+
+
+
+    //    Debug.Log(hit.collider.tag);
+    //    angleToPlayer = Vector3.Angle(direction.normalized, transform.forward);
+
+    //    if (inFOV && inRange == true)
+    //    {
+    //        Debug.DrawRay(transform.position, direction, Color.green);
+    //        Debug.Log("Can be seen");
+
+    //        slider.value += (0.1f * Time.deltaTime); //delete
+    //    }
+
+    //    if (inFOV == false)
+    //    {
+    //        slider.value -= (0.1f * Time.deltaTime); //delete
+    //    }
+    //}
 }

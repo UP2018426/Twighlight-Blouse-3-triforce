@@ -51,7 +51,7 @@ public class PlayerController : MonoBehaviour
 
     
     public CharacterStats characterStats = new CharacterStats();
-
+    
     
 
     public CharacterController controller;
@@ -93,6 +93,16 @@ public class PlayerController : MonoBehaviour
 
     // Start is called before the first frame update
 
+
+    public Transform shootPos;
+    public GameObject shootObj;
+
+
+    void Shoot()
+    {
+        GameObject projectile = Instantiate(shootObj,shootPos);
+    }
+
     
     void Awake()
     {
@@ -111,16 +121,21 @@ public class PlayerController : MonoBehaviour
 
         controller.stepOffset = 0.3f;
 
-        characterStats.moveMultiplier = 1f;
-        characterStats.speed = 12f;
-        characterStats.jumpHeight = 10f;
+        //characterStats.moveMultiplier = 1f;
+        //characterStats.speed = 12f;
+        //characterStats.jumpHeight = 10f;
     }
 
     // Update is called once per frame
     void Update()
     {
-
-
+        //Istvan wrote this
+        if (Input.GetMouseButtonDown(0))
+        {
+            //Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+        //my bad bro
 
 
         if (Input.GetButtonDown("Cancel"))
@@ -151,8 +166,6 @@ public class PlayerController : MonoBehaviour
 
 
         roofAbove = Physics.CheckBox(ceilingCheck.position, cCheckSize, Quaternion.Euler(0, 0, 0), ceilingMask);
-
-
 
         //crouching
         if (Input.GetButtonDown("Fire2") && !isCrouching)
