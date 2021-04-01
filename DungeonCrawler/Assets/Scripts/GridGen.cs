@@ -31,6 +31,9 @@ public class GridGen : MonoBehaviour
         }
     }
 
+
+    public float gizmoSize = 1f;
+
     private void OnDrawGizmos()
     {
 
@@ -39,7 +42,7 @@ public class GridGen : MonoBehaviour
         for (int i = 0; i < gPoints.Length; i++)
         {
             //Gizmos.DrawCube(Verticies[i], new Vector3(0.1f,0.1f,0.1f));
-            Gizmos.DrawSphere(gPoints[i], 0.06f);
+            Gizmos.DrawSphere(gPoints[i], gizmoSize);
         }
     }
 }
