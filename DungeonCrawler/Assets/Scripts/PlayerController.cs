@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 cCheckSize;
     public LayerMask ceilingMask;
     public bool roofAbove;
+    public float SphereCheckSize;
     //COULD BE MADE INTO ARRY WITH GROUND CHAECJ CASUWE IS SAME THIUNG
 
     public bool isCrouching;
@@ -165,7 +166,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        roofAbove = Physics.CheckBox(ceilingCheck.position, cCheckSize, Quaternion.Euler(0, 0, 0), ceilingMask);
+        roofAbove = Physics.CheckSphere(ceilingCheck.position, /*cCheckSize*/SphereCheckSize, ceilingMask /*Quaternion.Euler(0, 0, 0), ceilingMask*/);
 
         //crouching
         if (Input.GetButtonDown("Fire2") && !isCrouching)
@@ -289,7 +290,7 @@ public class PlayerController : MonoBehaviour
         //Gizmos.DrawWireCube(groundCheck.position, gCheckSize);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(ceilingCheck.position, cCheckSize);
+        Gizmos.DrawWireSphere(ceilingCheck.position, SphereCheckSize);
     }
 
 }

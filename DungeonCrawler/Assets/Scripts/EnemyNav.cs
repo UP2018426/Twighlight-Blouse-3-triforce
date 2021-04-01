@@ -41,7 +41,7 @@ public class EnemyNav : MonoBehaviour
             Debug.LogWarning("Only 1 patrol position is set for enemy of name: " + this.name);
         }
 
-        if (PatrolPos.Length >= 2 && state == "")
+        if (PatrolPos.Length >= 2)
         {
             if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)
             {

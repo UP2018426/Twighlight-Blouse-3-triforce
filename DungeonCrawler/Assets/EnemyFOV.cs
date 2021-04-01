@@ -25,7 +25,7 @@ public class EnemyFOV : MonoBehaviour
     private bool inFOV;
 
     public GameObject sliderObj; //delete
-    public Slider slider; //delete
+    private Slider slider; //delete
 
 
 
@@ -35,7 +35,7 @@ public class EnemyFOV : MonoBehaviour
     {
         player = GameObject.Find("CamPos").GetComponent<Transform>();
 
-        StartCoroutine("Findplayer",0.02f);
+        StartCoroutine("Findplayer",0f);
     }
 
 
