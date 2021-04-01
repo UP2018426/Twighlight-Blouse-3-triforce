@@ -97,12 +97,7 @@ public class PlayerController : MonoBehaviour
 
     public Transform shootPos;
     public GameObject shootObj;
-
-
-    void Shoot()
-    {
-        GameObject projectile = Instantiate(shootObj,shootPos);
-    }
+    public float fireForce;
 
     
     void Awake()
@@ -137,6 +132,22 @@ public class PlayerController : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
         }
         //my bad bro
+
+
+        //shootPos.localRotation = gameObject.transform.rotation;
+
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.localRotation);
+
+            proj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
+        }
+
+        //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
+
+
+
 
 
         if (Input.GetButtonDown("Cancel"))
@@ -180,8 +191,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetButtonDown("Fire2") && isCrouching & !roofAbove)
         {
-
-
             controller.center = new Vector3(0, 0, 0);
             controller.height = 3;
 
