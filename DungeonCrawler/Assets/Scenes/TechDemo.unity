@@ -658,7 +658,7 @@ PrefabInstance:
       objectReference: {fileID: 29463708}
     - target: {fileID: 267598263327246501, guid: 368918cffdd8a0a48a457d42b040919b, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 267598263327246501, guid: 368918cffdd8a0a48a457d42b040919b, type: 3}
       propertyPath: PatrolPos.Array.size
