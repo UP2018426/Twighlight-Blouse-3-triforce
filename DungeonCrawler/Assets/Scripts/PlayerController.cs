@@ -139,9 +139,9 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
         {
-            GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.localRotation);
+            GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
 
-            proj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
+            proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
         }
 
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
