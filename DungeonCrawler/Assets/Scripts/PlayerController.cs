@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using common;
+
 public class PlayerController : MonoBehaviour
 {
     //add velocity to stats, gravity to stats, all ground check stuff too
@@ -99,6 +101,12 @@ public class PlayerController : MonoBehaviour
     public GameObject shootObj;
     public float fireForce;
 
+    public Vector3 attackSize;
+    public LayerMask enemies;
+
+    public float timeBetweenAttacks;
+
+    public float dmg;
     
     void Awake()
     {
@@ -144,10 +152,21 @@ public class PlayerController : MonoBehaviour
             proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
         }
 
+        
+        /*
+        if (Input.GetButtonDown("Fire1") && Timer.Countdown(timeBetweenAttacks))
+        {
+            Collider[] enemeis = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity, enemies);
+            for (int i = 0; i < enemies; i++)
+            {
+                //enemies[i].GetComponent<Enemy>().TakeDamage(dmg);
+            }
+        }
+        */
+        //should be working when enemies are made
+
+
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
-
-
-
 
 
         if (Input.GetButtonDown("Cancel"))

@@ -1215,7 +1215,6 @@ MonoBehaviour:
   inRange: 0
   inFOV: 0
   sliderObj: {fileID: 189714216}
-  slider: {fileID: 0}
 --- !u!1 &965364940
 GameObject:
   m_ObjectHideFlags: 0

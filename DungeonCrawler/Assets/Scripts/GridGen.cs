@@ -11,7 +11,6 @@ public class GridGen : MonoBehaviour
 
     public Vector3[] gPoints;
 
-
     void Start()
     {
         CreateGrid();

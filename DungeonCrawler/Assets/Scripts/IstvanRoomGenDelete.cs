@@ -26,11 +26,26 @@ public class IstvanRoomGenDelete : MonoBehaviour
     public GameObject r5; //all 4 doors
     //public GameObject r6; //end
 
+    IstvanRoomGen iRoomgen;
+
+    ///need to make sure that start room is connected and need to check if bossroom is reachable
+    ///can be done by using raycasts from bossroom to start room and if the can connect then is A ok otherwise can do a re gen
+
+    ///check if start and end rooms conect to room x if! "so long gay bowser"
+
+    //shoot if hit tag "room" add to list pick 2 from list make 1 start + 1 end check some how if are connected
+
+    //make so if all bools false go byebye
+
+    private void Awake()
+    {
+        iRoomgen = GameObject.FindGameObjectWithTag("start").GetComponent<IstvanRoomGen>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        dist = 10f;
+        dist = iRoomgen.gridSpacing;
     }
 
     // Update is called once per frame
@@ -71,6 +86,12 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 lft = true;
             }
 
+
+
+            if(lft && rgt && fwd && bck == false)
+            {
+                Destroy(gameObject);
+            }
             /*Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red);
             Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.right) * 10, Color.green);
             Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.back) * 10, Color.blue);
