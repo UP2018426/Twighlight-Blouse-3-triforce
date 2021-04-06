@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+using common;
+
 public class PlayerController : MonoBehaviour
 {
     //add velocity to stats, gravity to stats, all ground check stuff too
@@ -78,6 +80,7 @@ public class PlayerController : MonoBehaviour
     public Vector3 cCheckSize;
     public LayerMask ceilingMask;
     public bool roofAbove;
+    public float SphereCheckSize;
     //COULD BE MADE INTO ARRY WITH GROUND CHAECJ CASUWE IS SAME THIUNG
 
     public bool isCrouching;
@@ -96,13 +99,14 @@ public class PlayerController : MonoBehaviour
 
     public Transform shootPos;
     public GameObject shootObj;
+    public float fireForce;
 
+    public Vector3 attackSize;
+    public LayerMask enemies;
 
-    void Shoot()
-    {
-        GameObject projectile = Instantiate(shootObj,shootPos);
-    }
+    public float timeBetweenAttacks;
 
+    public float dmg;
     
     void Awake()
     {
@@ -138,6 +142,33 @@ public class PlayerController : MonoBehaviour
         //my bad bro
 
 
+        //shootPos.localRotation = gameObject.transform.rotation;
+
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
+
+            proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
+        }
+
+        
+        /*
+        if (Input.GetButtonDown("Fire1") && Timer.Countdown(timeBetweenAttacks))
+        {
+            Collider[] enemeis = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity, enemies);
+            for (int i = 0; i < enemies; i++)
+            {
+                //enemies[i].GetComponent<Enemy>().TakeDamage(dmg);
+            }
+        }
+        */
+        //should be working when enemies are made
+
+
+        //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
+
+
         if (Input.GetButtonDown("Cancel"))
         {
             Cursor.lockState = CursorLockMode.None;
@@ -165,7 +196,7 @@ public class PlayerController : MonoBehaviour
 
 
 
-        roofAbove = Physics.CheckBox(ceilingCheck.position, cCheckSize, Quaternion.Euler(0, 0, 0), ceilingMask);
+        roofAbove = Physics.CheckSphere(ceilingCheck.position, /*cCheckSize*/SphereCheckSize, ceilingMask /*Quaternion.Euler(0, 0, 0), ceilingMask*/);
 
         //crouching
         if (Input.GetButtonDown("Fire2") && !isCrouching)
@@ -179,8 +210,6 @@ public class PlayerController : MonoBehaviour
         }
         else if (Input.GetButtonDown("Fire2") && isCrouching & !roofAbove)
         {
-
-
             controller.center = new Vector3(0, 0, 0);
             controller.height = 3;
 
@@ -289,7 +318,7 @@ public class PlayerController : MonoBehaviour
         //Gizmos.DrawWireCube(groundCheck.position, gCheckSize);
 
         Gizmos.color = Color.blue;
-        Gizmos.DrawWireCube(ceilingCheck.position, cCheckSize);
+        Gizmos.DrawWireSphere(ceilingCheck.position, SphereCheckSize);
     }
 
 }

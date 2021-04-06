@@ -41,24 +41,24 @@ public class EnemyNav : MonoBehaviour
             Debug.LogWarning("Only 1 patrol position is set for enemy of name: " + this.name);
         }
 
-        if (PatrolPos.Length >= 2 && state == "")
+        if (PatrolPos.Length >= 2)
         {
             if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)
             {
                 tempBool = true;
-                Debug.Log("in pos");
+                //Debug.Log("in pos");
             }
 
             if (PatrolNum >= PatrolPos.Length - 1 && tempBool == true)
             {
                 PatrolNum = 0;
-                Debug.Log("reset to 0");
+                //Debug.Log("reset to 0");
             }
 
             else if (PatrolNum < PatrolPos.Length && tempBool == true)
             {
                 PatrolNum++;
-                Debug.Log("+ 1");
+                //Debug.Log("+ 1");
             }
 
             nma.destination = PatrolPos[PatrolNum];

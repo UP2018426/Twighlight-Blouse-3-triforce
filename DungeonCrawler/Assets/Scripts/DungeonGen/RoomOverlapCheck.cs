@@ -10,11 +10,15 @@ public class RoomOverlapCheck : MonoBehaviour
 
     RoomGen roomGen;
 
+    GridGen gridGen;
+
     public bool mainRoom = false;
 
     private void Awake()
     {
         roomGen = GameObject.FindGameObjectWithTag("Respawn").GetComponent<RoomGen>();
+
+        gridGen = GameObject.FindGameObjectWithTag("Respawn").GetComponent<GridGen>();
 
         //gameObject.AddComponent<BoxCollider>().isTrigger = true;
 

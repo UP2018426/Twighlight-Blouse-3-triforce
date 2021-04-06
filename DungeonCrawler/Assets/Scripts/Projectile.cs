@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public float speed;
+    public float speed = 93.2f;
 
-    public float gravity = -9.8f;
+    public float gravity = -1.6f;
 
-    public string[] tagToCompare;
+    public LayerMask layerToCompare;
+
+    public string enemies;
 
     private void FixedUpdate()
     {
-        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
-        transform.Translate(Vector3.down * (gravity * Time.deltaTime));
+        //transform.Translate(Vector3.forward * (speed * Time.deltaTime));
+        //transform.Translate(Vector3.up * (gravity * Time.deltaTime));
         //may want to add a bullet drop by using the same method transform.translate and using vector3.down
 
     }
@@ -21,13 +23,17 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.CompareTag(tagToCompare[0]))//enemies
-        {
+        //if(col.gameObject.CompareTag(enemies))//enemies
+        //{
 
+        //}
+        if (col.gameObject.layer == layerToCompare)//floor and walls
+        {
+            Destroy(gameObject);
         }
-        if (col.gameObject.layer == LayerMask.NameToLayer(tagToCompare[1]))//floor and walls
+        else
         {
-
+            Destroy(gameObject);
         }
     }
 }
