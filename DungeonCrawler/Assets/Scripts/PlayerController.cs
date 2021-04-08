@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
         /*
         if (Input.GetButtonDown("Fire1") && Timer.Countdown(timeBetweenAttacks))
         {
-            Collider[] enemeis = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity, enemies);
+            Collider[] enemeis = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity, enemies);//need to make it so that quarternion identey is changed so attack area is facing the right way
             for (int i = 0; i < enemies; i++)
             {
                 //enemies[i].GetComponent<Enemy>().TakeDamage(dmg);
@@ -316,6 +316,9 @@ public class PlayerController : MonoBehaviour
     {
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireCube(groundCheck.position, gCheckSize);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(shootPos.position,attackSize);
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(ceilingCheck.position, SphereCheckSize);

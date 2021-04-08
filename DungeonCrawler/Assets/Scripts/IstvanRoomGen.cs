@@ -20,7 +20,7 @@ public class IstvanRoomGen : MonoBehaviour
     public GameObject r5; //all 4 doors
     public GameObject r6; //end*/
 
-    public GameObject[] gridpos;
+    //public GameObject[] gridpos;
 
     // Start is called before the first frame update
     void Start()
@@ -88,7 +88,6 @@ public class IstvanRoomGen : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-
         Gizmos.color = Color.red;
 
         for (int i = 0; i < gPoints.Length; i++)
