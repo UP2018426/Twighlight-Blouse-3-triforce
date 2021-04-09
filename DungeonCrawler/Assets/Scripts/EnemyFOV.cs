@@ -31,9 +31,14 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField]
     private int State; // 1 = CALM ||| 2 = SUS ||| 3 = FIGHT ||| 4 = SEARCH
 
+    private PlayerController PlayerController;
+    public bool IsCrouching; ///HEY ROBERT. WHERE TF DO I GET THIS VALUE FROM?
+    public float standingMultiplier;
+
     void Start()
     {
         player = GameObject.Find("CamPos").GetComponent<Transform>();
+        PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
         //StartCoroutine("Findplayer",0f);
 
@@ -48,6 +53,8 @@ public class EnemyFOV : MonoBehaviour
         inRange = false;
 
         direction = player.transform.position - transform.position;
+
+        IsCrouching = PlayerController.isCrouching;
 
         RaycastHit hit;
         if (Physics.Raycast(transform.position, direction, out hit))
@@ -76,7 +83,16 @@ public class EnemyFOV : MonoBehaviour
             Debug.DrawRay(transform.position, direction, Color.green);
             //Debug.Log("Can be seen");
 
-            DetectionLevel += (5f * (range - hit.distance) * Time.deltaTime);
+            if(IsCrouching == false)
+            {
+                DetectionLevel += (8f * (range - hit.distance) * Time.deltaTime);
+            }
+
+            if (IsCrouching == true)
+            {
+                DetectionLevel += (5f * (range - hit.distance) * Time.deltaTime);
+            }
+            
         }
 
         if (inFOV == false && DetectionLevel > 0)
@@ -84,23 +100,28 @@ public class EnemyFOV : MonoBehaviour
             DetectionLevel -= (5f * Time.deltaTime);
         }
 
-        if(DetectionLevel >= 100f)
+        if(DetectionLevel >= 100f && State != 3)
         {
             Debug.Log("FIGHT");
             State = 3;
         }
         
-        if(DetectionLevel <= 70f && State == 3)
+        if(DetectionLevel <= 70f && State == 3 && State != 4)
         {
             Debug.Log("SEARCH");
             State = 4;
             
         }
-        
-        if(DetectionLevel >= 10f)
+
+        if (DetectionLevel >= 10f && State == 1 && State != 2)
         {
             Debug.Log("SUS");
             State = 2;
+        }
+
+        if(DetectionLevel < 10f && State != 1)
+        {
+            State = 1;
         }
 
     }

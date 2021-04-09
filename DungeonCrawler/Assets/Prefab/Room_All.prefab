@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1808134854595602178}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 7407048741823186418}
   m_Layer: 0
   m_Name: Cube (5)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 4267954563997594319}
   m_Layer: 0
   m_Name: Door (1)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 5144285001757564894}
   m_Layer: 0
   m_Name: Door (2)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,7 +394,7 @@ GameObject:
   - component: {fileID: 3511264957781514258}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 2175142187078007735}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -584,7 +584,7 @@ GameObject:
   - component: {fileID: 3534361385461641936}
   m_Layer: 0
   m_Name: Door (3)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -679,7 +679,7 @@ GameObject:
   - component: {fileID: 1047073508875879464}
   m_Layer: 0
   m_Name: Room_All
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -788,7 +788,7 @@ GameObject:
   - component: {fileID: 5990828144820537696}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -883,7 +883,7 @@ GameObject:
   - component: {fileID: 8919928895797642685}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -979,7 +979,7 @@ GameObject:
   - component: {fileID: 1962616695609604888}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1074,7 +1074,7 @@ GameObject:
   - component: {fileID: 2848792644947295850}
   m_Layer: 0
   m_Name: Cube (3)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1169,7 +1169,7 @@ GameObject:
   - component: {fileID: 734039232165078669}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1264,7 +1264,7 @@ GameObject:
   - component: {fileID: 2577485020223514692}
   m_Layer: 0
   m_Name: Cube (4)
-  m_TagString: Untagged
+  m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

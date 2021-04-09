@@ -9,6 +9,10 @@ TagManager:
   - DungeonRoom
   - Sphere
   - start
+  - Room_All
+  - Room_L
+  - Room_Straight
+  - Room_T
   layers:
   - Default
   - TransparentFX

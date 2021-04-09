@@ -88,10 +88,10 @@ public class IstvanRoomGenDelete : MonoBehaviour
 
 
 
-            if(lft && rgt && fwd && bck == false)
+            /*if(lft && rgt && fwd && bck == false)
             {
                 Destroy(gameObject);
-            }
+            }*/
             /*Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red);
             Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.right) * 10, Color.green);
             Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.back) * 10, Color.blue);

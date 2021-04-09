@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 5147410528533472074}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 6924449726278215526}
   m_Layer: 0
   m_Name: Cube (12)
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 2944257471076387724}
   m_Layer: 0
   m_Name: Room_L
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -309,7 +309,7 @@ GameObject:
   - component: {fileID: 8229279463981508534}
   m_Layer: 0
   m_Name: Cube (9)
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -404,7 +404,7 @@ GameObject:
   - component: {fileID: 2117038502479527275}
   m_Layer: 0
   m_Name: Door (1)
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -499,7 +499,7 @@ GameObject:
   - component: {fileID: 4343347459536092765}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -595,7 +595,7 @@ GameObject:
   - component: {fileID: 6885811635139214359}
   m_Layer: 0
   m_Name: Cube (11)
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -690,7 +690,7 @@ GameObject:
   - component: {fileID: 3203252957758810409}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 291733541646667961}
   m_Layer: 0
   m_Name: Cube (10)
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 1729420552598075876}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

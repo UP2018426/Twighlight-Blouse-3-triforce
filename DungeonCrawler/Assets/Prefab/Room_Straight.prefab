@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7976803786833100807}
   m_Layer: 0
   m_Name: Cube (7)
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -109,7 +109,7 @@ GameObject:
   - component: {fileID: 4648524046506019493}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 7874097639441106021}
   m_Layer: 0
   m_Name: Door
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -299,7 +299,7 @@ GameObject:
   - component: {fileID: 8418600021830920571}
   m_Layer: 0
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -395,7 +395,7 @@ GameObject:
   - component: {fileID: 6921299413242241093}
   m_Layer: 0
   m_Name: Cube (6)
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -490,7 +490,7 @@ GameObject:
   - component: {fileID: 3466922656247592545}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -585,7 +585,7 @@ GameObject:
   - component: {fileID: 6271796124770047642}
   m_Layer: 0
   m_Name: Cube (8)
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -680,7 +680,7 @@ GameObject:
   - component: {fileID: 7633123151559501504}
   m_Layer: 0
   m_Name: Room_Straight
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -785,7 +785,7 @@ GameObject:
   - component: {fileID: 6652780712100499495}
   m_Layer: 0
   m_Name: Door (1)
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -880,7 +880,7 @@ GameObject:
   - component: {fileID: 1191331195155223896}
   m_Layer: 0
   m_Name: Cube (9)
-  m_TagString: Untagged
+  m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
