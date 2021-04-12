@@ -6,6 +6,8 @@ public class dungGen : MonoBehaviour
 {
     public GridGen grid;
 
-    public GameObject[] Rooms;
+    //public GameObject[] Rooms;
+    public List<GameObject> rooms;
+
 
 }

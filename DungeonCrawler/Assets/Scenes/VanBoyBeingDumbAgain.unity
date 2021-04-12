@@ -236,7 +236,6 @@ MonoBehaviour:
   Zoffset: 0
   Xoffset: 0
   SphereObj: {fileID: 4423757661362331231, guid: 89af57505d2c5b444a8c9e523f06a7a4, type: 3}
-  gridpos: []
   Zsize: 10
   Xsize: 10
   gridSpacing: 50
@@ -257,7 +256,7 @@ GameObject:
   - component: {fileID: 2098613452}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -370,6 +369,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f848e20ee73770b4f9f7a7610e3b2665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Zsize: 10
+  Xsize: 10
+  gridSpacing: 50
+  gPoints: []
+  SphereObj: {fileID: 4423757661362331231, guid: 89af57505d2c5b444a8c9e523f06a7a4, type: 3}
+  gizmoSize: 1
+  grid: []
+  boss: []
 --- !u!1001 &4487946673408777816
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,6 +387,10 @@ PrefabInstance:
     - target: {fileID: 4588405093939288796, guid: 204fa24c615effe4fb3aed6bea20a986, type: 3}
       propertyPath: m_Name
       value: Room_Start
+      objectReference: {fileID: 0}
+    - target: {fileID: 4588405093939288796, guid: 204fa24c615effe4fb3aed6bea20a986, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4588405093939288796, guid: 204fa24c615effe4fb3aed6bea20a986, type: 3}
       propertyPath: m_TagString

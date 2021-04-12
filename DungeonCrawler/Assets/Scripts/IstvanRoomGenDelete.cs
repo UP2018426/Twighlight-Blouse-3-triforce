@@ -7,56 +7,315 @@ public class IstvanRoomGenDelete : MonoBehaviour
     private int randomNum;
     
     [SerializeField]
-    private bool fwd;
+    public bool fwd;
     [SerializeField]
-    private bool bck;
+    public bool bck;
     [SerializeField]
-    private bool lft;
+    public bool lft;
     [SerializeField]
-    private bool rgt;
+    public bool rgt;
+
+
+    public bool isConected;
+
+    public bool isBeegBoss = false;
+
+    public bool start = false;
+
+    //public IstvanRoomGenDelete iSDelete;
 
     private float dist;
 
-    private int corners;
+    public int corners;
 
     public GameObject r1; //1 door
     public GameObject r2; //L degree door
     public GameObject r3; //straight
     public GameObject r4; //T doors 
     public GameObject r5; //all 4 doors
-    //public GameObject r6; //end
+    public GameObject r6; //end
+    public GameObject r7; //start
 
-    IstvanRoomGen iRoomgen;
+    //IstvanRoomGen iRoomgen;
 
-    ///need to make sure that start room is connected and need to check if bossroom is reachable
-    ///can be done by using raycasts from bossroom to start room and if the can connect then is A ok otherwise can do a re gen
+    checkGensize CheckGensize;
 
-    ///check if start and end rooms conect to room x if! "so long gay bowser"
-
-    //shoot if hit tag "room" add to list pick 2 from list make 1 start + 1 end check some how if are connected
-
-    //make so if all bools false go byebye
+    
 
     private void Awake()
     {
-        iRoomgen = GameObject.FindGameObjectWithTag("start").GetComponent<IstvanRoomGen>();
+        //iRoomgen = GameObject.FindGameObjectWithTag("start").GetComponent<IstvanRoomGen>();
+        CheckGensize = GameObject.FindGameObjectWithTag("GameController").GetComponent<checkGensize>();
+        dist = CheckGensize.gridSpacing;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        dist = iRoomgen.gridSpacing;
+        //dist = iRoomgen.gridSpacing;
+        
+    }
+
+
+    public void Delete()
+    {
+        randomNum = Random.Range(1, 9);
+    
+        if(randomNum == 5)
+        {
+            Debug.Log("destroyed");
+            Destroy(this.gameObject);
+        }
+
+        CheckGensize.delete = true;
+    }
+
+    public void RoomChecking()
+    {
+        RaycastHit hit;
+
+        if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, dist))
+        {
+            fwd = true;
+        }
+
+        if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.right), out hit, dist))
+        {
+            rgt = true;
+        }
+
+        if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.back), out hit, dist))
+        {
+            bck = true;
+        }
+
+        if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.left), out hit, dist))
+        {
+            lft = true;
+        }
+
+        for (int i = 0; i < CheckGensize.grid.Count; i++)
+        {
+            //for checkign how many conected
+            if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, dist) && isConected == true)
+            {
+                hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+            }
+
+            if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.right), out hit, dist) && isConected == true)
+            {
+                hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+            }
+
+            if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.back), out hit, dist) && isConected == true)
+            {
+                hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+            }
+
+            if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.left), out hit, dist) && isConected == true)
+            {
+                hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+            }
+        }
+
+        corners = 0;
+
+        if (fwd == true)
+        {
+            corners++;
+        }
+        if (rgt == true)
+        {
+            corners++;
+        }
+        if (bck == true)
+        {
+            corners++;
+        }
+        if (lft == true)
+        {
+            corners++;
+        }
+
+        CheckGensize.check = true;
+    }
+
+    public void Spawn()
+    {
+        if (corners == 4) //just spawn a 4way
+        {
+            Instantiate(r5, this.transform.position, Quaternion.identity);
+        }
+
+        if (corners == 3) // just spawn a 3way + rotate
+        {
+            if (fwd == false)
+            {
+                Instantiate(r4, this.transform.position, Quaternion.Euler(0, 90, 0));
+            }
+            if (rgt == false)
+            {
+                Instantiate(r4, this.transform.position, Quaternion.Euler(0, 180, 0));
+            }
+            if (bck == false)
+            {
+                Instantiate(r4, this.transform.position, Quaternion.Euler(0, 270, 0));
+            }
+            if (lft == false)
+            {
+                Instantiate(r4, this.transform.position, Quaternion.Euler(0, 0, 0));
+            }
+        }
+
+        if (corners == 2)//find L or straight + rotate
+        {
+            if (fwd && bck == true || lft && rgt == true)
+            {
+                Debug.Log("straight");
+                if (fwd == true)
+                {
+                    Instantiate(r3, this.transform.position, Quaternion.Euler(0, 0, 0));
+                }
+
+                if (rgt == true)
+                {
+                    Instantiate(r3, this.transform.position, Quaternion.Euler(0, 90, 0));
+                }
+
+            }
+
+            else
+            {
+                Debug.Log("L");
+                if (fwd == true)
+                {
+                    if (rgt == true)
+                    {
+                        Instantiate(r2, this.transform.position, Quaternion.Euler(0, 0, 0));
+                    }
+
+                    else
+                    {
+                        Instantiate(r2, this.transform.position, Quaternion.Euler(0, 270, 0));
+                    }
+                }
+
+                if (bck == true)
+                {
+                    if (rgt == true)
+                    {
+                        Instantiate(r2, this.transform.position, Quaternion.Euler(0, 90, 0));
+                    }
+
+                    else
+                    {
+                        Instantiate(r2, this.transform.position, Quaternion.Euler(0, 180, 0));
+                    }
+                }
+            }
+        }
+
+        if (corners == 1 & !isBeegBoss & !start)//spawn a 1 + rotate
+        {
+            if (fwd == true)
+            {
+                Instantiate(r1, this.transform.position, Quaternion.Euler(0, 0, 0));
+            }
+
+            if (rgt == true)
+            {
+                Instantiate(r1, this.transform.position, Quaternion.Euler(0, 90, 0));
+            }
+
+            if (bck == true)
+            {
+                Instantiate(r1, this.transform.position, Quaternion.Euler(0, 180, 0));
+            }
+
+            if (lft == true)
+            {
+                Instantiate(r1, this.transform.position, Quaternion.Euler(0, 270, 0));
+            }
+        }
+
+        if (corners == 1 && isBeegBoss & !start)//spawn end + rotate
+        {
+            if (fwd == true)
+            {
+                Instantiate(r6, this.transform.position, Quaternion.Euler(0, 0, 0));
+            }
+
+            if (rgt == true)
+            {
+                Instantiate(r6, this.transform.position, Quaternion.Euler(0, 90, 0));
+            }
+
+            if (bck == true)
+            {
+                Instantiate(r6, this.transform.position, Quaternion.Euler(0, 180, 0));
+            }
+
+            if (lft == true)
+            {
+                Instantiate(r6, this.transform.position, Quaternion.Euler(0, 270, 0));
+            }
+        }
+
+        if (corners == 1 & !isBeegBoss && start)//spawn start + rotate
+        {
+            if (fwd == true)
+            {
+                Instantiate(r7, this.transform.position, Quaternion.Euler(0, 0, 0));
+            }
+
+            if (rgt == true)
+            {
+                Instantiate(r7, this.transform.position, Quaternion.Euler(0, 90, 0));
+            }
+
+            if (bck == true)
+            {
+                Instantiate(r7, this.transform.position, Quaternion.Euler(0, 180, 0));
+            }
+
+            if (lft == true)
+            {
+                Instantiate(r7, this.transform.position, Quaternion.Euler(0, 270, 0));
+            }
+        }
+
+        CheckGensize.spawn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
+        //if(!CheckGensize.delete)
+        //{
+        //    Delete();
+        //}
+        //if(!CheckGensize.check)
+        //{
+        //    RoomChecking();
+        //}
+        //if(!CheckGensize.spawn)
+        //{
+        //    Spawn();
+        //}
+
+
+
+
         if (Input.GetKeyDown("k"))
         {
             randomNum = Random.Range(1, 9);
         }
 
-        if(randomNum == 5)
+        if (randomNum == 5)
         {
             Debug.Log("destroyed");
             Destroy(this.gameObject);
@@ -86,23 +345,37 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 lft = true;
             }
 
-
-
-            /*if(lft && rgt && fwd && bck == false)
+            for (int i = 0; i < CheckGensize.grid.Count; i++)
             {
-                Destroy(gameObject);
-            }*/
-            /*Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red);
-            Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.right) * 10, Color.green);
-            Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.back) * 10, Color.blue);
-            Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.left) * 10, Color.white);*/
-        }
+                //for checkign how many conected
+                if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, dist) && isConected == true)
+                {
+                    hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+                }
 
-        if (Input.GetKeyDown("h"))
-        {
+                if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.right), out hit, dist) && isConected == true)
+                {
+                    hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+                }
+
+                if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.back), out hit, dist) && isConected == true)
+                {
+                    hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+                }
+
+                if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.left), out hit, dist) && isConected == true)
+                {
+                    hit.transform.gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+                    Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.up) * 50, Color.magenta, 100f);
+                }
+            }
+
             corners = 0;
 
-            if(fwd == true)
+            if (fwd == true)
             {
                 corners++;
             }
@@ -119,16 +392,31 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 corners++;
             }
 
-            if(corners == 4) //just spawn a 4way
+
+            /*if(lft && rgt && fwd && bck == false)
+            {
+                Destroy(gameObject);
+            }*/
+            /*Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.forward) * 10, Color.red);
+            Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.right) * 10, Color.green);
+            Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.back) * 10, Color.blue);
+            Debug.DrawRay(this.transform.position, transform.TransformDirection(Vector3.left) * 10, Color.white);*/
+        }
+
+        if (Input.GetKeyDown("h"))
+        {
+
+
+            if (corners == 4) //just spawn a 4way
             {
                 Instantiate(r5, this.transform.position, Quaternion.identity);
             }
 
-            if(corners == 3) // just spawn a 3way + rotate
+            if (corners == 3) // just spawn a 3way + rotate
             {
-                if(fwd == false)
+                if (fwd == false)
                 {
-                    Instantiate(r4, this.transform.position, Quaternion.Euler(0,90,0));
+                    Instantiate(r4, this.transform.position, Quaternion.Euler(0, 90, 0));
                 }
                 if (rgt == false)
                 {
@@ -144,17 +432,17 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 }
             }
 
-            if(corners == 2)//find L or straight + rotate
+            if (corners == 2)//find L or straight + rotate
             {
-                if(fwd && bck == true || lft && rgt == true)
+                if (fwd && bck == true || lft && rgt == true)
                 {
                     Debug.Log("straight");
-                    if(fwd == true)
+                    if (fwd == true)
                     {
                         Instantiate(r3, this.transform.position, Quaternion.Euler(0, 0, 0));
                     }
 
-                    if(rgt == true)
+                    if (rgt == true)
                     {
                         Instantiate(r3, this.transform.position, Quaternion.Euler(0, 90, 0));
                     }
@@ -164,9 +452,9 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 else
                 {
                     Debug.Log("L");
-                    if(fwd == true)
+                    if (fwd == true)
                     {
-                        if(rgt == true)
+                        if (rgt == true)
                         {
                             Instantiate(r2, this.transform.position, Quaternion.Euler(0, 0, 0));
                         }
@@ -177,7 +465,7 @@ public class IstvanRoomGenDelete : MonoBehaviour
                         }
                     }
 
-                    if(bck == true)
+                    if (bck == true)
                     {
                         if (rgt == true)
                         {
@@ -192,9 +480,9 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 }
             }
 
-            if(corners == 1)//spawn a 1 + rotate
+            if (corners == 1 & !isBeegBoss & !start)//spawn a 1 + rotate
             {
-                if(fwd == true)
+                if (fwd == true)
                 {
                     Instantiate(r1, this.transform.position, Quaternion.Euler(0, 0, 0));
                 }
@@ -215,14 +503,60 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 }
             }
 
+            if (corners == 1 && isBeegBoss & !start)//spawn end + rotate
+            {
+                if (fwd == true)
+                {
+                    Instantiate(r6, this.transform.position, Quaternion.Euler(0, 0, 0));
+                }
+
+                if (rgt == true)
+                {
+                    Instantiate(r6, this.transform.position, Quaternion.Euler(0, 90, 0));
+                }
+
+                if (bck == true)
+                {
+                    Instantiate(r6, this.transform.position, Quaternion.Euler(0, 180, 0));
+                }
+
+                if (lft == true)
+                {
+                    Instantiate(r6, this.transform.position, Quaternion.Euler(0, 270, 0));
+                }
+            }
+
+            if (corners == 1 & !isBeegBoss && start)//spawn start + rotate
+            {
+                if (fwd == true)
+                {
+                    Instantiate(r7, this.transform.position, Quaternion.Euler(0, 0, 0));
+                }
+
+                if (rgt == true)
+                {
+                    Instantiate(r7, this.transform.position, Quaternion.Euler(0, 90, 0));
+                }
+
+                if (bck == true)
+                {
+                    Instantiate(r7, this.transform.position, Quaternion.Euler(0, 180, 0));
+                }
+
+                if (lft == true)
+                {
+                    Instantiate(r7, this.transform.position, Quaternion.Euler(0, 270, 0));
+                }
+            }
+
             //BELOW THIS ARE THE ERROR STATES
 
-            if(corners > 4)
+            if (corners > 4)
             {
                 Debug.LogWarning(this.name + " is reading more than 4 doors!");
             }
 
-            if(corners < 1)
+            if (corners < 1)
             {
                 Debug.LogWarning(this.name + " is reading less than 1 door!");
             }

@@ -130,6 +130,12 @@ public class PlayerController : MonoBehaviour
         //characterStats.jumpHeight = 10f;
     }
 
+    void TakeDamage(int _dmg)
+    {
+        characterStats.currentHealth -= _dmg;
+    }
+
+
     // Update is called once per frame
     void Update()
     {

@@ -19,8 +19,8 @@ public class CharacterStats
     public bool isGrounded;
 
 
-    float maxHealth;
-    float currentHealth;
+    public float maxHealth;
+    public float currentHealth;
     float health
     {
         get

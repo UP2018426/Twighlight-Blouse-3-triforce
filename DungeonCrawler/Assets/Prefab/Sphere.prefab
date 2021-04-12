@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -6193227444926464304}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Sphere
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -112,9 +112,15 @@ MonoBehaviour:
   bck: 0
   lft: 0
   rgt: 0
+  isConected: 0
+  isBeegBoss: 0
+  start: 0
+  iSDelete: {fileID: 0}
+  corners: 0
   r1: {fileID: 1735483895199764808, guid: 492a32b2acb90704983d1a8b3304eb5d, type: 3}
   r2: {fileID: 2248956150162848452, guid: 5da84630fc6a68e45b02fe8d02ee65d6, type: 3}
   r3: {fileID: 6775580090486822792, guid: 04faec611dc616042b0c6d727b393975, type: 3}
   r4: {fileID: 1292142272491923563, guid: 643fc8fa42abe784eacee6d6f887fb04, type: 3}
   r5: {fileID: 4138259327857882464, guid: 9c857d3b66bbb244fbebab0357efa739, type: 3}
-  r6: {fileID: 0}
+  r6: {fileID: 1735483895199764808, guid: 5ad8f372a6f095f4db0665b425670e71, type: 3}
+  r7: {fileID: 4588405093939288796, guid: 204fa24c615effe4fb3aed6bea20a986, type: 3}
