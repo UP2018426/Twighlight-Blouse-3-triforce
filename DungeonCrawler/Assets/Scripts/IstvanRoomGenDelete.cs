@@ -59,15 +59,15 @@ public class IstvanRoomGenDelete : MonoBehaviour
 
     public void Delete()
     {
-        randomNum = Random.Range(1, 9);
+        randomNum = Random.Range(1, 7);
     
-        if(randomNum == 5)
+        if(randomNum >= 5)
         {
             Debug.Log("destroyed");
             Destroy(this.gameObject);
         }
 
-        CheckGensize.delete = true;
+        //CheckGensize.delete = true;
     }
 
     public void RoomChecking()
@@ -94,7 +94,7 @@ public class IstvanRoomGenDelete : MonoBehaviour
             lft = true;
         }
 
-        for (int i = 0; i < CheckGensize.grid.Count; i++)
+        for (int i = 0; i < 10; i++)
         {
             //for checkign how many conected
             if (Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hit, dist) && isConected == true)
@@ -141,7 +141,7 @@ public class IstvanRoomGenDelete : MonoBehaviour
             corners++;
         }
 
-        CheckGensize.check = true;
+        //CheckGensize.check = true;
     }
 
     public void Spawn()
@@ -288,21 +288,21 @@ public class IstvanRoomGenDelete : MonoBehaviour
             }
         }
 
-        CheckGensize.spawn = true;
+        //CheckGensize.spawn = true;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //if(!CheckGensize.delete)
+        //if (!CheckGensize.delete)
         //{
         //    Delete();
         //}
-        //if(!CheckGensize.check)
+        //if (!CheckGensize.check && CheckGensize.logDungeon)
         //{
         //    RoomChecking();
         //}
-        //if(!CheckGensize.spawn)
+        //if (!CheckGensize.spawn && CheckGensize.log1Rooms)
         //{
         //    Spawn();
         //}

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//using common;
+//using common;
+
 public class checkGensize : MonoBehaviour
 {
     private Camera mainCamera;
 
-    private IstvanRoomGenDelete rooms;
+    //private IstvanRoomGenDelete rooms;
 
 
     Ray camRay;
@@ -51,17 +54,30 @@ public class checkGensize : MonoBehaviour
         //    }
         //}
 
+        StartCoroutine("LogDelay",0.4f);
+        //StopCoroutine("LogDelay");
 
     }
 
-
+    IEnumerator LogDelay(float delay)
+    {
+        Delete();
+        yield return new WaitForSeconds(delay);
+        LogDungeon();
+        yield return new WaitForSeconds(delay);
+        RoomChecking();
+        yield return new WaitForSeconds(delay);
+        Log1DoorRooms();
+        yield return new WaitForSeconds(delay);
+        Spawn();
+    }
 
 
     private void Awake()
     {
         CreateGrid();
 
-        //rooms = GameObject.FindGameObjectWithTag("Sphere").GetComponents<IstvanRoomGenDelete>();
+        //rooms = GameObject.FindGameObjectWithTag("Sphere").GetComponent<IstvanRoomGenDelete>();
     }
 
     public int Zsize;
@@ -101,7 +117,7 @@ public class checkGensize : MonoBehaviour
     //    }
     //}
 
-
+    public List<GameObject> maybeDelete;
 
     public List<GameObject> grid;
 
@@ -147,9 +163,90 @@ public class checkGensize : MonoBehaviour
             boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
         }
 
+
+
+
+        if(Input.GetKeyDown("q"))
+        {
+            Delete();
+        }
+
+        if (Input.GetKeyDown("w"))
+        {
+            LogDungeon();
+        }
+        if (Input.GetKeyDown("e"))
+        {
+            RoomChecking();
+        }
+        if (Input.GetKeyDown("r"))
+        {
+            Log1DoorRooms();
+        }
+        if (Input.GetKeyDown("t"))
+        {
+            Spawn();
+        }
+
+
+
+        timeToCount -= Time.deltaTime;
+        timeToCount = Mathf.Clamp(timeToCount, 0f, Mathf.Infinity);
+
+
+
         if (Input.GetKeyDown("return"))
         {
             SpawnDungeon();
+        }
+    }
+
+    void Delete()
+    {
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Sphere").Length; i++)
+        {
+            maybeDelete.Add(GameObject.FindGameObjectsWithTag("Sphere")[i]);
+        }
+
+        for (int i = 0; i < maybeDelete.Count; i++)
+        {
+            maybeDelete[i].GetComponent<IstvanRoomGenDelete>().Delete();
+        }
+
+        delete = true;
+    }
+
+    void RoomChecking()
+    {
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+
+        check = true;
+    }
+
+    void Spawn()
+    {
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().Spawn();
         }
     }
 
@@ -163,6 +260,8 @@ public class checkGensize : MonoBehaviour
         var tjing = Random.Range(0, grid.Count);
 
         grid[tjing].gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+
+        logDungeon = true;
     }
 
     void Log1DoorRooms()
@@ -184,58 +283,96 @@ public class checkGensize : MonoBehaviour
         var num2 = Random.Range(0, boss.Count);
 
         boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
+
+        log1Rooms = true;
     }
 
     public bool delete = false;
     public bool check = false;
     public bool spawn = false;
 
-    bool logDungeon = false;
-    bool log1Rooms = false;
+    public bool logDungeon = false;
+    public bool log1Rooms = false;
 
+    public float timeToCount;
     public void SpawnDungeon()
     {
         // 'k'(delete grid objs)
 
+        
+        Delete();
+
+
         //rooms.Delete();
 
-        if (delete == true &! logDungeon)
-        {
-            LogDungeon();
-            logDungeon = true;
-        }
-
         // ';'(adds all remaining grid objs to )
-
-        //LogDungeon();
+        
+        
+        if (delete)
+        { 
+            LogDungeon();
+            Debug.Log("Logged");
+        }
 
         // 'j'(checks what rooms to make and if they are connected)
 
+        if(logDungeon)
+        {
+            RoomChecking();
+            Debug.Log("Checked");
+        }
+        
+        
+
         //rooms.RoomChecking();
 
-        if (check == true &! log1Rooms)
+        // '/'(adds all rooms with 1 room to a list so that two can be picked for start and end)
+
+        if (check)
         {
             Log1DoorRooms();
-            log1Rooms = true;
+            Debug.Log("found 1 DoorRooms");
         }
-
-        // '/'(adds all rooms with 1 room to a list so that two can be picked for start and end)
 
         //Log1DoorRooms();
 
         // 'h'(spawns the rooms and sets corners may need to swap the coners setting to before spawning to get the things working properly)
 
-        //rooms.Spawn();
+        
+            for (int i = 0; i < grid.Count; i++)
+            {
+                grid[i].GetComponent<IstvanRoomGenDelete>().Spawn();
+            }
+        
 
-        //if (spawn == false)
-        //{
-        //    spawn = true;
-        //}
+        //rooms.Spawn();
 
         // needs to be used to reset if there were problems possibly or earlier
 
         //needs to delete and redo all if dungoen not right(size or lacking start and end room)
     }
+
+    
+
+
+
+
+
+    //    delete = false;
+    //    if (delete == true & !logDungeon)
+    //    {
+    //       LogDungeon();
+    //       logDungeon = true;
+    //    }
+    //    if (check == true & !log1Rooms)
+    //    {
+    //       Log1DoorRooms();
+    //       log1Rooms = true;
+    //    }
+    //    if (spawn == false)
+    //    {
+    //       spawn = true;
+    //    }
 
     // 'k'(delete grid objs)
     // ';'(adds all remaining grid objs to)

@@ -369,14 +369,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f848e20ee73770b4f9f7a7610e3b2665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Zsize: 10
-  Xsize: 10
+  Zsize: 5
+  Xsize: 5
   gridSpacing: 50
-  gPoints: []
   SphereObj: {fileID: 4423757661362331231, guid: 89af57505d2c5b444a8c9e523f06a7a4, type: 3}
   gizmoSize: 1
+  maybeDelete: []
   grid: []
   boss: []
+  delete: 0
+  check: 0
+  spawn: 0
+  logDungeon: 0
+  log1Rooms: 0
 --- !u!1001 &4487946673408777816
 PrefabInstance:
   m_ObjectHideFlags: 0
