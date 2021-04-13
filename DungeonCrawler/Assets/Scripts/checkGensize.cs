@@ -57,26 +57,86 @@ public class checkGensize : MonoBehaviour
         StartCoroutine("LogDelay",0.4f);
         //StopCoroutine("LogDelay");
 
+        
     }
-
+    public int connected = 0;
     IEnumerator LogDelay(float delay)
     {
-        Delete();
-        yield return new WaitForSeconds(delay);
-        LogDungeon();
-        yield return new WaitForSeconds(delay);
-        RoomChecking();
-        yield return new WaitForSeconds(delay);
-        Log1DoorRooms();
+        while (!enoughroom)
+        {
+            Debug.Log("While Loop 1");
+            while (connected < 5)
+            {
+                Debug.Log("While Loop 2");
+                Delete();
+                Debug.Log("Delete");
+                yield return new WaitForSeconds(delay);
+                LogDungeon();
+                Debug.Log("Logged");
+                yield return new WaitForSeconds(delay);
+                RoomChecking();
+                Debug.Log("Checked");
+                if (connected < 5)
+                {
+                    Debug.Log("Connected < 5");
+                    for (int i = 0; i < grid.Count; i++)
+                    {
+                        grid[i].gameObject.GetComponent<IstvanRoomGenDelete>().boom = true;
+                    }//send trigger to all spheres to destroy themselves
+                    Debug.Log("grid Objs destroyed");
+                    grid.Clear();
+
+                    maybeDelete.Clear();
+
+                    Debug.Log("List cleared");
+                    connected = 0;
+                    Debug.Log("connected " + connected);
+                    CreateGrid();
+                    Debug.Log("Grid Respawned");
+                }
+
+                //Debug.Log(connected);
+
+            }//may not be needed may ned to do it when log 1 dorr rooms fails
+            yield return new WaitForSeconds(delay);
+            enoughroom = Log1DoorRooms();//not quite right
+            Debug.Log("logged + Assigned Start + End");
+            if (!enoughroom)
+            {
+                Debug.Log("Boss List Clear");
+                boss.Clear();
+                for (int i = 0; i < grid.Count; i++)
+                {
+                    grid[i].gameObject.GetComponent<IstvanRoomGenDelete>().boom = true;
+                }//send trigger to all spheres to destroy themselves
+                Debug.Log("grid Objs destroyed");
+                grid.Clear();
+
+                maybeDelete.Clear();
+
+                Debug.Log("List cleared");
+                connected = 0;
+                CreateGrid();
+                Debug.Log("Grid Respawned");
+            }
+        }
         yield return new WaitForSeconds(delay);
         Spawn();
+        Debug.Log("Spawned");
+        yield return new WaitForSeconds(delay);
+        for (int i = 0; i < grid.Count; i++)
+        {
+            if(grid[i].gameObject.GetComponent<IstvanRoomGenDelete>().isConected == false)
+            {
+                Destroy(grid[i].gameObject);
+            }
+        }
     }
 
-
+    //Debug.Log("");
     private void Awake()
     {
         CreateGrid();
-
         //rooms = GameObject.FindGameObjectWithTag("Sphere").GetComponent<IstvanRoomGenDelete>();
     }
 
@@ -106,6 +166,7 @@ public class checkGensize : MonoBehaviour
 
     public float gizmoSize = 1f;
 
+    bool enoughroom = false;
     //private void OnDrawGizmos()
     //{
     //    Gizmos.color = Color.red;
@@ -189,12 +250,6 @@ public class checkGensize : MonoBehaviour
         }
 
 
-
-        timeToCount -= Time.deltaTime;
-        timeToCount = Mathf.Clamp(timeToCount, 0f, Mathf.Infinity);
-
-
-
         if (Input.GetKeyDown("return"))
         {
             SpawnDungeon();
@@ -212,8 +267,6 @@ public class checkGensize : MonoBehaviour
         {
             maybeDelete[i].GetComponent<IstvanRoomGenDelete>().Delete();
         }
-
-        delete = true;
     }
 
     void RoomChecking()
@@ -238,8 +291,22 @@ public class checkGensize : MonoBehaviour
         {
             grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
         }
-
-        check = true;
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
+        for (int i = 0; i < grid.Count; i++)
+        {
+            grid[i].GetComponent<IstvanRoomGenDelete>().RoomChecking();
+        }
     }
 
     void Spawn()
@@ -260,11 +327,9 @@ public class checkGensize : MonoBehaviour
         var tjing = Random.Range(0, grid.Count);
 
         grid[tjing].gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
-
-        logDungeon = true;
     }
 
-    void Log1DoorRooms()
+    bool Log1DoorRooms()
     {
         for (int i = 0; i < grid.Count; i++)
         {
@@ -274,33 +339,51 @@ public class checkGensize : MonoBehaviour
             }
         }
 
-        var num = Random.Range(0, boss.Count);
+        
+        //var num = Random.Range(0, boss.Count);
 
-        boss[num].gameObject.GetComponent<IstvanRoomGenDelete>().isBeegBoss = true;
+        //boss[num].gameObject.GetComponent<IstvanRoomGenDelete>().isBeegBoss = true;
 
-        boss.RemoveAt(num);
+        //boss.RemoveAt(num);
 
-        var num2 = Random.Range(0, boss.Count);
+        //var num2 = Random.Range(0, boss.Count);
 
-        boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
+        //boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
 
-        log1Rooms = true;
+        if (boss.Count >= 2)
+        {
+            Debug.Log("log1 if working");
+            var num = Random.Range(0, boss.Count);
+
+            boss[num].gameObject.GetComponent<IstvanRoomGenDelete>().isBeegBoss = true;
+
+            boss.RemoveAt(num);
+
+            var num2 = Random.Range(0, boss.Count);
+
+            boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
-    public bool delete = false;
-    public bool check = false;
-    public bool spawn = false;
+    //public bool delete = false;
+    //public bool check = false;
+    //public bool spawn = false;
 
-    public bool logDungeon = false;
-    public bool log1Rooms = false;
+    //public bool logDungeon = false;
+    //public bool log1Rooms = false;
 
-    public float timeToCount;
+    //public float timeToCount;
     public void SpawnDungeon()
     {
         // 'k'(delete grid objs)
 
         
-        Delete();
+        //Delete();
 
 
         //rooms.Delete();
@@ -308,19 +391,19 @@ public class checkGensize : MonoBehaviour
         // ';'(adds all remaining grid objs to )
         
         
-        if (delete)
-        { 
-            LogDungeon();
-            Debug.Log("Logged");
-        }
+        //if (delete)
+        //{ 
+        //    LogDungeon();
+        //    Debug.Log("Logged");
+        //}
 
         // 'j'(checks what rooms to make and if they are connected)
 
-        if(logDungeon)
-        {
-            RoomChecking();
-            Debug.Log("Checked");
-        }
+        //if(logDungeon)
+        //{
+        //    RoomChecking();
+        //    Debug.Log("Checked");
+        //}
         
         
 
@@ -328,21 +411,21 @@ public class checkGensize : MonoBehaviour
 
         // '/'(adds all rooms with 1 room to a list so that two can be picked for start and end)
 
-        if (check)
-        {
-            Log1DoorRooms();
-            Debug.Log("found 1 DoorRooms");
-        }
+        //if (check)
+        //{
+        //    Log1DoorRooms();
+        //    Debug.Log("found 1 DoorRooms");
+        //}
 
         //Log1DoorRooms();
 
         // 'h'(spawns the rooms and sets corners may need to swap the coners setting to before spawning to get the things working properly)
 
         
-            for (int i = 0; i < grid.Count; i++)
-            {
-                grid[i].GetComponent<IstvanRoomGenDelete>().Spawn();
-            }
+            //for (int i = 0; i < grid.Count; i++)
+            //{
+            //    grid[i].GetComponent<IstvanRoomGenDelete>().Spawn();
+            //}
         
 
         //rooms.Spawn();
