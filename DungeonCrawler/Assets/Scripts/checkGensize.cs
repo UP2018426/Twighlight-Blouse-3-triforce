@@ -11,7 +11,7 @@ public class checkGensize : MonoBehaviour
         
     private void Start()
     {
-        StartCoroutine("LogDelay",0.4f);
+        StartCoroutine("LogDelay",0.1f);
         //StopCoroutine("LogDelay");
     }
     public int connected = 0;
@@ -78,33 +78,7 @@ public class checkGensize : MonoBehaviour
         yield return new WaitForSeconds(delay);
         Spawn();
         Debug.Log("Spawned");
-        yield return new WaitForSeconds(delay);
-        for (int i = 0; i < grid.Count; i++)
-        {
-            if(grid[i].gameObject.GetComponent<IstvanRoomGenDelete>().isConected == false)
-            {
-                Destroy(grid[i].gameObject);
-            }
-        }
-        ///d
-        ///d
-        ///d
-        ///d
-        ///d
-        ///d
-        ///d
-        ///d
-        ///d
-        ///d
-        yield return new WaitForSeconds(delay);
-
-        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Sphere").Length; i++)
-        {
-            finalRooms.Add(GameObject.FindGameObjectsWithTag("Sphere")[i]);
-        }
     }
-
-    public List<GameObject> finalRooms;//if not needed for navmesh gen delete this and  for loop above ^^^ if needs to be floor objs change the "Sphere" to tag of the floor
 
     //Debug.Log("");
     private void Awake()
@@ -164,69 +138,69 @@ public class checkGensize : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(";"))
-        {
-            for (int i = 0; i < GameObject.FindGameObjectsWithTag("Sphere").Length; i++)
-            {
-                grid.Add(GameObject.FindGameObjectsWithTag("Sphere")[i]);
-            }
+        //if (Input.GetKeyDown(";"))
+        //{
+        //    for (int i = 0; i < GameObject.FindGameObjectsWithTag("Sphere").Length; i++)
+        //    {
+        //        grid.Add(GameObject.FindGameObjectsWithTag("Sphere")[i]);
+        //    }
 
-            var tjing = Random.Range(0, grid.Count);
+        //    var tjing = Random.Range(0, grid.Count);
 
-            grid[tjing].gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
-        }
+        //    grid[tjing].gameObject.GetComponent<IstvanRoomGenDelete>().isConected = true;
+        //}
 
-        if (Input.GetKeyDown("/"))
-        {
-            for (int i = 0; i < grid.Count; i++)
-            {
-                if (grid[i].GetComponent<IstvanRoomGenDelete>().corners == 1 && grid[i].GetComponent<IstvanRoomGenDelete>().isConected)
-                {
-                    boss.Add(grid[i]);//all that needs to happen is that it sets two rooms with start / end
-                }
-            }
+        //if (Input.GetKeyDown("/"))
+        //{
+        //    for (int i = 0; i < grid.Count; i++)
+        //    {
+        //        if (grid[i].GetComponent<IstvanRoomGenDelete>().corners == 1 && grid[i].GetComponent<IstvanRoomGenDelete>().isConected)
+        //        {
+        //            boss.Add(grid[i]);//all that needs to happen is that it sets two rooms with start / end
+        //        }
+        //    }
 
-            var num = Random.Range(0, boss.Count);
+        //    var num = Random.Range(0, boss.Count);
 
-            boss[num].gameObject.GetComponent<IstvanRoomGenDelete>().isBeegBoss = true;
+        //    boss[num].gameObject.GetComponent<IstvanRoomGenDelete>().isBeegBoss = true;
 
-            boss.RemoveAt(num);
+        //    boss.RemoveAt(num);
 
-            var num2 = Random.Range(0, boss.Count);
+        //    var num2 = Random.Range(0, boss.Count);
 
-            boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
-        }
-
-
+        //    boss[num2].gameObject.GetComponent<IstvanRoomGenDelete>().start = true;
+        //}
 
 
-        if(Input.GetKeyDown("q"))
-        {
-            Delete();
-        }
-
-        if (Input.GetKeyDown("w"))
-        {
-            LogDungeon();
-        }
-        if (Input.GetKeyDown("e"))
-        {
-            RoomChecking();
-        }
-        if (Input.GetKeyDown("r"))
-        {
-            Log1DoorRooms();
-        }
-        if (Input.GetKeyDown("t"))
-        {
-            Spawn();
-        }
 
 
-        if (Input.GetKeyDown("return"))
-        {
-            SpawnDungeon();
-        }
+        //if(Input.GetKeyDown("q"))
+        //{
+        //    Delete();
+        //}
+
+        //if (Input.GetKeyDown("w"))
+        //{
+        //    LogDungeon();
+        //}
+        //if (Input.GetKeyDown("e"))
+        //{
+        //    RoomChecking();
+        //}
+        //if (Input.GetKeyDown("r"))
+        //{
+        //    Log1DoorRooms();
+        //}
+        //if (Input.GetKeyDown("t"))
+        //{
+        //    Spawn();
+        //}
+
+
+        //if (Input.GetKeyDown("return"))
+        //{
+        //    SpawnDungeon();
+        //}
     }
 
     void Delete()
@@ -351,68 +325,7 @@ public class checkGensize : MonoBehaviour
     //public bool log1Rooms = false;
 
     //public float timeToCount;
-    public void SpawnDungeon()
-    {
-        // 'k'(delete grid objs)
-
-        
-        //Delete();
-
-
-        //rooms.Delete();
-
-        // ';'(adds all remaining grid objs to )
-        
-        
-        //if (delete)
-        //{ 
-        //    LogDungeon();
-        //    Debug.Log("Logged");
-        //}
-
-        // 'j'(checks what rooms to make and if they are connected)
-
-        //if(logDungeon)
-        //{
-        //    RoomChecking();
-        //    Debug.Log("Checked");
-        //}
-        
-        
-
-        //rooms.RoomChecking();
-
-        // '/'(adds all rooms with 1 room to a list so that two can be picked for start and end)
-
-        //if (check)
-        //{
-        //    Log1DoorRooms();
-        //    Debug.Log("found 1 DoorRooms");
-        //}
-
-        //Log1DoorRooms();
-
-        // 'h'(spawns the rooms and sets corners may need to swap the coners setting to before spawning to get the things working properly)
-
-        
-            //for (int i = 0; i < grid.Count; i++)
-            //{
-            //    grid[i].GetComponent<IstvanRoomGenDelete>().Spawn();
-            //}
-        
-
-        //rooms.Spawn();
-
-        // needs to be used to reset if there were problems possibly or earlier
-
-        //needs to delete and redo all if dungoen not right(size or lacking start and end room)
-    }
-
-    
-
-
-
-
+   
 
     //    delete = false;
     //    if (delete == true & !logDungeon)
