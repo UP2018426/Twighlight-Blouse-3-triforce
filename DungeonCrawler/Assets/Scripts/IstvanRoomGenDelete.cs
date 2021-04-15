@@ -59,7 +59,7 @@ public class IstvanRoomGenDelete : MonoBehaviour
     public bool boom = false;
     public void Delete()
     {
-        randomNum = Random.Range(1, 7);
+        randomNum = Random.Range(1, 8);
     
         if(randomNum >= 5)
         {

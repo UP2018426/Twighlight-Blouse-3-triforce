@@ -2,62 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//using common;
-//using common;
-
 public class checkGensize : MonoBehaviour
 {
-    private Camera mainCamera;
-
-    //private IstvanRoomGenDelete rooms;
-
-
-    Ray camRay;
-    float rayLength;
-
-    Vector3 fromPos;
-    Vector3 toPos;
-    Vector3 dir;
-
-    //void Awake()
-    //{
-    //    mainCamera = FindObjectOfType<Camera>();
-
-    //    roomGen = GameObject.FindGameObjectWithTag("start").GetComponent<IstvanRoomGen>();
-    //}
-
-
-
-
+    [SerializeField]
+    private int minRoomNum;
+    [SerializeField]
+    private int maxRoomNum;
+        
     private void Start()
     {
-        //for (int i = 0, z = 0; z <= roomGen.Zsize; z++)
-        //{
-        //    for (int x = 0; x <= roomGen.Xsize; x++)
-        //    {
-        //        fromPos = transform.position;
-
-        //        toPos = new Vector3(x * roomGen.gridSpacing, 0, z * roomGen.gridSpacing);
-
-        //        dir = toPos - fromPos;
-
-        //        RaycastHit hit;
-
-        //        if (Physics.Raycast(fromPos, dir, out hit, Mathf.Infinity))
-        //        {
-        //            if (true)//needs to add room to list
-        //            {
-
-        //            }
-        //        }
-        //        ++i;
-        //    }
-        //}
-
         StartCoroutine("LogDelay",0.4f);
         //StopCoroutine("LogDelay");
-
-        
     }
     public int connected = 0;
     IEnumerator LogDelay(float delay)
@@ -65,7 +20,7 @@ public class checkGensize : MonoBehaviour
         while (!enoughroom)
         {
             Debug.Log("While Loop 1");
-            while (connected < 5)
+            while (connected < minRoomNum || connected > maxRoomNum)
             {
                 Debug.Log("While Loop 2");
                 Delete();
@@ -76,7 +31,7 @@ public class checkGensize : MonoBehaviour
                 yield return new WaitForSeconds(delay);
                 RoomChecking();
                 Debug.Log("Checked");
-                if (connected < 5)
+                if (connected < minRoomNum || connected > maxRoomNum)
                 {
                     Debug.Log("Connected < 5");
                     for (int i = 0; i < grid.Count; i++)
@@ -131,7 +86,25 @@ public class checkGensize : MonoBehaviour
                 Destroy(grid[i].gameObject);
             }
         }
+        ///d
+        ///d
+        ///d
+        ///d
+        ///d
+        ///d
+        ///d
+        ///d
+        ///d
+        ///d
+        yield return new WaitForSeconds(delay);
+
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("Sphere").Length; i++)
+        {
+            finalRooms.Add(GameObject.FindGameObjectsWithTag("Sphere")[i]);
+        }
     }
+
+    public List<GameObject> finalRooms;//if not needed for navmesh gen delete this and  for loop above ^^^ if needs to be floor objs change the "Sphere" to tag of the floor
 
     //Debug.Log("");
     private void Awake()
@@ -151,11 +124,11 @@ public class checkGensize : MonoBehaviour
 
     public void CreateGrid()
     {
-        gPoints = new Vector3[(Xsize + 1) * (Zsize + 1)];
+        gPoints = new Vector3[(Xsize) * (Zsize)];
 
-        for (int i = 0, z = 0; z <= Zsize; z++)
+        for (int i = 0, z = 0; z < Zsize; z++)
         {
-            for (int x = 0; x <= Xsize; x++)
+            for (int x = 0; x < Xsize; x++)
             {
                 gPoints[i] = new Vector3(x * gridSpacing, 0, z * gridSpacing);
                 Instantiate(SphereObj, gPoints[i], Quaternion.identity);

@@ -369,7 +369,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f848e20ee73770b4f9f7a7610e3b2665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Connected: 0
+  minRoomNum: 5
+  maxRoomNum: 10
+  connected: 0
   Zsize: 5
   Xsize: 5
   gridSpacing: 50
