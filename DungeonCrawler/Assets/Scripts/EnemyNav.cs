@@ -10,59 +10,84 @@ public class EnemyNav : MonoBehaviour
     private int PatrolNum;
     [SerializeField]
     private Vector3[] PatrolPos;
-    [SerializeField]
-    private string state;
+
+    private Vector3 LocalPos;
 
     public float WaitTimer;
 
     private bool tempBool;
 
-    // Start is called before the first frame update
+    private EnemyFOV FOVScript;
+
+    public float RunSpeed;
+    public float WalkSpeed;
+
+    public Transform ParentRoom;
+
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();
+
+        FOVScript = this.gameObject.GetComponent<EnemyFOV>();
+
         PatrolNum = 0;
         tempBool = true;
     }
 
-    // Update is called once per frame
     void Update()
     {
         //nma.destination = TargetPos;
         //PatrolPosLength = PatrolPos.Length;
 
-        if (PatrolPos.Length == 0)
+        if (FOVScript.FOVState == 1) //FOLLOW PATROL ROUTE
         {
-            Debug.LogWarning("No patrol positions have been set for enemy of name: " + this.name);
+            nma.speed = WalkSpeed;
+
+            if (PatrolPos.Length == 0)
+            {
+                Debug.LogWarning("No patrol positions have been set for enemy of name: " + this.name);
+            }
+
+            if (PatrolPos.Length == 1)
+            {
+                Debug.LogWarning("Only 1 patrol position is set for enemy of name: " + this.name);
+            }
+
+            if (PatrolPos.Length >= 2)
+            {
+                if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)
+                {
+                    tempBool = true;
+                    //Debug.Log("in pos");
+                }
+
+                if (PatrolNum >= PatrolPos.Length - 1 && tempBool == true)
+                {
+                    PatrolNum = 0;
+                    //Debug.Log("reset to 0");
+                }
+
+                else if (PatrolNum < PatrolPos.Length && tempBool == true)
+                {
+                    PatrolNum++;
+                    //Debug.Log("+ 1");
+                }
+
+                nma.destination = PatrolPos[PatrolNum] - ParentRoom.transform.position;
+                tempBool = false;
+            }
         }
 
-        if(PatrolPos.Length == 1)
+        if(FOVScript.FOVState == 2)
         {
-            Debug.LogWarning("Only 1 patrol position is set for enemy of name: " + this.name);
+            nma.speed = WalkSpeed;
+            nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
 
-        if (PatrolPos.Length >= 2)
+        if(FOVScript.FOVState == 3)
         {
-            if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)
-            {
-                tempBool = true;
-                //Debug.Log("in pos");
-            }
-
-            if (PatrolNum >= PatrolPos.Length - 1 && tempBool == true)
-            {
-                PatrolNum = 0;
-                //Debug.Log("reset to 0");
-            }
-
-            else if (PatrolNum < PatrolPos.Length && tempBool == true)
-            {
-                PatrolNum++;
-                //Debug.Log("+ 1");
-            }
-
-            nma.destination = PatrolPos[PatrolNum];
-            tempBool = false;
+            nma.speed = RunSpeed;
+            nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
     }
 }
