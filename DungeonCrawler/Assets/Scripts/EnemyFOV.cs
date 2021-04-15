@@ -29,22 +29,28 @@ public class EnemyFOV : MonoBehaviour
     public float DetectionLevel;
 
     [SerializeField]
-    private int State; // 1 = CALM ||| 2 = SUS ||| 3 = FIGHT ||| 4 = SEARCH
+    public int FOVState; // 1 = CALM ||| 2 = SUS ||| 3 = FIGHT ||| 4 = SEARCH
 
     private PlayerController PlayerController;
-    public bool IsCrouching; ///HEY ROBERT. WHERE TF DO I GET THIS VALUE FROM?
+    public bool IsCrouching;
+    [Range(1f,20f)]
     public float standingMultiplier;
+
+    private EnemyNav NavScript;
 
     void Start()
     {
         player = GameObject.Find("CamPos").GetComponent<Transform>();
         PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
+
+        NavScript = this.gameObject.GetComponent<EnemyNav>();
+
         //StartCoroutine("Findplayer",0f);
 
         DetectionLevel = 0f;
 
-        State = 1;
+        FOVState = 1;
     }
 
     void Update()
@@ -85,12 +91,12 @@ public class EnemyFOV : MonoBehaviour
 
             if(IsCrouching == false)
             {
-                DetectionLevel += (8f * (range - hit.distance) * Time.deltaTime);
+                DetectionLevel += (2f * standingMultiplier * (range - hit.distance) * Time.deltaTime);
             }
 
             if (IsCrouching == true)
             {
-                DetectionLevel += (5f * (range - hit.distance) * Time.deltaTime);
+                DetectionLevel += (2f * (range - hit.distance) * Time.deltaTime);
             }
             
         }
@@ -100,28 +106,28 @@ public class EnemyFOV : MonoBehaviour
             DetectionLevel -= (5f * Time.deltaTime);
         }
 
-        if(DetectionLevel >= 100f && State != 3)
+        if(DetectionLevel >= 100f && FOVState != 3)
         {
             Debug.Log("FIGHT");
-            State = 3;
+            FOVState = 3;
         }
         
-        if(DetectionLevel <= 70f && State == 3 && State != 4)
+        /*if(DetectionLevel <= 70f && FOVState == 3 && FOVState != 4)
         {
             Debug.Log("SEARCH");
-            State = 4;
+            FOVState = 4;
             
-        }
+        }*/
 
-        if (DetectionLevel >= 10f && State == 1 && State != 2)
+        if (DetectionLevel >= 10f && DetectionLevel < 100f && FOVState != 2)
         {
             Debug.Log("SUS");
-            State = 2;
+            FOVState = 2;
         }
 
-        if(DetectionLevel < 10f && State != 1)
+        if(DetectionLevel < 10f && FOVState != 1)
         {
-            State = 1;
+            FOVState = 1;
         }
 
     }
