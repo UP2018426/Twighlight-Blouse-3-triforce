@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5925552333876047881
 Transform:
@@ -112,7 +112,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8440401776928534262
 Transform:
@@ -207,7 +207,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7904763899459682031
 Transform:
@@ -312,7 +312,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3780368246922710679
 Transform:
@@ -407,7 +407,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4615307017293721614
 Transform:
@@ -502,7 +502,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2438139883576477011
 Transform:
@@ -598,7 +598,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7537374915926455709
 Transform:
@@ -693,7 +693,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7863428576674085143
 Transform:
@@ -788,7 +788,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &4975146641207429257
 Transform:
@@ -883,7 +883,7 @@ GameObject:
   m_TagString: Room_L
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8280692223688207049
 Transform:

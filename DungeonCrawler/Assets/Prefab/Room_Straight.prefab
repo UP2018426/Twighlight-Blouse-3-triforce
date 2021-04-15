@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2300418104244114530
 Transform:
@@ -112,7 +112,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6254763777959027350
 Transform:
@@ -207,7 +207,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3175835032210084955
 Transform:
@@ -302,7 +302,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2359507206223452066
 Transform:
@@ -398,7 +398,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8967962530411294020
 Transform:
@@ -493,7 +493,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2080572707922339105
 Transform:
@@ -588,7 +588,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5344606444659373187
 Transform:
@@ -678,12 +678,13 @@ GameObject:
   - component: {fileID: 8417325899172763286}
   - component: {fileID: 24672466631149957}
   - component: {fileID: 7633123151559501504}
+  - component: {fileID: 5172367221496746725}
   m_Layer: 0
   m_Name: Room_Straight
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &3206856919862989731
 Transform:
@@ -771,6 +772,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &5172367221496746725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775580090486822792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13878c839a1bd44429cd35d0d63424d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7916943121006117818
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,12 +796,13 @@ GameObject:
   - component: {fileID: 157625907338308353}
   - component: {fileID: 275194221109854106}
   - component: {fileID: 6652780712100499495}
+  - component: {fileID: 6021483024204036597}
   m_Layer: 0
   m_Name: Door (1)
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &89661621750144322
 Transform:
@@ -866,6 +880,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6021483024204036597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7916943121006117818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13878c839a1bd44429cd35d0d63424d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8486394807197901804
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +909,7 @@ GameObject:
   m_TagString: Room_Straight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6519855231062823898
 Transform:

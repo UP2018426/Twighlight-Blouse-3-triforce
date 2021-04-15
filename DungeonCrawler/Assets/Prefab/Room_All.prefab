@@ -17,7 +17,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &8222785473034119158
 Transform:
@@ -112,7 +112,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &491846996446183082
 Transform:
@@ -207,7 +207,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7374420202921951146
 Transform:
@@ -302,7 +302,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2953748282112298943
 Transform:
@@ -397,7 +397,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6932753385807538390
 Transform:
@@ -492,7 +492,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1466896701978109802
 Transform:
@@ -587,7 +587,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &2438022140641186698
 Transform:
@@ -677,12 +677,13 @@ GameObject:
   - component: {fileID: 1421421769568564350}
   - component: {fileID: 7439411831871843181}
   - component: {fileID: 1047073508875879464}
+  - component: {fileID: 6706095054378992974}
   m_Layer: 0
   m_Name: Room_All
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5469821582340305227
 Transform:
@@ -774,6 +775,18 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6706095054378992974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4138259327857882464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13878c839a1bd44429cd35d0d63424d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4388121556895049113
 GameObject:
   m_ObjectHideFlags: 0
@@ -791,7 +804,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5629257794706285743
 Transform:
@@ -886,7 +899,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7285410505422909977
 Transform:
@@ -982,7 +995,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &7202666905312526633
 Transform:
@@ -1077,7 +1090,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &9004674823624296207
 Transform:
@@ -1172,7 +1185,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &5439059712603125427
 Transform:
@@ -1267,7 +1280,7 @@ GameObject:
   m_TagString: Room_All
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &6843122523896931703
 Transform:
