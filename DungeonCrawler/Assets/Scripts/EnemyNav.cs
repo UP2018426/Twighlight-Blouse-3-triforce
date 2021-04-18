@@ -31,7 +31,8 @@ public class EnemyNav : MonoBehaviour
         FOVScript = this.gameObject.GetComponent<EnemyFOV>();
 
         PatrolNum = 0;
-        tempBool = true;
+        tempBool = false;
+        nma.destination = PatrolPos[0];
     }
 
     void Update()
@@ -55,26 +56,27 @@ public class EnemyNav : MonoBehaviour
 
             if (PatrolPos.Length >= 2)
             {
-                if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)
+                if (ParentRoom.transform.position.x - PatrolPos[PatrolNum].x == this.transform.position.x && ParentRoom.transform.position.z - PatrolPos[PatrolNum].z == this.transform.position.z)
                 {
                     tempBool = true;
-                    //Debug.Log("in pos");
+                    Debug.Log("in pos");
                 }
 
                 if (PatrolNum >= PatrolPos.Length - 1 && tempBool == true)
                 {
                     PatrolNum = 0;
-                    //Debug.Log("reset to 0");
+                    Debug.Log("reset to 0");
                 }
 
                 else if (PatrolNum < PatrolPos.Length && tempBool == true)
                 {
                     PatrolNum++;
-                    //Debug.Log("+ 1");
+                    Debug.Log("+ 1");
                 }
 
-                nma.destination = PatrolPos[PatrolNum] - ParentRoom.transform.position;
+                nma.destination = ParentRoom.transform.position - PatrolPos[PatrolNum];
                 tempBool = false;
+                //nma.destination = PatrolPos[PatrolNum];
             }
         }
 
