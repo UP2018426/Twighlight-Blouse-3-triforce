@@ -76,6 +76,13 @@ public class checkGensize : MonoBehaviour
             }
         }
         yield return new WaitForSeconds(delay);
+        for (int i = 0; i < grid.Count; i++)
+        {
+            if (grid[i].gameObject.GetComponent<IstvanRoomGenDelete>().isConected == false)
+            {
+                Destroy(grid[i].gameObject);
+            }
+        }
         Spawn();
         Debug.Log("Spawned");
     }

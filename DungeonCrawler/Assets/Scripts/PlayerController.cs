@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-using common;
-
 public class PlayerController : MonoBehaviour
 {
     //add velocity to stats, gravity to stats, all ground check stuff too
@@ -51,10 +49,7 @@ public class PlayerController : MonoBehaviour
     }
     */
 
-    
     public CharacterStats characterStats = new CharacterStats();
-    
-    
 
     public CharacterController controller;
 
@@ -102,17 +97,46 @@ public class PlayerController : MonoBehaviour
     public float fireForce;
 
     public Vector3 attackSize;
-    public LayerMask enemies;
+    public LayerMask enemyMask;
 
     public float timeBetweenAttacks;
+    public float startTimeBetweenAttacks;
 
-    public float dmg;
-    
+
+    public int dmg;
+
+
+    public float maxHealth;
+    public float currentHealth;
+    float health
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            if (value <= 0)
+            {
+                currentHealth = 0;
+            }
+            if (value >= maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+
+        }
+    }
+
+
+
     void Awake()
     {
         //stats = GetComponent<CharcterStats>();
-        
+
         //stats.gravity = -58.86f;
+
+        currentHealth = maxHealth;
     }
     
 
@@ -130,9 +154,10 @@ public class PlayerController : MonoBehaviour
         //characterStats.jumpHeight = 10f;
     }
 
-    void TakeDamage(int _dmg)
+    public void TakeDamage(int _dmg)
     {
-        characterStats.currentHealth -= _dmg;
+        currentHealth -= _dmg;
+        Debug.Log("player " + currentHealth);
     }
 
 
@@ -150,25 +175,33 @@ public class PlayerController : MonoBehaviour
 
         //shootPos.localRotation = gameObject.transform.rotation;
 
-
+        /*
         if (Input.GetButtonDown("Fire1"))
         {
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
 
             proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
         }
-
-        
-        /*
-        if (Input.GetButtonDown("Fire1") && Timer.Countdown(timeBetweenAttacks))
-        {
-            Collider[] enemeis = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity, enemies);//need to make it so that quarternion identey is changed so attack area is facing the right way
-            for (int i = 0; i < enemies; i++)
-            {
-                //enemies[i].GetComponent<Enemy>().TakeDamage(dmg);
-            }
-        }
         */
+        
+        
+        if (Input.GetButtonDown("Fire1"))
+        {
+            Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
+            
+            Debug.Log(enemies.Length);
+            for (int i = 0; i < enemies.Length; i++)
+            {
+                Debug.Log("Working");
+                enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+            }
+            timeBetweenAttacks = startTimeBetweenAttacks;
+        }
+        else
+        {
+            timeBetweenAttacks -= Time.deltaTime;
+        }
+        
         //should be working when enemies are made
 
 
@@ -316,6 +349,20 @@ public class PlayerController : MonoBehaviour
         */
     }
 
+    //private void OnControllerColliderHit(ControllerColliderHit hit)
+    //{
+    //    if(hit.gameObject.CompareTag("Enemy"))
+    //    {
+    //        TakeDamage(1);
+    //    }
+    //}
+    //private void OnCollisionEnter(Collision col)
+    //{
+    //    if (col.gameObject.CompareTag("Enemy"))
+    //    {
+    //        TakeDamage(1);
+    //    }
+    //}
 
 
     private void OnDrawGizmos()

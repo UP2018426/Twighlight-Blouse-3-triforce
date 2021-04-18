@@ -13,6 +13,7 @@ TagManager:
   - Room_L
   - Room_Straight
   - Room_T
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -26,7 +27,7 @@ TagManager:
   - Ceiling
   - BEan
   - Player
-  - 
+  - Enemy
   - 
   - 
   - 
