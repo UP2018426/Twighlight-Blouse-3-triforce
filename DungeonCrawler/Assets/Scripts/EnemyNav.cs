@@ -24,14 +24,40 @@ public class EnemyNav : MonoBehaviour
 
     public Transform ParentRoom;
 
+
+    public float maxHealth;
+    public float currentHealth;
+    float health
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            if (value <= 0)
+            {
+                currentHealth = 0;
+            }
+            if (value >= maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+        }
+    }
+
+
+
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();
 
         FOVScript = this.gameObject.GetComponent<EnemyFOV>();
 
-        PatrolNum = 0;
+        //PatrolNum = 0;
         tempBool = true;
+
+        currentHealth = maxHealth = 3;
     }
 
     void Update()
@@ -41,6 +67,8 @@ public class EnemyNav : MonoBehaviour
 
         if (FOVScript.FOVState == 1) //FOLLOW PATROL ROUTE
         {
+            //Debug.Log("Enter FOV S1");
+
             nma.speed = WalkSpeed;
 
             if (PatrolPos.Length == 0)
@@ -55,7 +83,8 @@ public class EnemyNav : MonoBehaviour
 
             if (PatrolPos.Length >= 2)
             {
-                if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)
+                //Debug.Log("Patrol Pos >= 2");
+                if (PatrolPos[PatrolNum].x == this.transform.position.x && PatrolPos[PatrolNum].z == this.transform.position.z)//issue
                 {
                     tempBool = true;
                     //Debug.Log("in pos");
@@ -89,5 +118,43 @@ public class EnemyNav : MonoBehaviour
             nma.speed = RunSpeed;
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
+
+        if(Input.GetKeyDown("h"))
+        {
+            Smack();
+        }
     }
+
+    public LayerMask targetMask;
+
+    public GameObject attackPos;
+
+    public Vector3 attackSize;
+
+    public int dmg;
+    void Smack()
+    {
+        Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
+
+        Debug.Log(target.Length);
+        for (int i = 0; i < target.Length; i++)
+        {
+            Debug.Log("Working");
+            target[i].GetComponent<PlayerController>().TakeDamage(dmg);
+        }
+    }
+
+
+    public void TakeDamage(int _dmg)
+    {
+        currentHealth -= _dmg;
+        //Debug.Log(characterStats.currentHealth);
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(attackPos.transform.position, attackSize);
+    }
+
 }
