@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public int weaponSelected;
 
     void Awake()
     {
@@ -175,25 +176,36 @@ public class PlayerController : MonoBehaviour
 
         //shootPos.localRotation = gameObject.transform.rotation;
 
-        /*
-        if (Input.GetButtonDown("Fire1"))
+        //shoot
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected == 2)
         {
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
 
-            proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
+            proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);
+            
+            timeBetweenAttacks = startTimeBetweenAttacks;
         }
-        */
-        
-        
-        if (Input.GetButtonDown("Fire1"))
+        else
+        {
+            timeBetweenAttacks -= Time.deltaTime;
+        }
+
+        //melee
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected < 2)
         {
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
             Debug.Log(enemies.Length);
             for (int i = 0; i < enemies.Length; i++)
             {
-                Debug.Log("Working");
-                enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                if (weaponSelected == 1)
+                {
+                    enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg * 2);
+                }
+                else
+                {
+                    enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                }
             }
             timeBetweenAttacks = startTimeBetweenAttacks;
         }
@@ -201,8 +213,26 @@ public class PlayerController : MonoBehaviour
         {
             timeBetweenAttacks -= Time.deltaTime;
         }
-        
+
         //should be working when enemies are made
+
+
+
+
+        if (Input.GetKeyDown("1"))
+        {
+            weaponSelected = 1;
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            weaponSelected = 2;
+        }
+        if (Input.GetKeyDown("0"))
+        {
+            weaponSelected = 0;
+        }
+
+
 
 
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
@@ -244,8 +274,6 @@ public class PlayerController : MonoBehaviour
             controller.height = 1.5f;
             characterStats.moveMultiplier = 0.5f;
             isCrouching = true;
-
-
         }
         else if (Input.GetButtonDown("Fire2") && isCrouching & !roofAbove)
         {
@@ -282,6 +310,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && controller.isGrounded/*isGrounded*/ && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(characterStats.jumpHeight * -2 * gravity);
+        }
+        else if(Input.GetButtonDown("Jump") && controller.isGrounded && isCrouching)
+        {
+
         }
 
         if (moveDirection.magnitude >= 0.1)
@@ -348,22 +380,6 @@ public class PlayerController : MonoBehaviour
         }
         */
     }
-
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    if(hit.gameObject.CompareTag("Enemy"))
-    //    {
-    //        TakeDamage(1);
-    //    }
-    //}
-    //private void OnCollisionEnter(Collision col)
-    //{
-    //    if (col.gameObject.CompareTag("Enemy"))
-    //    {
-    //        TakeDamage(1);
-    //    }
-    //}
-
 
     private void OnDrawGizmos()
     {
