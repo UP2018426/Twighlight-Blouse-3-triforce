@@ -129,6 +129,7 @@ public class PlayerController : MonoBehaviour
     }
 
 
+    public int weaponSelected;
 
     void Awake()
     {
@@ -176,7 +177,7 @@ public class PlayerController : MonoBehaviour
         //shootPos.localRotation = gameObject.transform.rotation;
 
         //shoot
-        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0)
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected == 2)
         {
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
 
@@ -190,15 +191,21 @@ public class PlayerController : MonoBehaviour
         }
 
         //melee
-        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0)
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected < 2)
         {
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
             Debug.Log(enemies.Length);
             for (int i = 0; i < enemies.Length; i++)
             {
-                Debug.Log("Working");
-                enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                if (weaponSelected == 1)
+                {
+                    enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg * 2);
+                }
+                else
+                {
+                    enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                }
             }
             timeBetweenAttacks = startTimeBetweenAttacks;
         }
@@ -206,8 +213,26 @@ public class PlayerController : MonoBehaviour
         {
             timeBetweenAttacks -= Time.deltaTime;
         }
-        
+
         //should be working when enemies are made
+
+
+
+
+        if (Input.GetKeyDown("1"))
+        {
+            weaponSelected = 1;
+        }
+        if (Input.GetKeyDown("2"))
+        {
+            weaponSelected = 2;
+        }
+        if (Input.GetKeyDown("0"))
+        {
+            weaponSelected = 0;
+        }
+
+
 
 
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;

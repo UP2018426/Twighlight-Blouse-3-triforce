@@ -29,6 +29,8 @@ public class EnemyNav : MonoBehaviour
         PatrolNum = 0;
         tempBool = false;
         nma.destination = PatrolPos[0].position;
+
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -89,6 +91,7 @@ public class EnemyNav : MonoBehaviour
             nma.speed = RunSpeed;
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
+        checkIfDead();
     }
 
     public float maxHealth;
@@ -132,13 +135,27 @@ public class EnemyNav : MonoBehaviour
         }
     }
 
+    void checkIfDead()
+    {
+        if (currentHealth <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
     public void TakeDamage(int _dmg)
     {
         currentHealth -= _dmg;
-        //Debug.Log(characterStats.currentHealth);
+        Debug.Log(currentHealth);
     }
 
+    private void OnCollisionEnter(Collision col)
+    {
+        if (col.gameObject.CompareTag("Bullet"))
+        {
+            TakeDamage(1);
+        }
+    }
 
     private void OnDrawGizmos()
     {
