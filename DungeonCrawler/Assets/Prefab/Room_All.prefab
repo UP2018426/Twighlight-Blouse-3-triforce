@@ -991,6 +991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f64cc3c13f2edf46a16ca0b4e7ad65d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patrolPoints: []
   toSpawn:
     enemy: {fileID: 267598263327246511, guid: 368918cffdd8a0a48a457d42b040919b, type: 3}
     numSpawn: 2

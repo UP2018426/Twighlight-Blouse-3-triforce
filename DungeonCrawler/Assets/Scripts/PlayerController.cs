@@ -175,17 +175,22 @@ public class PlayerController : MonoBehaviour
 
         //shootPos.localRotation = gameObject.transform.rotation;
 
-        /*
-        if (Input.GetButtonDown("Fire1"))
+        //shoot
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0)
         {
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
 
-            proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);//need to sort direction the projectiles are pushed since just forward neeed to get andgle from the shoot pos to make it look better
+            proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);
+            
+            timeBetweenAttacks = startTimeBetweenAttacks;
         }
-        */
-        
-        
-        if (Input.GetButtonDown("Fire1"))
+        else
+        {
+            timeBetweenAttacks -= Time.deltaTime;
+        }
+
+        //melee
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0)
         {
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
@@ -244,8 +249,6 @@ public class PlayerController : MonoBehaviour
             controller.height = 1.5f;
             characterStats.moveMultiplier = 0.5f;
             isCrouching = true;
-
-
         }
         else if (Input.GetButtonDown("Fire2") && isCrouching & !roofAbove)
         {
@@ -282,6 +285,10 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Jump") && controller.isGrounded/*isGrounded*/ && !isCrouching)
         {
             velocity.y = Mathf.Sqrt(characterStats.jumpHeight * -2 * gravity);
+        }
+        else if(input.GetButtonDown("Jump") && controller.isGrounded && isCrouching)
+        {
+
         }
 
         if (moveDirection.magnitude >= 0.1)

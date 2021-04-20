@@ -12,6 +12,8 @@ public class EnemySpawn : MonoBehaviour
         public Transform SpawnPos;
     }
 
+    public Transform[] patrolPoints;
+
     public EnemyRoomSpawn toSpawn;
 
     private void Start()
