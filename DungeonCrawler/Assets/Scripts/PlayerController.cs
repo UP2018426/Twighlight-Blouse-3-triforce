@@ -349,22 +349,6 @@ public class PlayerController : MonoBehaviour
         */
     }
 
-    //private void OnControllerColliderHit(ControllerColliderHit hit)
-    //{
-    //    if(hit.gameObject.CompareTag("Enemy"))
-    //    {
-    //        TakeDamage(1);
-    //    }
-    //}
-    //private void OnCollisionEnter(Collision col)
-    //{
-    //    if (col.gameObject.CompareTag("Enemy"))
-    //    {
-    //        TakeDamage(1);
-    //    }
-    //}
-
-
     private void OnDrawGizmos()
     {
         //Gizmos.color = Color.red;

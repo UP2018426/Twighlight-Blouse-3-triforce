@@ -894,6 +894,7 @@ GameObject:
   - component: {fileID: 2429117626695979455}
   - component: {fileID: 4224581060398085664}
   - component: {fileID: 8919928895797642685}
+  - component: {fileID: 6056834434029506270}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Room_All
@@ -978,6 +979,22 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &6056834434029506270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4932831828059303459}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f64cc3c13f2edf46a16ca0b4e7ad65d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  toSpawn:
+    enemy: {fileID: 267598263327246511, guid: 368918cffdd8a0a48a457d42b040919b, type: 3}
+    numSpawn: 2
+    SpawnPos: {fileID: 7285410505422909977}
 --- !u!1 &4954751756039589575
 GameObject:
   m_ObjectHideFlags: 0

@@ -92,4 +92,59 @@ public class EnemyNav : MonoBehaviour
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
     }
+
+    public float maxHealth;
+    public float currentHealth;
+    float health
+    {
+        get
+        {
+            return currentHealth;
+        }
+        set
+        {
+            if (value <= 0)
+            {
+                currentHealth = 0;
+            }
+            if (value >= maxHealth)
+            {
+                currentHealth = maxHealth;
+            }
+
+        }
+    }
+
+    public LayerMask targetMask;
+
+    public GameObject attackPos;
+
+    public Vector3 attackSize;
+
+    public int dmg;
+    void Smack()
+    {
+        Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
+
+        Debug.Log(target.Length);
+        for (int i = 0; i < target.Length; i++)
+        {
+            Debug.Log("Working");
+            target[i].GetComponent<PlayerController>().TakeDamage(dmg);
+        }
+    }
+
+
+    public void TakeDamage(int _dmg)
+    {
+        currentHealth -= _dmg;
+        //Debug.Log(characterStats.currentHealth);
+    }
+
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireCube(attackPos.transform.position, attackSize);
+    }
 }
