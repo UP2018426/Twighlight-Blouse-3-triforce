@@ -286,7 +286,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = Mathf.Sqrt(characterStats.jumpHeight * -2 * gravity);
         }
-        else if(input.GetButtonDown("Jump") && controller.isGrounded && isCrouching)
+        else if(Input.GetButtonDown("Jump") && controller.isGrounded && isCrouching)
         {
 
         }

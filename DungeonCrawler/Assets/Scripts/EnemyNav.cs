@@ -9,9 +9,7 @@ public class EnemyNav : MonoBehaviour
     [SerializeField]
     private int PatrolNum;
     [SerializeField]
-    private Vector3[] PatrolPos;
-
-    private Vector3 LocalPos;
+    private Transform[] PatrolPos;
 
     public float WaitTimer;
 
@@ -22,8 +20,6 @@ public class EnemyNav : MonoBehaviour
     public float RunSpeed;
     public float WalkSpeed;
 
-    public Transform ParentRoom;
-
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();
@@ -32,7 +28,7 @@ public class EnemyNav : MonoBehaviour
 
         PatrolNum = 0;
         tempBool = false;
-        nma.destination = PatrolPos[0];
+        nma.destination = PatrolPos[0].position;
     }
 
     void Update()
@@ -56,7 +52,8 @@ public class EnemyNav : MonoBehaviour
 
             if (PatrolPos.Length >= 2)
             {
-                if (ParentRoom.transform.position.x - PatrolPos[PatrolNum].x == this.transform.position.x && ParentRoom.transform.position.z - PatrolPos[PatrolNum].z == this.transform.position.z)
+                Debug.Log("patrol L >= 2");
+                if (PatrolPos[PatrolNum].position.x == this.transform.position.x && PatrolPos[PatrolNum].position.z == this.transform.position.z)
                 {
                     tempBool = true;
                     Debug.Log("in pos");
@@ -66,17 +63,18 @@ public class EnemyNav : MonoBehaviour
                 {
                     PatrolNum = 0;
                     Debug.Log("reset to 0");
+                    tempBool = false;
                 }
 
-                else if (PatrolNum < PatrolPos.Length && tempBool == true)
+                if (PatrolNum < PatrolPos.Length && tempBool == true)
                 {
                     PatrolNum++;
                     Debug.Log("+ 1");
                 }
 
-                nma.destination = ParentRoom.transform.position - PatrolPos[PatrolNum];
+                //nma.destination = /*ParentRoom.transform.position */PatrolPos[PatrolNum];
                 tempBool = false;
-                //nma.destination = PatrolPos[PatrolNum];
+                nma.destination = PatrolPos[PatrolNum].position;
             }
         }
 
