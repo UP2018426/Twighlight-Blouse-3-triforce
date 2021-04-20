@@ -59,7 +59,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3053824721074592357}
   m_LocalRotation: {x: -0.80383265, y: 7.835924e-18, z: -5.692642e-18, w: 0.5948555}
-  m_LocalPosition: {x: 0.0172139, y: 2.9215255, z: -0.6049388}
+  m_LocalPosition: {x: 0.0172139, y: 2.9215255, z: -0.81}
   m_LocalScale: {x: 106.24576, y: 106.245766, z: 166.0259}
   m_Children: []
   m_Father: {fileID: 7496320434576414335}
@@ -95,7 +95,7 @@ MeshRenderer:
   - {fileID: 2100000, guid: e61cc512b64ca0649b96ee4285c25d21, type: 2}
   - {fileID: -876546973899608171, guid: 390c245a07943af4caea4c858c94c935, type: 3}
   - {fileID: -3846018093981099296, guid: 64f5ba51136009d4499e0be867265370, type: 3}
-  - {fileID: -3846018093981099296, guid: 390c245a07943af4caea4c858c94c935, type: 3}
+  - {fileID: 2100000, guid: ab2243f39c83e6745b1c157416f695f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,7 +143,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3328708646730760453}
   m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: -0, y: -2.128422, z: 3.398453}
+  m_LocalPosition: {x: 0, y: -2.128422, z: 3.1933827}
   m_LocalScale: {x: 120.41257, y: 20.987734, z: 375.44897}
   m_Children: []
   m_Father: {fileID: 7496320434576414335}
@@ -176,8 +176,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 390c245a07943af4caea4c858c94c935, type: 3}
-  - {fileID: -876546973899608171, guid: 390c245a07943af4caea4c858c94c935, type: 3}
+  - {fileID: 2100000, guid: ab2243f39c83e6745b1c157416f695f5, type: 2}
+  - {fileID: 2100000, guid: 896bb62a6a0686e45bb7bd7ff932caca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,7 +232,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 909213206541611989, guid: 86e9ba99219b22e4796ef6ffe7e68a5e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.1379491
+      value: -1.3430195
       objectReference: {fileID: 0}
     - target: {fileID: 909213206541611989, guid: 86e9ba99219b22e4796ef6ffe7e68a5e, type: 3}
       propertyPath: m_LocalRotation.w

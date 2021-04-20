@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5213735595704263070}
   m_Layer: 0
-  m_Name: fix v6(Clone)
+  m_Name: metal torch wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -92,8 +92,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -3846018093981099296, guid: 2255fd43e46554f4698341231e619222, type: 3}
-  - {fileID: -876546973899608171, guid: 2255fd43e46554f4698341231e619222, type: 3}
+  - {fileID: 2100000, guid: ab2243f39c83e6745b1c157416f695f5, type: 2}
+  - {fileID: 2100000, guid: 896bb62a6a0686e45bb7bd7ff932caca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -174,7 +174,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -876546973899608171, guid: 2255fd43e46554f4698341231e619222, type: 3}
+  - {fileID: 2100000, guid: 896bb62a6a0686e45bb7bd7ff932caca, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -255,9 +255,9 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 4874126678125670354, guid: 2255fd43e46554f4698341231e619222, type: 3}
-  - {fileID: -876546973899608171, guid: 2255fd43e46554f4698341231e619222, type: 3}
-  - {fileID: -3846018093981099296, guid: 2255fd43e46554f4698341231e619222, type: 3}
+  - {fileID: 2100000, guid: cfa45636cdec14945b7b336857e76d73, type: 2}
+  - {fileID: 2100000, guid: 896bb62a6a0686e45bb7bd7ff932caca, type: 2}
+  - {fileID: 2100000, guid: ab2243f39c83e6745b1c157416f695f5, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
