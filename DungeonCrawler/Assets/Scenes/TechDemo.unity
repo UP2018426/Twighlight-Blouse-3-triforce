@@ -3144,42 +3144,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: dmg
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: maxHealth
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: attackSize.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: attackSize.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: attackSize.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: enemies.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: enemyMask.m_Bits
-      value: 2048
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: startTimeBetweenAttacks
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: characterStats.maxHealth
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2358551356862887700, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -3227,18 +3191,6 @@ PrefabInstance:
     - target: {fileID: 2668939087924477156, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
       propertyPath: m_Name
       value: PlayerChar
-      objectReference: {fileID: 0}
-    - target: {fileID: 2754124380155379506, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: m_OcclusionCulling
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2754124380155379506, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: m_CullingMask.m_Bits
-      value: 4096
-      objectReference: {fileID: 0}
-    - target: {fileID: 3050526818790719853, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
-      propertyPath: m_Layer
-      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}

@@ -298,7 +298,7 @@ public class IstvanRoomGenDelete : MonoBehaviour
                 }
             }
         }
-        //CheckGensize.spawn = true;
+        boom = true;
     }
 
     // Update is called once per frame

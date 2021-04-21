@@ -179,6 +179,8 @@ public class PlayerController : MonoBehaviour
         //shoot
         if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected == 2)
         {
+            TakeDamage(1);
+
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
 
             proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);
@@ -219,15 +221,16 @@ public class PlayerController : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown("1"))
+        if (Input.GetKeyDown("1"))//sword
         {
             weaponSelected = 1;
+            TakeDamage(2);
         }
-        if (Input.GetKeyDown("2"))
+        if (Input.GetKeyDown("2"))//bow
         {
             weaponSelected = 2;
         }
-        if (Input.GetKeyDown("0"))
+        if (Input.GetKeyDown("0"))//handle
         {
             weaponSelected = 0;
         }

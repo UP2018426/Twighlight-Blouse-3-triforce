@@ -67,7 +67,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 823
+    m_Bits: 2871
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -287,16 +287,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterStats:
-    gravity: 0
     jumpHeight: 3.01
     speed: 12
     moveMultiplier: 1
-    groundCheck: {fileID: 0}
-    gCheckSize: {x: 0, y: 0, z: 0}
-    groundMask:
-      serializedVersion: 2
-      m_Bits: 0
-    isGrounded: 0
   controller: {fileID: 7565890120120791709}
   gravity: -56.86
   ceilingCheck: {fileID: 8633109134861023175}
@@ -313,12 +306,16 @@ MonoBehaviour:
   shootPos: {fileID: 6703680744769636278}
   shootObj: {fileID: 6106419558383348391, guid: c0514f7ab9fe3864891656b02dbe4a06, type: 3}
   fireForce: 50
-  attackSize: {x: 0, y: 0, z: 0}
-  enemies:
+  attackSize: {x: 1, y: 1, z: 1}
+  enemyMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   timeBetweenAttacks: 0
-  dmg: 0
+  startTimeBetweenAttacks: 2
+  dmg: 1
+  maxHealth: 5
+  currentHealth: 0
+  weaponSelected: 0
 --- !u!1 &2885939885024094920
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +405,7 @@ GameObject:
   - component: {fileID: 5377537042745700578}
   - component: {fileID: 4776554449316215302}
   - component: {fileID: 3272643601363614443}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +556,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 4096
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
