@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   player: {fileID: 2668939087924477156}
-  gm: {fileID: 0}
+  gm: {fileID: 4855801066573741611, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
   minClamp: -69
   maxClamp: 69
 --- !u!114 &1224742885818920737
@@ -127,7 +127,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -284,7 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a8a60b9bf052a4381238c807754887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gm: {fileID: 0}
+  gm: {fileID: 4855801066573741611, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
   characterStats:
     jumpHeight: 3.01
     speed: 12
