@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4856806160067749305}
   - component: {fileID: 4211002819523117055}
   - component: {fileID: 1224742885818920737}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -101,11 +101,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 100
   player: {fileID: 2668939087924477156}
+  gm: {fileID: 0}
   minClamp: -69
   maxClamp: 69
-  shootObj: {fileID: 0}
-  fireForce: 0
-  dist: 0
 --- !u!114 &1224742885818920737
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,7 +147,7 @@ GameObject:
   - component: {fileID: 552070009434550222}
   - component: {fileID: 5355240301612576363}
   - component: {fileID: 1538235988429157441}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -230,7 +228,7 @@ GameObject:
   - component: {fileID: 2358551356862887700}
   - component: {fileID: 7565890120120791709}
   - component: {fileID: 117578436760241280}
-  m_Layer: 11
+  m_Layer: 10
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -286,6 +284,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b0a8a60b9bf052a4381238c807754887, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gm: {fileID: 0}
   characterStats:
     jumpHeight: 3.01
     speed: 12
@@ -325,7 +324,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8633109134861023175}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CeilingCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -356,7 +355,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6703680744769636278}
   - component: {fileID: 6816766001276475205}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: GroundCheck
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -405,7 +404,7 @@ GameObject:
   - component: {fileID: 5377537042745700578}
   - component: {fileID: 4776554449316215302}
   - component: {fileID: 3272643601363614443}
-  m_Layer: 12
+  m_Layer: 10
   m_Name: Sword
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +503,7 @@ GameObject:
   - component: {fileID: 6984629155307588974}
   - component: {fileID: 2754124380155379506}
   - component: {fileID: 3531745151240353203}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -609,7 +608,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6764328932926329120}
   - component: {fileID: 5562825846367363722}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: CamPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

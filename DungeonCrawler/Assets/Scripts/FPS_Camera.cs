@@ -9,21 +9,14 @@ public class FPS_Camera : MonoBehaviour
 
     public GameObject player;
 
+    public GameManager gm;
     //private float vertRotation;
-    
-    
+        
     float mouseX;
     float mouseY;
 
     public float minClamp;
     public float maxClamp;
-
-
-
-    //public Transform shootPos;
-    public GameObject shootObj;
-    public float fireForce;
-    public float dist;
 
     // Update is called once per frame
     void Update()
@@ -43,19 +36,16 @@ public class FPS_Camera : MonoBehaviour
         mouseX += Input.GetAxis("Mouse X");
         mouseY -= Input.GetAxis("Mouse Y");
         mouseY = Mathf.Clamp(mouseY, minClamp, maxClamp);
-        player.transform.rotation = Quaternion.Euler(0, mouseX, 0);
+
+        if (!gm.isPaused)
+        {
+            player.transform.rotation = Quaternion.Euler(0, mouseX, 0);
+            transform.localRotation = Quaternion.Euler(mouseY, 0f, 0f);
+        }
+
         //transform.localRotation = Quaternion.Euler(vertRotation, 0f, 0f);
-        
-        transform.localRotation = Quaternion.Euler(mouseY, 0f, 0f);
 
         //Physics.Linecast(gameObject.transform.position,transform.forward * dist);
-
-        if (Input.GetButtonDown("Fire1"))
-        {
-            //GameObject proj = Instantiate(shootObj, , gameObject.transform.localRotation);
-
-            //proj.GetComponent<Rigidbody>().AddRelativeForce(Vector3.forward * fireForce, ForceMode.Impulse);
-        }
     }
 
 

@@ -47,7 +47,7 @@ GameObject:
   - component: {fileID: 267598263327246500}
   m_Layer: 11
   m_Name: JimmyTheAbsolutlePsycho
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +61,7 @@ Transform:
   m_GameObject: {fileID: 267598263327246511}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 23.02, y: 1.18, z: -29.13}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 267598263635598963}
   - {fileID: 267598263546356500}
@@ -170,18 +170,17 @@ MonoBehaviour:
   PatrolPos:
   - {fileID: 0}
   - {fileID: 0}
-  - {fileID: 0}
   WaitTimer: 2
-  RunSpeed: 2
-  WalkSpeed: 2
-  maxHealth: 1
+  RunSpeed: 5
+  WalkSpeed: 3.5
+  maxHealth: 3
   currentHealth: 0
   targetMask:
     serializedVersion: 2
     m_Bits: 1024
   attackPos: {fileID: 1136147442}
-  attackSize: {x: 1, y: 1, z: 1}
-  dmg: 0
+  attackSize: {x: 2, y: 2, z: 2}
+  dmg: 1
 --- !u!114 &267598263327246500
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +201,7 @@ MonoBehaviour:
   DetectionLevel: 0
   FOVState: 0
   IsCrouching: 0
-  standingMultiplier: 0
+  standingMultiplier: 2.56
 --- !u!1 &267598263546356501
 GameObject:
   m_ObjectHideFlags: 0

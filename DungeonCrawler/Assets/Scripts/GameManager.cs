@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour
 
     public Image healthBar;
 
-    bool isPaused = false;
+    public bool isPaused = false;
 
     public GameObject pauseMenu;
 
@@ -21,7 +21,6 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
-        
     }
 
     public void NextScene()
@@ -76,8 +75,6 @@ public class GameManager : MonoBehaviour
         //Debug.Log(player.health.currentHealth / player.health.maxHealth);
         HudUpdate();
     }
-
-
 
     void HudUpdate()
     {

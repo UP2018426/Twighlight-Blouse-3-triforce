@@ -38,6 +38,8 @@ public class EnemyFOV : MonoBehaviour
 
     private EnemyNav NavScript;
 
+    public Image mark;
+
     void Start()
     {
         player = GameObject.Find("CamPos").GetComponent<Transform>();
@@ -55,6 +57,8 @@ public class EnemyFOV : MonoBehaviour
 
     void Update()
     {
+        mark.fillAmount = DetectionLevel / 100;
+
         inFOV = false;
         inRange = false;
 
@@ -129,7 +133,15 @@ public class EnemyFOV : MonoBehaviour
         {
             FOVState = 1;
         }
-
+        
+        if(DetectionLevel > 100)
+        {
+            DetectionLevel = 100;
+        }
+        else if(DetectionLevel < 0)
+        {
+            DetectionLevel = 0;
+        }
     }
 }
 
@@ -186,4 +198,3 @@ public class EnemyFOV : MonoBehaviour
         }
     }
 }*/
-

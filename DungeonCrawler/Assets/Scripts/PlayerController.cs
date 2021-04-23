@@ -49,6 +49,8 @@ public class PlayerController : MonoBehaviour
     }
     */
 
+    public GameManager gm;
+
     public CharacterStats characterStats = new CharacterStats();
 
     public CharacterController controller;
@@ -177,7 +179,7 @@ public class PlayerController : MonoBehaviour
         //shootPos.localRotation = gameObject.transform.rotation;
 
         //shoot
-        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected == 2)
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected == 2 &! gm.isPaused)
         {
             TakeDamage(1);
 
@@ -193,7 +195,7 @@ public class PlayerController : MonoBehaviour
         }
 
         //melee
-        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected < 2)
+        if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected < 2 &! gm.isPaused)
         {
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
@@ -234,8 +236,6 @@ public class PlayerController : MonoBehaviour
         {
             weaponSelected = 0;
         }
-
-
 
 
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
