@@ -20,6 +20,8 @@ public class EnemyNav : MonoBehaviour
     public float RunSpeed;
     public float WalkSpeed;
 
+    public Animator anim;
+
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();
@@ -31,6 +33,8 @@ public class EnemyNav : MonoBehaviour
         nma.destination = PatrolPos[0].position;
 
         currentHealth = maxHealth;
+
+        anim = GetComponent<Animator>();
     }
 
     void Update()

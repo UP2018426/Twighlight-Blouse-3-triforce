@@ -115,12 +115,12 @@ MonoBehaviour:
   isConected: 0
   isBeegBoss: 0
   start: 0
-  iSDelete: {fileID: 0}
   corners: 0
-  r1: {fileID: 1735483895199764808, guid: 492a32b2acb90704983d1a8b3304eb5d, type: 3}
-  r2: {fileID: 2248956150162848452, guid: 5da84630fc6a68e45b02fe8d02ee65d6, type: 3}
-  r3: {fileID: 6775580090486822792, guid: 04faec611dc616042b0c6d727b393975, type: 3}
-  r4: {fileID: 1292142272491923563, guid: 643fc8fa42abe784eacee6d6f887fb04, type: 3}
-  r5: {fileID: 4138259327857882464, guid: 9c857d3b66bbb244fbebab0357efa739, type: 3}
+  r1: {fileID: 5681791174216054938, guid: f0809675c3b74d24d9df8d8e45ed38f9, type: 3}
+  r2: {fileID: 5854980131793503367, guid: 6e31e5f3150abf740ba20143193ed7f4, type: 3}
+  r3: {fileID: 143217871982690843, guid: fd7731d9c6155724d80f395c95dc6bcf, type: 3}
+  r4: {fileID: 4887270051670438596, guid: 4c9977c5b9e46434ebdc077bbc7b2ebf, type: 3}
+  r5: {fileID: 8301822096188118346, guid: dad0e001cf75c8949a63fbc9da8a4c9f, type: 3}
   r6: {fileID: 1735483895199764808, guid: 5ad8f372a6f095f4db0665b425670e71, type: 3}
-  r7: {fileID: 4588405093939288796, guid: 204fa24c615effe4fb3aed6bea20a986, type: 3}
+  r7: {fileID: 5681791174216054938, guid: b2a40589a9d862441986743114cca70a, type: 3}
+  boom: 0

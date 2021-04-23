@@ -251,7 +251,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2098613450}
   - component: {fileID: 2098613449}
-  - component: {fileID: 2098613448}
   - component: {fileID: 2098613451}
   - component: {fileID: 2098613452}
   m_Layer: 0
@@ -261,14 +260,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &2098613448
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2098613447}
-  m_Enabled: 1
 --- !u!20 &2098613449
 Camera:
   m_ObjectHideFlags: 0
@@ -276,7 +267,7 @@ Camera:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2098613447}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
@@ -374,7 +365,7 @@ MonoBehaviour:
   connected: 0
   Zsize: 5
   Xsize: 5
-  gridSpacing: 50
+  gridSpacing: 152
   SphereObj: {fileID: 4423757661362331231, guid: 89af57505d2c5b444a8c9e523f06a7a4, type: 3}
   gizmoSize: 1
   maybeDelete: []

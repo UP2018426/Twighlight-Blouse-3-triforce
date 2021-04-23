@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class EnemyFOV : MonoBehaviour
 {
-    private float distance;
+    //public float distance;
     [SerializeField]
     public float range;
     [Range(0,360)]
