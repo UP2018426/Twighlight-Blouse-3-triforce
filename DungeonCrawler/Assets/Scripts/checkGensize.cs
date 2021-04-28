@@ -85,6 +85,10 @@ public class checkGensize : MonoBehaviour
         }
         Spawn();
         Debug.Log("Spawned");
+
+        maybeDelete.Clear();
+        grid.Clear();
+        boss.Clear();
     }
 
     //Debug.Log("");
