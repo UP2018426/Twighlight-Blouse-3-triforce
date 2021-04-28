@@ -252,7 +252,7 @@ public class PlayerController : MonoBehaviour
         {
             velocity.y = -10f;
         }
-
+        
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
@@ -316,7 +316,11 @@ public class PlayerController : MonoBehaviour
         }
         else if(Input.GetButtonDown("Jump") && controller.isGrounded && isCrouching)
         {
+            controller.center = new Vector3(0, 0, 0);
+            controller.height = 3;
 
+            isCrouching = false;
+            characterStats.moveMultiplier = 1f;
         }
 
         if (moveDirection.magnitude >= 0.1)
