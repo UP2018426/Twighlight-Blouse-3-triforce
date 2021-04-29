@@ -42,6 +42,9 @@ public class EnemyNav : MonoBehaviour
         //nma.destination = TargetPos;
         //PatrolPosLength = PatrolPos.Length;
 
+        anim.SetFloat("Walk", Mathf.Abs(nma.speed));
+        
+
         if (FOVScript.FOVState == 1) //FOLLOW PATROL ROUTE
         {
             nma.speed = WalkSpeed;
@@ -95,6 +98,12 @@ public class EnemyNav : MonoBehaviour
             nma.speed = RunSpeed;
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
         }
+
+        if(Input.GetKeyDown("j"))
+        {
+            Smack();
+        }
+
         checkIfDead();
     }
 
@@ -129,6 +138,8 @@ public class EnemyNav : MonoBehaviour
     public int dmg;
     void Smack()
     {
+        anim.SetTrigger("Attack");
+
         Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 
         Debug.Log(target.Length);
@@ -143,7 +154,8 @@ public class EnemyNav : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            Destroy(gameObject);
+            anim.SetBool("dead",true);
+            //Destroy(gameObject);
         }
     }
 
