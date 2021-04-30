@@ -11,6 +11,7 @@ public class checkGensize : MonoBehaviour
         
     private void Start()
     {
+        Time.timeScale = 1;
         StartCoroutine("LogDelay",0.1f);
         //StopCoroutine("LogDelay");
     }
