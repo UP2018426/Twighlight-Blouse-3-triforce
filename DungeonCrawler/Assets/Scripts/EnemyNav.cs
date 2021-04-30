@@ -155,6 +155,8 @@ public class EnemyNav : MonoBehaviour
         if (currentHealth <= 0)
         {
             anim.SetBool("dead",true);
+            FOVScript.PlayerController.currentHealth += 2;
+
             //Destroy(gameObject);
         }
     }

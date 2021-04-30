@@ -31,7 +31,8 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField]
     public int FOVState; // 1 = CALM ||| 2 = SUS ||| 3 = FIGHT ||| 4 = SEARCH
 
-    private PlayerController PlayerController;
+    public PlayerController PlayerController;
+    
     public bool IsCrouching;
     [Range(1f,20f)]
     public float standingMultiplier;

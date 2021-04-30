@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.AI;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,13 +14,19 @@ public class GameManager : MonoBehaviour
 
     public bool isPaused = false;
 
+    public bool isDead = false;
+
     public GameObject pauseMenu;
+
+    public GameObject deathScreen;
 
     public PlayerController player;
 
     private void Awake()
     {
-        pauseMenu.SetActive(false);
+        NavMeshBuilder.BuildNavMesh();
+        isPaused = false;
+        isDead = false;
         Time.timeScale = 1f;
     }
 
@@ -74,6 +81,14 @@ public class GameManager : MonoBehaviour
             }
         //Debug.Log(player.health.currentHealth / player.health.maxHealth);
         HudUpdate();
+
+        if(player.currentHealth <= 0)
+        {
+            Time.timeScale = 0f;
+            isDead = true;
+            Cursor.lockState = CursorLockMode.None;
+            deathScreen.SetActive(true);
+        }
     }
 
     void HudUpdate()
