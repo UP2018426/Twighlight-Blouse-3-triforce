@@ -1,12 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor.AI;
+using UnityEngine.AI;
 
 public class NavMeshGen : MonoBehaviour
 {
-    void Start()
+    public NavMeshSurface surface;
+    //void Start()
+    //{
+    //    surface.BuildNavMesh();
+    //}
+
+    private void Update()
     {
-        NavMeshBuilder.BuildNavMesh();
+        surface.BuildNavMesh();
     }
 }

@@ -2414,15 +2414,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4855801066573741608, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1075.736
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4855801066573741608, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -20.332634
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4855801066573741608, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -727.3472
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4855801066573741608, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2460,6 +2460,10 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 117578436760241280}
+    - target: {fileID: 4855801066573741611, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
+      propertyPath: surface
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 4855801066573741611, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
       propertyPath: healthBar
       value: 
