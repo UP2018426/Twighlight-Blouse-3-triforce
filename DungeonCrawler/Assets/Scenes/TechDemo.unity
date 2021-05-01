@@ -1454,7 +1454,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 592475751}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 191.98, y: 0, z: -68.35}
+  m_LocalPosition: {x: 202.6, y: 0, z: -60.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -2672,7 +2672,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1149490183}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 191.98, y: 0, z: -73.93}
+  m_LocalPosition: {x: 127.3, y: 0, z: -65.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3459,6 +3459,10 @@ PrefabInstance:
     - target: {fileID: 4388374879321888860, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
       propertyPath: m_Layer
       value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4390993198036020222, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
+      propertyPath: WalkSpeed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 4390993198036020222, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
       propertyPath: PatrolPos.Array.data[0]

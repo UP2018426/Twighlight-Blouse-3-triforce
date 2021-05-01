@@ -43,8 +43,8 @@ public class EnemyFOV : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("CamPos").GetComponent<Transform>();
-        PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        //player = GameObject.Find("CamPos").GetComponent<Transform>();
+        //PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 
         NavScript = this.gameObject.GetComponent<EnemyNav>();
@@ -58,6 +58,14 @@ public class EnemyFOV : MonoBehaviour
 
     void Update()
     {
+        if(player == null)
+        {
+            Debug.Log("The Player is set to NULL on enemy of name:" + this.name);
+            player = GameObject.Find("CamPos").GetComponent<Transform>();
+            PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
+
+
         mark.fillAmount = DetectionLevel / 100;
 
         inFOV = false;
