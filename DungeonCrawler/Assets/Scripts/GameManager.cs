@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
 
     public Image healthBar;
 
+    public Image stealthBar;
+
     public bool isPaused = false;
 
     public bool isDead = false;
@@ -93,8 +95,47 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public List<GameObject> enemies = new List<GameObject>();
+
+    private void Start()
+    {
+        StartCoroutine("EnemyAddDelay",1f);
+
+        
+    }
+
+    IEnumerator EnemyAddDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("enemy").Length; i++)
+        {
+            enemies.Add(GameObject.FindGameObjectsWithTag("enemy")[i]);
+        }
+
+        int rand = Random.Range(0,enemies.Count);
+
+        enemies[rand].GetComponent<EnemyNav>().holdKey = true;
+    }
+
     void HudUpdate()
     {
         healthBar.fillAmount = player.currentHealth / player.maxHealth;
+
+        var record = 0f;
+        
+        for (int i = 0; i < enemies.Count; i++)
+        {
+            var d = enemies[i].GetComponent<EnemyFOV>().DetectionLevel;
+
+            if (d < record)
+            {
+                record = d;
+            }
+        }
+
+        stealthBar.fillAmount = record / 100;
     }
+
+
 }

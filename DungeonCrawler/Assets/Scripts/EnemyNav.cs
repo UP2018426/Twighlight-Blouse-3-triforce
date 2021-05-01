@@ -22,6 +22,8 @@ public class EnemyNav : MonoBehaviour
 
     public Animator anim;
 
+    public bool holdKey = false;
+
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();

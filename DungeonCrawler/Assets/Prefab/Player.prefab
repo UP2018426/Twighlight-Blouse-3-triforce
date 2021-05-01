@@ -2473,6 +2473,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 626418996710148619}
     - target: {fileID: 4855801066573741611, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
+      propertyPath: stealthBar
+      value: 
+      objectReference: {fileID: 626418997761129620}
+    - target: {fileID: 4855801066573741611, guid: 405a591ef634c77498e144c0d4e0c014, type: 3}
       propertyPath: deathScreen
       value: 
       objectReference: {fileID: 4398943160938511788}
