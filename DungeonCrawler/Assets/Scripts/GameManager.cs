@@ -99,9 +99,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("EnemyAddDelay",1f);
-
-        
+        StartCoroutine("EnemyAddDelay",1f);   
     }
 
     IEnumerator EnemyAddDelay(float delay)
@@ -122,20 +120,18 @@ public class GameManager : MonoBehaviour
     {
         healthBar.fillAmount = player.currentHealth / player.maxHealth;
 
-        var record = 0f;
+        //int record = 1000;
         
-        for (int i = 0; i < enemies.Count; i++)
-        {
-            var d = enemies[i].GetComponent<EnemyFOV>().DetectionLevel;
-
-            if (d < record)
-            {
-                record = d;
-            }
-        }
-
-        stealthBar.fillAmount = record / 100;
+        //for (int i = 0; i < enemies.Count; i++)
+        //{
+        //    float d = enemies[i].GetComponent<EnemyFOV>().DetectionLevel;
+        //    //Debug.Log(d);
+        //    if (d < record)
+        //    {
+        //        record = Mathf.RoundToInt(d);
+        //    }
+        //    Debug.Log(record);
+        //}
+        //stealthBar.fillAmount = record / 100f;//isues with changing how full the bar is
     }
-
-
 }

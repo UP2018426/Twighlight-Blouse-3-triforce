@@ -66,7 +66,7 @@ public class EnemyFOV : MonoBehaviour
         }
 
 
-        mark.fillAmount = DetectionLevel / 100;
+        //mark.fillAmount = DetectionLevel / 100;
 
         inFOV = false;
         inRange = false;
