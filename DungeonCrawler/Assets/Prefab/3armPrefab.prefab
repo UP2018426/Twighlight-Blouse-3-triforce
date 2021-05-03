@@ -694,6 +694,8 @@ MonoBehaviour:
   RunSpeed: 5
   WalkSpeed: 3.5
   anim: {fileID: 0}
+  holdKey: 0
+  color: {fileID: 4103189724999919475}
   maxHealth: 3
   currentHealth: 0
   targetMask:
@@ -702,6 +704,7 @@ MonoBehaviour:
   attackPos: {fileID: 5211865394954959904}
   attackSize: {x: 2, y: 2, z: 2}
   dmg: 1
+  timer: 2
 --- !u!95 &1617982079430156749
 Animator:
   serializedVersion: 3
