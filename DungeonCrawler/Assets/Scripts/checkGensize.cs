@@ -1,12 +1,9 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class checkGensize : MonoBehaviour
 {
-    public NavMeshSurface surface;
-
     [SerializeField]
     private int minRoomNum;
     [SerializeField]
@@ -14,7 +11,6 @@ public class checkGensize : MonoBehaviour
         
     private void Start()
     {
-        Time.timeScale = 1;
         StartCoroutine("LogDelay",0.1f);
         //StopCoroutine("LogDelay");
     }
@@ -93,8 +89,6 @@ public class checkGensize : MonoBehaviour
         maybeDelete.Clear();
         grid.Clear();
         boss.Clear();
-
-        surface.BuildNavMesh();
     }
 
     //Debug.Log("");

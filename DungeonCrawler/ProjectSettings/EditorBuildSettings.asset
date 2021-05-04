@@ -4,11 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
-    guid: 52144fd02cfa6134cb87ffa4e2d90e76
-  - enabled: 1
-    path: Assets/Scenes/VanBoyBeingDumbAgain.unity
-    guid: 7713ff76379cfa64f941ebfa71dd3dcf
+  m_Scenes: []
   m_configObjects: {}

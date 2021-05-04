@@ -167,11 +167,6 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (currentHealth > maxHealth)
-        {
-            currentHealth = maxHealth;
-        }
-
         //Istvan wrote this
         if (Input.GetMouseButtonDown(0))
         {
@@ -249,10 +244,6 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Cancel"))
         {
             Cursor.lockState = CursorLockMode.None;
-        }
-        else if(Input.GetButtonDown("Cancel") && gm.isPaused)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
         }
 
         //isGrounded = Physics.CheckBox(groundCheck.position, gCheckSize, Quaternion.Euler(0,0,0), groundMask);

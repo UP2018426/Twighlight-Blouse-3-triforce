@@ -31,8 +31,7 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField]
     public int FOVState; // 1 = CALM ||| 2 = SUS ||| 3 = FIGHT ||| 4 = SEARCH
 
-    public PlayerController PlayerController;
-    
+    private PlayerController PlayerController;
     public bool IsCrouching;
     [Range(1f,20f)]
     public float standingMultiplier;
@@ -43,8 +42,8 @@ public class EnemyFOV : MonoBehaviour
 
     void Start()
     {
-        //player = GameObject.Find("CamPos").GetComponent<Transform>();
-        //PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.Find("CamPos").GetComponent<Transform>();
+        PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 
         NavScript = this.gameObject.GetComponent<EnemyNav>();
@@ -58,15 +57,7 @@ public class EnemyFOV : MonoBehaviour
 
     void Update()
     {
-        if(player == null)
-        {
-            Debug.Log("The Player is set to NULL on enemy of name:" + this.name);
-            player = GameObject.Find("CamPos").GetComponent<Transform>();
-            PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-        }
-
-
-        //mark.fillAmount = DetectionLevel / 100;
+        mark.fillAmount = DetectionLevel / 100;
 
         inFOV = false;
         inRange = false;
@@ -94,13 +85,13 @@ public class EnemyFOV : MonoBehaviour
 
 
 
-        Debug.Log(hit.collider.tag);
+        //Debug.Log(hit.collider.tag);
         angleToPlayer = Vector3.Angle(direction.normalized, transform.forward);
 
         if (inFOV && inRange == true && DetectionLevel < 100)
         {
             Debug.DrawRay(transform.position, direction, Color.green);
-            Debug.Log("Can be seen");
+            //Debug.Log("Can be seen");
 
             if(IsCrouching == false)
             {

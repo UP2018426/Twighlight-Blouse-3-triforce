@@ -22,14 +22,6 @@ public class EnemyNav : MonoBehaviour
 
     public Animator anim;
 
-    public bool holdKey = false;
-    
-    bool done = false;
-
-    bool dead = false;
-
-    public SkinnedMeshRenderer color;
-
     void Start()
     {
         nma = GetComponent<NavMeshAgent>();
@@ -50,77 +42,59 @@ public class EnemyNav : MonoBehaviour
         //nma.destination = TargetPos;
         //PatrolPosLength = PatrolPos.Length;
 
-        anim.SetFloat("Walk", Mathf.Abs(nma.speed));
-
-        if(!dead)
-        { 
-            if (FOVScript.FOVState == 1) //FOLLOW PATROL ROUTE
-            {
-                nma.speed = WalkSpeed;
-
-                if (PatrolPos.Length == 0)
-                {
-                    Debug.LogWarning("No patrol positions have been set for enemy of name: " + this.name);
-                }
-
-                if (PatrolPos.Length == 1)
-                {
-                    Debug.LogWarning("Only 1 patrol position is set for enemy of name: " + this.name);
-                }
-
-                if (PatrolPos.Length >= 2)
-                {
-                    Debug.Log("patrol L >= 2");
-                    if (PatrolPos[PatrolNum].position.x == this.transform.position.x && PatrolPos[PatrolNum].position.z == this.transform.position.z)
-                    {
-                        tempBool = true;
-                        Debug.Log("in pos");
-                    }
-
-                    if (PatrolNum >= PatrolPos.Length - 1 && tempBool == true)
-                    {
-                        PatrolNum = 0;
-                        Debug.Log("reset to 0");
-                        tempBool = false;
-                    }
-
-                    if (PatrolNum < PatrolPos.Length && tempBool == true)
-                    {
-                        PatrolNum++;
-                        Debug.Log("+ 1");
-                    }
-
-                    //nma.destination = /*ParentRoom.transform.position */PatrolPos[PatrolNum];
-                    tempBool = false;
-                    nma.destination = PatrolPos[PatrolNum].position;
-                }
-            }
-
-            if (FOVScript.FOVState == 2)
-            {
-                nma.speed = WalkSpeed;
-                nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-            }
-
-            if (FOVScript.FOVState == 3)
-            {
-                nma.speed = RunSpeed;
-                nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-            }
-        }
-
-        
-        if (holdKey &! done)
+        if (FOVScript.FOVState == 1) //FOLLOW PATROL ROUTE
         {
-            done = true;
-            color.material.color += Color.red;
+            nma.speed = WalkSpeed;
+
+            if (PatrolPos.Length == 0)
+            {
+                Debug.LogWarning("No patrol positions have been set for enemy of name: " + this.name);
+            }
+
+            if (PatrolPos.Length == 1)
+            {
+                Debug.LogWarning("Only 1 patrol position is set for enemy of name: " + this.name);
+            }
+
+            if (PatrolPos.Length >= 2)
+            {
+                Debug.Log("patrol L >= 2");
+                if (PatrolPos[PatrolNum].position.x == this.transform.position.x && PatrolPos[PatrolNum].position.z == this.transform.position.z)
+                {
+                    tempBool = true;
+                    Debug.Log("in pos");
+                }
+
+                if (PatrolNum >= PatrolPos.Length - 1 && tempBool == true)
+                {
+                    PatrolNum = 0;
+                    Debug.Log("reset to 0");
+                    tempBool = false;
+                }
+
+                if (PatrolNum < PatrolPos.Length && tempBool == true)
+                {
+                    PatrolNum++;
+                    Debug.Log("+ 1");
+                }
+
+                //nma.destination = /*ParentRoom.transform.position */PatrolPos[PatrolNum];
+                tempBool = false;
+                nma.destination = PatrolPos[PatrolNum].position;
+            }
         }
 
-        //if(Input.GetKeyDown("j"))
-        //{
-        //    Smack();
-        //}
+        if(FOVScript.FOVState == 2)
+        {
+            nma.speed = WalkSpeed;
+            nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+        }
 
+        if(FOVScript.FOVState == 3)
+        {
+            nma.speed = RunSpeed;
+            nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+        }
         checkIfDead();
     }
 
@@ -155,8 +129,6 @@ public class EnemyNav : MonoBehaviour
     public int dmg;
     void Smack()
     {
-        anim.SetTrigger("Attack");
-
         Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 
         Debug.Log(target.Length);
@@ -167,26 +139,11 @@ public class EnemyNav : MonoBehaviour
         }
     }
 
-    public float timer;
-    
     void checkIfDead()
     {
         if (currentHealth <= 0)
         {
-            if(!dead)
-            {
-                FOVScript.PlayerController.currentHealth += 2;
-            }
-
-            dead = true;
-            anim.SetBool("dead",true);
-
-            timer -= Time.deltaTime;
-
-            if (timer <= 0)
-            {
-                Destroy(gameObject);
-            }
+            Destroy(gameObject);
         }
     }
 

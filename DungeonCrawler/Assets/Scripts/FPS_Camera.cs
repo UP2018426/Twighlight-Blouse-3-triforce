@@ -37,7 +37,7 @@ public class FPS_Camera : MonoBehaviour
         mouseY -= Input.GetAxis("Mouse Y");
         mouseY = Mathf.Clamp(mouseY, minClamp, maxClamp);
 
-        if (!gm.isPaused && !gm.isDead)
+        if (!gm.isPaused)
         {
             player.transform.rotation = Quaternion.Euler(0, mouseX, 0);
             transform.localRotation = Quaternion.Euler(mouseY, 0f, 0f);
@@ -51,7 +51,7 @@ public class FPS_Camera : MonoBehaviour
 
     private void OnDrawGizmos()
     {
-        //Gizmos.color = Color.red;
+        Gizmos.color = Color.red;
         //Gizmos.DrawLine(transform.position, (transform.position += transform.forward) * dist);
     }
 
