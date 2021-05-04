@@ -15,6 +15,8 @@ TagManager:
   - Room_T
   - Enemy
   - Bullet
+  - mark
+  - enemy
   layers:
   - Default
   - TransparentFX
