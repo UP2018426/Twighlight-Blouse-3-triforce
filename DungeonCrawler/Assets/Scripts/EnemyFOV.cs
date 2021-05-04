@@ -31,7 +31,8 @@ public class EnemyFOV : MonoBehaviour
     [SerializeField]
     public int FOVState; // 1 = CALM ||| 2 = SUS ||| 3 = FIGHT ||| 4 = SEARCH
 
-    private PlayerController PlayerController;
+    public PlayerController PlayerController;
+    
     public bool IsCrouching;
     [Range(1f,20f)]
     public float standingMultiplier;
@@ -40,10 +41,11 @@ public class EnemyFOV : MonoBehaviour
 
     public Image mark;
 
+    public RaycastHit hit;
     void Start()
     {
-        player = GameObject.Find("CamPos").GetComponent<Transform>();
-        PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        //player = GameObject.Find("CamPos").GetComponent<Transform>();
+        //PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 
 
         NavScript = this.gameObject.GetComponent<EnemyNav>();
@@ -57,7 +59,15 @@ public class EnemyFOV : MonoBehaviour
 
     void Update()
     {
-        mark.fillAmount = DetectionLevel / 100;
+        if(player == null)
+        {
+            Debug.Log("The Player is set to NULL on enemy of name:" + this.name);
+            player = GameObject.Find("CamPos").GetComponent<Transform>();
+            PlayerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        }
+
+
+        //mark.fillAmount = DetectionLevel / 100;
 
         inFOV = false;
         inRange = false;
@@ -66,7 +76,7 @@ public class EnemyFOV : MonoBehaviour
 
         IsCrouching = PlayerController.isCrouching;
 
-        RaycastHit hit;
+        
         if (Physics.Raycast(transform.position, direction, out hit))
         {
             if (hit.distance < range)
@@ -85,13 +95,13 @@ public class EnemyFOV : MonoBehaviour
 
 
 
-        //Debug.Log(hit.collider.tag);
+        Debug.Log(hit.collider.tag);
         angleToPlayer = Vector3.Angle(direction.normalized, transform.forward);
 
         if (inFOV && inRange == true && DetectionLevel < 100)
         {
             Debug.DrawRay(transform.position, direction, Color.green);
-            //Debug.Log("Can be seen");
+            Debug.Log("Can be seen");
 
             if(IsCrouching == false)
             {

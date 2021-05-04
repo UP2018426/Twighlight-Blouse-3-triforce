@@ -5,21 +5,29 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
+
 public class GameManager : MonoBehaviour
 {
     public int sceneBuildIndexToChangeTo;
 
     public Image healthBar;
 
+    public Image stealthBar;
+
     public bool isPaused = false;
 
+    public bool isDead = false;
+
     public GameObject pauseMenu;
+
+    public GameObject deathScreen;
 
     public PlayerController player;
 
     private void Awake()
     {
-        pauseMenu.SetActive(false);
+        isPaused = false;
+        isDead = false;
         Time.timeScale = 1f;
     }
 
@@ -73,11 +81,57 @@ public class GameManager : MonoBehaviour
                 isPaused = false;
             }
         //Debug.Log(player.health.currentHealth / player.health.maxHealth);
-        HudUpdate();
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            HudUpdate();
+            if (player.currentHealth <= 0)
+            {
+                Time.timeScale = 0f;
+                isDead = true;
+                Cursor.lockState = CursorLockMode.None;
+                deathScreen.SetActive(true);
+            }
+        }
+        
+    }
+
+    public List<GameObject> enemies = new List<GameObject>();
+
+    private void Start()
+    {
+        StartCoroutine("EnemyAddDelay",1f);   
+    }
+
+    IEnumerator EnemyAddDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        for (int i = 0; i < GameObject.FindGameObjectsWithTag("enemy").Length; i++)
+        {
+            enemies.Add(GameObject.FindGameObjectsWithTag("enemy")[i]);
+        }
+
+        int rand = Random.Range(0,enemies.Count);
+
+        enemies[rand].GetComponent<EnemyNav>().holdKey = true;
     }
 
     void HudUpdate()
     {
         healthBar.fillAmount = player.currentHealth / player.maxHealth;
+
+        //int record = 1000;
+        
+        //for (int i = 0; i < enemies.Count; i++)
+        //{
+        //    float d = enemies[i].GetComponent<EnemyFOV>().DetectionLevel;
+        //    //Debug.Log(d);
+        //    if (d < record)
+        //    {
+        //        record = Mathf.RoundToInt(d);
+        //    }
+        //    Debug.Log(record);
+        //}
+        //stealthBar.fillAmount = record / 100f;//isues with changing how full the bar is
     }
 }
