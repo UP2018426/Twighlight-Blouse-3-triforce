@@ -517,7 +517,6 @@ Transform:
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
 =======
 --- !u!1001 &395132722
 PrefabInstance:
@@ -817,8 +816,6 @@ Mesh:
     size: 0
     path: 
 >>>>>>> parent of aab4665 (menu main beeter)
-=======
->>>>>>> parent of 46d722c (MainMENU SCENE LOOKS NICEER)
 --- !u!1 &587968913
 GameObject:
   m_ObjectHideFlags: 0
