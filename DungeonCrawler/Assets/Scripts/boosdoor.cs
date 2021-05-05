@@ -7,7 +7,17 @@ public class boosdoor : MonoBehaviour
     public GameObject keyEnemy;
 
     public bool done = false;
+    public bool donedone = false;
     public bool KEYMADE = false;
+
+    [SerializeField]
+    Transform pos;
+
+    [SerializeField]
+    Vector3 size;
+
+    [SerializeField]
+    LayerMask layer;
 
     void Update()
     {
@@ -33,5 +43,19 @@ public class boosdoor : MonoBehaviour
 
             done = true;
         }
+
+        if(Physics.CheckBox(pos.position,size,Quaternion.identity,layer) && !donedone)
+        {
+            transform.position += Vector3.down * 5;
+            donedone = true;
+        }
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+
+        Gizmos.DrawWireCube(pos.position,size);
+    }
+
 }

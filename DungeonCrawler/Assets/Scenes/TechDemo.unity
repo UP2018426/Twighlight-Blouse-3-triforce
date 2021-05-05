@@ -1240,7 +1240,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &534991793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3858,6 +3858,7 @@ MonoBehaviour:
   stealthBar: {fileID: 0}
   isPaused: 0
   isDead: 0
+  endscreen: 0
   pauseMenu: {fileID: 1011828472}
   deathScreen: {fileID: 0}
   player: {fileID: 3025548168758329068}

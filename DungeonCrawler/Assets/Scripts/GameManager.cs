@@ -18,6 +18,8 @@ public class GameManager : MonoBehaviour
 
     public bool isDead = false;
 
+    public bool endscreen = false;
+
     public GameObject pauseMenu;
 
     public GameObject deathScreen;
@@ -68,7 +70,8 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel"))
+        if (Input.GetButtonDown("Cancel") && !endscreen)
+        {
             if (!isPaused)
             {
                 Time.timeScale = 0f;
@@ -80,6 +83,8 @@ public class GameManager : MonoBehaviour
                 Resume();
                 isPaused = false;
             }
+        }
+
         //Debug.Log(player.health.currentHealth / player.health.maxHealth);
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
