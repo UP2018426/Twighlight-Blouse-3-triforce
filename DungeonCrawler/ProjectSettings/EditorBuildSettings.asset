@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/VanBoyBeingDumbAgain.unity
     guid: 7713ff76379cfa64f941ebfa71dd3dcf
+  - enabled: 1
+    path: Assets/Scenes/Larger dungeon.unity
+    guid: f76c93bfae83c7040ab83c374df9b52d
   m_configObjects: {}

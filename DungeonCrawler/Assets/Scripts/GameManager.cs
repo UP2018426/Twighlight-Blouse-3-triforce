@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void LoadScene()
+    public void LoadScene(int scene)
     {
-        SceneManager.LoadScene(sceneBuildIndexToChangeTo);
+        SceneManager.LoadScene(scene);
     }
 
     public void Resume()
@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown("Cancel") && !endscreen)
+        if (Input.GetButtonDown("Cancel") && !endscreen && !isDead)
         {
             if (!isPaused)
             {
