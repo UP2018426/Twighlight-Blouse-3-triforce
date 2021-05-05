@@ -11,7 +11,10 @@ public class checkGensize : MonoBehaviour
     private int minRoomNum;
     [SerializeField]
     private int maxRoomNum;
-        
+
+    [SerializeField]
+    GameObject menu;
+
     private void Start()
     {
         Time.timeScale = 1;
@@ -90,6 +93,8 @@ public class checkGensize : MonoBehaviour
         Spawn();
         Debug.Log("Spawned");
 
+        Destroy(menu);
+        
         maybeDelete.Clear();
         grid.Clear();
         boss.Clear();
