@@ -104,7 +104,10 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine("EnemyAddDelay",1f);   
+        if (SceneManager.GetActiveScene().buildIndex != 0)
+        {
+            StartCoroutine("EnemyAddDelay",1f);
+        }
     }
 
     IEnumerator EnemyAddDelay(float delay)
