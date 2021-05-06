@@ -122,6 +122,8 @@ public class GameManager : MonoBehaviour
         int rand = Random.Range(0,enemies.Count);
 
         enemies[rand].GetComponent<EnemyNav>().holdKey = true;
+
+
     }
 
     void HudUpdate()

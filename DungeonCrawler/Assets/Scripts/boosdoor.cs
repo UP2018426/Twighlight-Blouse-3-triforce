@@ -44,7 +44,7 @@ public class boosdoor : MonoBehaviour
             done = true;
         }
 
-        if(Physics.CheckBox(pos.position,size,Quaternion.identity,layer) && !donedone)
+        if(Physics.CheckBox(pos.position,size,Quaternion.identity,layer) && done && !donedone)
         {
             transform.position += Vector3.down * 5;
             donedone = true;

@@ -17,6 +17,7 @@ TagManager:
   - Bullet
   - mark
   - enemy
+  - boss
   layers:
   - Default
   - TransparentFX

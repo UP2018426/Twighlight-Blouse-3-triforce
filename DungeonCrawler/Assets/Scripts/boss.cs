@@ -8,8 +8,8 @@ public class boss : MonoBehaviour
     public Animator anim;
     bool dead = false;
 
-    [SerializeField]
-    GameObject endpoint;
+    //[SerializeField]
+    //GameObject endpoint;
 
     private void Start()
     {
@@ -26,6 +26,7 @@ public class boss : MonoBehaviour
     {
         //anim.SetFloat("Walk", Mathf.Abs(nma.speed));
 
+        checkIfDead();
     }
 
 
@@ -101,8 +102,8 @@ public class boss : MonoBehaviour
 
             if (timer <= 0)
             {
-                Instantiate(endpoint,this.transform);
-                Destroy(gameObject);
+                //Instantiate(endpoint,this.transform);
+                //Destroy(gameObject);
             }
         }
     }

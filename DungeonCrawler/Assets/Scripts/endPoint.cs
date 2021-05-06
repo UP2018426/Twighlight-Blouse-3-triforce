@@ -6,9 +6,14 @@ public class endPoint : MonoBehaviour
 {
     GameManager gm;
 
+    [SerializeField]
+    GameObject boss;
+
     void Start()
     {
         gm = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
+
+        //boss = GameObject.FindGameObjectWithTag("boss");
     }
 
     [SerializeField]
@@ -25,11 +30,15 @@ public class endPoint : MonoBehaviour
 
     private void Update()
     {
-        if (Physics.CheckBox(pos.position, size, Quaternion.identity, layer))
+        if (boss == null)
         {
-            endscreen.SetActive(true);
-            gm.endscreen = true;
-            Time.timeScale = 0f;
+            gameObject.GetComponent<Light>().enabled = true;
+            if (Physics.CheckBox(pos.position, size, Quaternion.identity, layer) )
+            {
+                endscreen.SetActive(true);
+                gm.endscreen = true;
+                Time.timeScale = 0f;
+            }
         }
     }
 }
