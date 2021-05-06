@@ -4156,6 +4156,14 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 2081977498}
+    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
+      propertyPath: maxHealth
+      value: 5000
+      objectReference: {fileID: 0}
+    - target: {fileID: 117578436760241280, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
+      propertyPath: shaderScript
+      value: 
+      objectReference: {fileID: 1684986580}
     - target: {fileID: 149436766398227923, guid: b550cc39cfab02f49b2c379822bb095b, type: 3}
       propertyPath: m_Layer
       value: 12

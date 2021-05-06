@@ -13,17 +13,15 @@ public class WeaponShaderScript : MonoBehaviour
 
     public float speeeeed;
 
-    // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         //thisMat.SetFloat("Vector1_F9AEF008", height);
-        if (Input.GetKeyDown("e"))
+        /*if (Input.GetKeyDown("e"))
         {
             collaped = false;
         }
@@ -31,17 +29,18 @@ public class WeaponShaderScript : MonoBehaviour
         if (Input.GetKeyDown("q"))
         {
             collaped = true;
-        }
+        }*/
 
         if(collaped == true)
         {
             height = Mathf.Lerp(thisMat.GetFloat("Vector1_F9AEF008"), BottomRange, speeeeed * Time.deltaTime);
         }
-
+        
         if(collaped == false)
         {
             height = Mathf.Lerp(thisMat.GetFloat("Vector1_F9AEF008"), TopRange, speeeeed * Time.deltaTime);
         }
+                
 
         thisMat.SetFloat("Vector1_F9AEF008", height);
         /*if (Input.GetKey("q"))

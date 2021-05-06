@@ -110,6 +110,11 @@ public class PlayerController : MonoBehaviour
 
     public float maxHealth;
     public float currentHealth;
+
+    private bool passed;
+    public WeaponShaderScript shaderScript;
+    public GameObject Sword;
+    public GameObject Bow;
     float health
     {
         get
@@ -158,6 +163,9 @@ public class PlayerController : MonoBehaviour
         //characterStats.moveMultiplier = 1f;
         //characterStats.speed = 12f;
         //characterStats.jumpHeight = 10f;
+
+        //shaderScript = GetComponent<WeaponShaderScript>();
+        shaderScript.collaped = true;
     }
 
     public void TakeDamage(int _dmg)
@@ -232,21 +240,77 @@ public class PlayerController : MonoBehaviour
         //should be working when enemies are made
 
 
-
         if (Input.GetKeyDown("1"))//handle
         {
             weaponSelected = 0;
+            shaderScript.collaped = true;
+
         }
-        if (Input.GetKeyDown("2"))//sword
+        if (Input.GetKeyDown("2") && weaponSelected != 1)//sword
         {
+            if(weaponSelected != 0)
+            {
+                shaderScript.collaped = true;
+            }
             weaponSelected = 1;
+            if(weaponSelected == 0)
+            {
+                shaderScript.collaped = false;
+            }
+            
+            
+
+
+            
             TakeDamage(2);
         }
-        if (Input.GetKeyDown("3"))//bow
+        if (Input.GetKeyDown("3") && weaponSelected != 2)//bow
         {
+            
+            
+            if (weaponSelected != 0)
+            {
+                shaderScript.collaped = true;
+            }
             weaponSelected = 2;
+            if(weaponSelected == 0)
+            {
+                shaderScript.collaped = false;
+            }
+            
+            
+
         }
-        
+
+        if(weaponSelected != 1 && shaderScript.height <= shaderScript.BottomRange + 0.1f)
+        {
+            //disable BOW
+            Bow.SetActive(false);
+            Debug.Log("disable bow");
+        }
+
+        if (weaponSelected != 2 && shaderScript.height <= shaderScript.BottomRange + 0.1f)
+        {
+            //disable SWORD
+            Sword.SetActive(false);
+            Debug.Log("disable sword");
+        }
+
+        if(weaponSelected != 0 && shaderScript.height < shaderScript.BottomRange + 0.1f)
+        {
+            shaderScript.collaped = false;
+            if(weaponSelected == 1)
+            {
+                Bow.SetActive(false);
+                Sword.SetActive(true);
+            }
+
+            if(weaponSelected == 2)
+            {
+                Sword.SetActive(false);
+                Bow.SetActive(true);
+            }
+        }
 
 
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
