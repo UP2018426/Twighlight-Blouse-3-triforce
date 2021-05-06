@@ -6,6 +6,8 @@ public class boosdoor : MonoBehaviour
 {
     public GameObject keyEnemy;
 
+    public GameObject boss;
+
     public bool done = false;
     public bool donedone = false;
     public bool KEYMADE = false;
@@ -48,6 +50,8 @@ public class boosdoor : MonoBehaviour
         {
             transform.position += Vector3.down * 5;
             donedone = true;
+
+            boss.gameObject.GetComponent<boss>().go = true;
         }
     }
 

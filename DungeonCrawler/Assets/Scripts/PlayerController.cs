@@ -49,6 +49,9 @@ public class PlayerController : MonoBehaviour
     }
     */
 
+    public AudioClip bowTwang, swordSwing;
+
+
     public GameManager gm;
 
     public CharacterStats characterStats = new CharacterStats();
@@ -200,7 +203,7 @@ public class PlayerController : MonoBehaviour
             TakeDamage(1);
 
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
-            //audScource.PlayOneShot();
+            audScource.PlayOneShot(bowTwang);
 
             proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);
             
@@ -214,6 +217,8 @@ public class PlayerController : MonoBehaviour
         //melee
         if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected < 2 &! gm.isPaused)
         {
+
+            audScource.PlayOneShot(swordSwing);
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
             Debug.Log(enemies.Length);
@@ -222,12 +227,10 @@ public class PlayerController : MonoBehaviour
                 if (weaponSelected == 1)
                 {
                     enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg * 2);
-                    //audScource.PlayOneShot();
                 }
                 else
                 {
                     enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
-                    //audScource.PlayOneShot();
                 }
             }
             timeBetweenAttacks = startTimeBetweenAttacks;

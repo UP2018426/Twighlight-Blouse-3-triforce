@@ -32,6 +32,8 @@ public class EnemyNav : MonoBehaviour
     float startTimeBetweenAttacks;
 
 
+    public AudioClip ree;
+
     public SkinnedMeshRenderer color;
 
     void Start()
@@ -47,6 +49,8 @@ public class EnemyNav : MonoBehaviour
         currentHealth = maxHealth;
 
         anim = GetComponent<Animator>();
+
+        startTimeBetweenAttacks = 2;
     }
 
     void Update()
@@ -111,7 +115,7 @@ public class EnemyNav : MonoBehaviour
                 nma.speed = RunSpeed;
                 nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
 
-                if(FOVScript.range <= 4 && timeBetweenAttacks <= 0)
+                if(FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
                 {
                     Smack();
                     timeBetweenAttacks = startTimeBetweenAttacks;
@@ -175,9 +179,14 @@ public class EnemyNav : MonoBehaviour
     public Vector3 attackSize;
 
     public int dmg;
+
+    [SerializeField]
+    AudioSource audScource;
     void Smack()
     {
         anim.SetTrigger("Attack");
+
+        audScource.PlayOneShot(ree);
 
         Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 
