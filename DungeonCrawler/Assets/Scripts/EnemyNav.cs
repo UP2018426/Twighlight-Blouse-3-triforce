@@ -113,7 +113,7 @@ public class EnemyNav : MonoBehaviour
         if (holdKey &! done)
         {
             done = true;
-            color.material.color += Color.red;
+            color.material.color += Color.red * 3;
         }
 
         if (FOVScript.hit.distance < 3)

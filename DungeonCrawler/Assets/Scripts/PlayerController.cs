@@ -133,6 +133,9 @@ public class PlayerController : MonoBehaviour
 
     public int weaponSelected;
 
+    [SerializeField]
+    AudioSource audScource;
+
     void Awake()
     {
         //stats = GetComponent<CharcterStats>();
@@ -189,6 +192,7 @@ public class PlayerController : MonoBehaviour
             TakeDamage(1);
 
             GameObject proj = Instantiate(shootObj, shootPos.position, gameObject.transform.rotation);
+            //audScource.PlayOneShot();
 
             proj.GetComponent<Rigidbody>().AddForce(Camera.transform.forward * fireForce, ForceMode.Impulse);
             
@@ -210,10 +214,12 @@ public class PlayerController : MonoBehaviour
                 if (weaponSelected == 1)
                 {
                     enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg * 2);
+                    //audScource.PlayOneShot();
                 }
                 else
                 {
                     enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                    //audScource.PlayOneShot();
                 }
             }
             timeBetweenAttacks = startTimeBetweenAttacks;
@@ -227,20 +233,20 @@ public class PlayerController : MonoBehaviour
 
 
 
-
-        if (Input.GetKeyDown("1"))//sword
+        if (Input.GetKeyDown("1"))//handle
+        {
+            weaponSelected = 0;
+        }
+        if (Input.GetKeyDown("2"))//sword
         {
             weaponSelected = 1;
             TakeDamage(2);
         }
-        if (Input.GetKeyDown("2"))//bow
+        if (Input.GetKeyDown("3"))//bow
         {
             weaponSelected = 2;
         }
-        if (Input.GetKeyDown("0"))//handle
-        {
-            weaponSelected = 0;
-        }
+        
 
 
         //shootObj.transform.position = transform.position - transform.forward * distFromTarget;
