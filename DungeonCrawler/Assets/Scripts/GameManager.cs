@@ -24,7 +24,11 @@ public class GameManager : MonoBehaviour
 
     public GameObject deathScreen;
 
+    public GameObject endScreen;
+
     public PlayerController player;
+
+    public float timer;
 
     private void Awake()
     {
@@ -85,6 +89,19 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        if(boss.GetComponent<boss>().currentHealth <= 0)
+        {
+            timer -= Time.deltaTime;
+
+            if (timer <= 0)
+            {
+                endScreen.SetActive(true);
+                endscreen = true;
+                isPaused = true;
+                Cursor.lockState = CursorLockMode.None;
+            }
+        }
+
         //Debug.Log(player.health.currentHealth / player.health.maxHealth);
         if (SceneManager.GetActiveScene().buildIndex != 0)
         {
@@ -101,6 +118,8 @@ public class GameManager : MonoBehaviour
     }
 
     public List<GameObject> enemies = new List<GameObject>();
+
+    GameObject boss;
 
     private void Start()
     {
@@ -123,7 +142,7 @@ public class GameManager : MonoBehaviour
 
         enemies[rand].GetComponent<EnemyNav>().holdKey = true;
 
-
+        boss = GameObject.FindGameObjectWithTag("boss");
     }
 
     void HudUpdate()

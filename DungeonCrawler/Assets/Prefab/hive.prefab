@@ -596,7 +596,7 @@ MonoBehaviour:
   attackPos: {fileID: 7027964218341783394}
   attackSize: {x: 2, y: 2, z: 2}
   dmg: 4
-  timer: 3
+  timer: 5
 --- !u!1 &1654224493096540519
 GameObject:
   m_ObjectHideFlags: 0
