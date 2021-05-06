@@ -28,6 +28,10 @@ public class EnemyNav : MonoBehaviour
 
     bool dead = false;
 
+    public float timeBetweenAttacks;
+    float startTimeBetweenAttacks;
+
+
     public SkinnedMeshRenderer color;
 
     void Start()
@@ -106,7 +110,16 @@ public class EnemyNav : MonoBehaviour
             {
                 nma.speed = RunSpeed;
                 nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+                if(FOVScript.range <= 4 && timeBetweenAttacks <= 0)
+                {
+                    Smack();
+                    timeBetweenAttacks = startTimeBetweenAttacks;
+                }
             }
+            
+            timeBetweenAttacks -= Time.deltaTime;
+            
         }
 
         
