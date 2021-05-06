@@ -27,6 +27,12 @@ public class Projectile : MonoBehaviour
         //{
 
         //}
+
+        if(col.gameObject.GetComponent<PlayerController>())
+        {
+            col.gameObject.GetComponent<PlayerController>().TakeDamage(3);
+        }
+
         if (col.gameObject.layer == layerToCompare)//floor and walls
         {
             Destroy(gameObject);

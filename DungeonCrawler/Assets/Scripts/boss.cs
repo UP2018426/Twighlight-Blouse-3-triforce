@@ -64,22 +64,6 @@ public class boss : MonoBehaviour
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public float maxHealth;
     public float currentHealth;
     float health

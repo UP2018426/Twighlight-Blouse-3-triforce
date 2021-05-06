@@ -180,6 +180,8 @@ public class EnemyNav : MonoBehaviour
 
     public int dmg;
 
+    public float attackDelay;
+
     [SerializeField]
     AudioSource audScource;
     void Smack()
@@ -187,6 +189,13 @@ public class EnemyNav : MonoBehaviour
         anim.SetTrigger("Attack");
 
         audScource.PlayOneShot(ree);
+
+        StartCoroutine("Smack",attackDelay);        
+    }
+
+    IEnumerator Smack(float delay)
+    {
+        yield return new WaitForSeconds(delay);
 
         Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 

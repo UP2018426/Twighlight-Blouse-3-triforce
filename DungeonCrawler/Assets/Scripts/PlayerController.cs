@@ -468,7 +468,17 @@ public class PlayerController : MonoBehaviour
             controller.Move(temp * 12 * Time.deltaTime);
         }
         */
+
+        //if(controller.attachedRigidbody.CompareTag("Bullet"))
+        //{
+        //    TakeDamage(3);
+        //}
+
+        
     }
+
+
+
 
     private void OnDrawGizmos()
     {
