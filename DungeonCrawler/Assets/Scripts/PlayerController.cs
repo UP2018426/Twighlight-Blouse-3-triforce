@@ -477,7 +477,13 @@ public class PlayerController : MonoBehaviour
         
     }
 
-
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    if(collision.gameObject.CompareTag("Bullet"))
+    //    {
+    //        TakeDamage(3);
+    //    }
+    //}
 
 
     private void OnDrawGizmos()

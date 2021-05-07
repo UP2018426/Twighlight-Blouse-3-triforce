@@ -44,22 +44,43 @@ public class boss : MonoBehaviour
         if (go)
         {
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-        }
+        
 
 
-        if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
-        {
-            Smack();
+        //if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
+        //{
+        //    Smack();
+        //    timeBetweenAttacks = startTimeBetweenAttacks;
+        //}
+
+            if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
+            {
+                GameObject proj = Instantiate(bullet, attackPos.transform.position, gameObject.transform.rotation);
+
+                proj.GetComponent<Rigidbody>().AddForce(attackPos.transform.forward * fireForce, ForceMode.Impulse);
+            }
             timeBetweenAttacks = startTimeBetweenAttacks;
-        }
-        timeBetweenAttacks -= Time.deltaTime;
 
-        if(FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
-        {
-            GameObject proj = Instantiate(bullet, attackPos.transform.position, gameObject.transform.rotation);
 
-            proj.GetComponent<Rigidbody>().AddForce(attackPos.transform.forward * fireForce, ForceMode.Impulse);
+            //timeBetweenAttacks -= Time.deltaTime;
+
+
+
+            if (FOVScript.FOVState == 3)
+            {
+                nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+                if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
+                {
+                    Smack();
+                    timeBetweenAttacks = startTimeBetweenAttacks;
+                }
+            }
+
+            timeBetweenAttacks -= Time.deltaTime;
         }
+
+
         checkIfDead();
     }
 

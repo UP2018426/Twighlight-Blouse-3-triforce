@@ -188,9 +188,18 @@ public class EnemyNav : MonoBehaviour
     {
         anim.SetTrigger("Attack");
 
-        audScource.PlayOneShot(ree);
+        Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 
-        StartCoroutine("Smack",attackDelay);        
+        Debug.Log(target.Length);
+        for (int i = 0; i < target.Length; i++)
+        {
+            Debug.Log("Working");
+            target[i].GetComponent<PlayerController>().TakeDamage(dmg);
+        }
+
+        //audScource.PlayOneShot(ree);
+
+        //StartCoroutine("Smack",attackDelay);        
     }
 
     IEnumerator Smack(float delay)
