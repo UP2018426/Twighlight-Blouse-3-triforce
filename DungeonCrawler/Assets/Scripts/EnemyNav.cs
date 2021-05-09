@@ -50,7 +50,7 @@ public class EnemyNav : MonoBehaviour
 
         anim = GetComponent<Animator>();
 
-        startTimeBetweenAttacks = 2;
+        startTimeBetweenAttacks = 1;
     }
 
     void Update()
@@ -187,6 +187,7 @@ public class EnemyNav : MonoBehaviour
     void Smack()
     {
         anim.SetTrigger("Attack");
+       
 
         Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 
