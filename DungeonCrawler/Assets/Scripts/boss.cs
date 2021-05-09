@@ -80,17 +80,13 @@ public class boss : MonoBehaviour
 
 
             Debug.Log(attackNumber % 5);
-            if (attackNumber % 5 == 0 && attackNumber % 10 != 0) 
+            if (attackNumber % 5 == 0 && t) 
             {
-                startTimeBetweenAttacks += nthAttackTime;
+                startTimeBetweenAttacks = nthAttackTime;
 
-                
+                t = false;
             }
-            else if (attackNumber % 5 == 0 && attackNumber % 10 == 0)
-            {
-                startTimeBetweenAttacks -= nthAttackTime;
-                
-            }
+            
             
 
             if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
@@ -103,11 +99,12 @@ public class boss : MonoBehaviour
                 attackNumber++;
 
             }
-            //if (attackNumber % 5 == 0 & !t)
-            //{
-            //    startTimeBetweenAttacks -= nthAttackTime;
-
-            //}
+            if (!t)
+            {
+                startTimeBetweenAttacks = nthAttackTime;
+                t = true;
+                startTimeBetweenAttacks = 2;
+            }
 
 
 

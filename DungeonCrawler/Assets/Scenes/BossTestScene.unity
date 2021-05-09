@@ -717,7 +717,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4398399678276477680, guid: 80db06b891de6994eb28fb4ddd39c457, type: 3}
       propertyPath: nthAttackTime
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8424170265170168514, guid: 80db06b891de6994eb28fb4ddd39c457, type: 3}
       propertyPath: m_Speed
