@@ -45,6 +45,8 @@ public class boss : MonoBehaviour
     public int attackNumber;
     public float nthAttackTime;
 
+    bool t = false;
+
     private void Update()
     {
         anim.SetBool("Walk", true);
@@ -75,10 +77,22 @@ public class boss : MonoBehaviour
             //    timeBetweenAttacks = startTimeBetweenAttacks;
             //}
 
-            if (attackNumber % 5 == 0) 
+
+
+            Debug.Log(attackNumber % 5);
+            if (attackNumber % 5 == 0 && attackNumber % 10 != 0) 
             {
-                timeBetweenAttacks += nthAttackTime;
+                startTimeBetweenAttacks += nthAttackTime;
+
+                
             }
+            else if (attackNumber % 5 == 0 && attackNumber % 10 == 0)
+            {
+                startTimeBetweenAttacks -= nthAttackTime;
+                
+            }
+            
+
             if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
             {
                 GameObject proj = Instantiate(bullet, attackPos.transform.position, gameObject.transform.rotation);
@@ -89,10 +103,12 @@ public class boss : MonoBehaviour
                 attackNumber++;
 
             }
-            if (attackNumber % 5 == 0)
-            {
-                timeBetweenAttacks -= nthAttackTime; 
-            }
+            //if (attackNumber % 5 == 0 & !t)
+            //{
+            //    startTimeBetweenAttacks -= nthAttackTime;
+
+            //}
+
 
 
             /*

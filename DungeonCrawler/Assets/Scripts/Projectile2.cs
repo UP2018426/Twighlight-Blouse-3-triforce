@@ -7,6 +7,23 @@ public class Projectile2 : MonoBehaviour
 
     public LayerMask layerToCompare;
 
+
+    private void OnTriggerEnter(Collider col)
+    {
+        if (col.gameObject.GetComponent<PlayerController>())
+        {
+            col.gameObject.GetComponent<PlayerController>().TakeDamage(3);
+        }
+        if (col.gameObject.layer == layerToCompare)//floor and walls
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void OnCollisionEnter(Collision col)
     {
         //if(col.gameObject.CompareTag(enemies))//enemies
