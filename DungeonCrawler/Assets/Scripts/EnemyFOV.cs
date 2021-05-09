@@ -95,7 +95,7 @@ public class EnemyFOV : MonoBehaviour
 
 
 
-        Debug.Log(hit.collider.tag);
+        //Debug.Log(hit.collider.tag);
         angleToPlayer = Vector3.Angle(direction.normalized, transform.forward);
 
         if (inFOV && inRange == true && DetectionLevel < 100)

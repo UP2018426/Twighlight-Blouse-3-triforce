@@ -21,9 +21,11 @@ public class boss : MonoBehaviour
 
         FOVScript = this.gameObject.GetComponent<EnemyFOV>();
 
-        startTimeBetweenAttacks = 1;
+        startTimeBetweenAttacks = 0.8f;/////////////////////////////
 
         nma = GetComponent<NavMeshAgent>();
+
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -37,14 +39,34 @@ public class boss : MonoBehaviour
     public float timeBetweenAttacks;
     float startTimeBetweenAttacks;
 
+    public float distance;
+    public float closestDist;
+
+    public int attackNumber;
+    public float nthAttackTime;
+
     private void Update()
     {
-        anim.SetFloat("Walk", Mathf.Abs(nma.speed));
+        anim.SetBool("Walk", true);
+
+        distance = Vector3.Distance(player.transform.position, this.transform.position);
 
         if (go)
         {
+            if(distance <= closestDist)
+            {
+                nma.speed = 0;
+            }
+
+            if(nma.speed == 0)
+            {
+                transform.LookAt(new Vector3(player.transform.position.x,0,player.transform.position.z));
+            }
+            
+
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
 
+            attackPos.transform.LookAt(player.transform.position);
 
 
             //if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
@@ -53,15 +75,26 @@ public class boss : MonoBehaviour
             //    timeBetweenAttacks = startTimeBetweenAttacks;
             //}
 
+            if (attackNumber % 5 == 0) 
+            {
+                timeBetweenAttacks += nthAttackTime;
+            }
             if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
             {
                 GameObject proj = Instantiate(bullet, attackPos.transform.position, gameObject.transform.rotation);
 
-                proj.GetComponent<Rigidbody>().AddForce((-1 * attackPos.transform.forward) * fireForce, ForceMode.Impulse);
+                proj.GetComponent<Rigidbody>().AddForce((1 * attackPos.transform.forward) * fireForce, ForceMode.Impulse);
                 timeBetweenAttacks = startTimeBetweenAttacks;
+                
+                attackNumber++;
 
             }
-            
+            if (attackNumber % 5 == 0)
+            {
+                timeBetweenAttacks -= nthAttackTime; 
+            }
+
+
             /*
             else if (FOVScript.FOVState == 3)
             {

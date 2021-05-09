@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public float timer;
 
+    
+
     private void Awake()
     {
         isPaused = false;
@@ -127,6 +129,8 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine("EnemyAddDelay",1f);
         }
+
+        boss = GameObject.FindGameObjectWithTag("boss");
     }
 
     IEnumerator EnemyAddDelay(float delay)
