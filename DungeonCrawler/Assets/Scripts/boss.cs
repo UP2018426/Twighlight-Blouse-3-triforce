@@ -44,39 +44,38 @@ public class boss : MonoBehaviour
         if (go)
         {
             nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
-        
 
 
-        //if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
-        //{
-        //    Smack();
-        //    timeBetweenAttacks = startTimeBetweenAttacks;
-        //}
+
+            //if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
+            //{
+            //    Smack();
+            //    timeBetweenAttacks = startTimeBetweenAttacks;
+            //}
 
             if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
             {
                 GameObject proj = Instantiate(bullet, attackPos.transform.position, gameObject.transform.rotation);
 
-                proj.GetComponent<Rigidbody>().AddForce(attackPos.transform.forward * fireForce, ForceMode.Impulse);
+                proj.GetComponent<Rigidbody>().AddForce((-1 * attackPos.transform.forward) * fireForce, ForceMode.Impulse);
+                timeBetweenAttacks = startTimeBetweenAttacks;
+
             }
-            timeBetweenAttacks = startTimeBetweenAttacks;
-
-
-            //timeBetweenAttacks -= Time.deltaTime;
-
-
-
-            if (FOVScript.FOVState == 3)
+            
+            /*
+            else if (FOVScript.FOVState == 3)
             {
-                nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+                //nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
 
                 if (FOVScript.hit.distance <= 2 && timeBetweenAttacks <= 0)
                 {
                     Smack();
                     timeBetweenAttacks = startTimeBetweenAttacks;
                 }
-            }
+                timeBetweenAttacks = startTimeBetweenAttacks;
 
+            }
+            */
             timeBetweenAttacks -= Time.deltaTime;
         }
 
@@ -125,7 +124,7 @@ public class boss : MonoBehaviour
     {
         anim.SetTrigger("Attack");
 
-        audScource.PlayOneShot(sound);
+        //audScource.PlayOneShot(sound);
 
         Collider[] target = Physics.OverlapBox(attackPos.transform.position, attackSize, Quaternion.identity, targetMask);
 
