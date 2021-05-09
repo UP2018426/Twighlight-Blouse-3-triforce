@@ -118,6 +118,7 @@ public class PlayerController : MonoBehaviour
     public WeaponShaderScript shaderScript;
     public GameObject Sword;
     public GameObject Bow;
+    public GameObject Short;
     float health
     {
         get
@@ -217,8 +218,11 @@ public class PlayerController : MonoBehaviour
         //melee
         if (Input.GetButtonDown("Fire1") && timeBetweenAttacks <= 0 && weaponSelected < 2 &! gm.isPaused)
         {
-
             audScource.PlayOneShot(swordSwing);
+
+            Sword.GetComponent<Animator>().SetTrigger("swordSwing");
+            Short.GetComponent<Animator>().SetTrigger("swordSwing");
+            
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
             Debug.Log(enemies.Length);
