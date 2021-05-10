@@ -6,6 +6,21 @@ ModelImporter:
   - first:
       74: -623603649343465320
     second: Scene
+  - first:
+      74: -5375109703175682582
+    second: metarig|metarig|Scene|Scene
+  - first:
+      74: 3823857923706414637
+    second: Armature|Armature.001|Scene|Scene
+  - first:
+      74: 5010681710290124252
+    second: Armature|Armature|Scene|Scene
+  - first:
+      74: 7635095949037990996
+    second: Armature.001|Armature.001|Scene|Scene
+  - first:
+      74: 6677084688549054330
+    second: Armature.001|Armature|Scene|Scene
   externalObjects: {}
   materials:
     materialImportMode: 1

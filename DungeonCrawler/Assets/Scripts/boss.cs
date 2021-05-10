@@ -26,6 +26,8 @@ public class boss : MonoBehaviour
         nma = GetComponent<NavMeshAgent>();
 
         player = GameObject.FindGameObjectWithTag("Player");
+
+        retreatStatus = false;
     }
 
 
@@ -45,6 +47,11 @@ public class boss : MonoBehaviour
     public int attackNumber;
     public float nthAttackTime;
 
+    private float RetreatTimer;
+    private bool retreatStatus;
+    public Transform Corner1;
+    public Transform Corner2;
+
     bool t = false;
 
     private void Update()
@@ -55,18 +62,55 @@ public class boss : MonoBehaviour
 
         if (go)
         {
-            if(distance <= closestDist)
+            //anim.SetBool("Walk", true);
+            
+            if(distance < closestDist && retreatStatus == false)
             {
                 nma.speed = 0;
+                RetreatTimer += 1 * Time.deltaTime;
+            }
+
+            if(RetreatTimer > 10)
+            {
+                retreatStatus = true;
+            }
+
+            if(retreatStatus == true)
+            {
+                nma.speed = 6;
+                
+                if(Vector3.Distance(Corner1.position, transform.position) > Vector3.Distance(Corner1.position, transform.position)) //corner1 is further. GO THERE
+                {
+                    nma.SetDestination(Corner2.position);
+                }
+
+                else
+                {
+                    nma.SetDestination(Corner1.position);
+                }
+            }
+
+            if(this.transform.position.z == Corner1.transform.position.z && this.transform.position.x == Corner1.transform.position.x || this.transform.position.z == Corner2.transform.position.z && this.transform.position.x == Corner2.transform.position.x)
+            {
+                retreatStatus = false;
+            }
+
+            if(distance >= closestDist)
+            {
+                nma.speed = 6;
+                RetreatTimer = 0;
             }
 
             if(nma.speed == 0)
             {
                 transform.LookAt(new Vector3(player.transform.position.x,0,player.transform.position.z));
             }
-            
 
-            nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+
+            if (retreatStatus == false)
+            {
+                nma.destination = GameObject.FindGameObjectWithTag("Player").transform.position;
+            }
 
             attackPos.transform.LookAt(player.transform.position);
 
@@ -89,7 +133,7 @@ public class boss : MonoBehaviour
             
             
 
-            if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0)//shoot
+            if (FOVScript.hit.distance >= 4 && timeBetweenAttacks <= 0 && retreatStatus != true)//shoot
             {
                 GameObject proj = Instantiate(bullet, attackPos.transform.position, gameObject.transform.rotation);
 
@@ -168,7 +212,7 @@ public class boss : MonoBehaviour
 
     void Smack()
     {
-        anim.SetTrigger("Attack");
+        //anim.SetTrigger("Attack");//////////////////////////////
 
         //audScource.PlayOneShot(sound);
 
