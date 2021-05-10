@@ -1209,11 +1209,11 @@ MonoBehaviour:
   bullet: {fileID: 6106419558383348391, guid: c0514f7ab9fe3864891656b02dbe4a06, type: 3}
   fireForce: 20
   go: 1
-  timeBetweenAttacks: 1
+  timeBetweenAttacks: 0.5
   distance: 0
   closestDist: 10
   attackNumber: 0
-  nthAttackTime: 7.5
+  nthAttackTime: 5
   Corner1: {fileID: 0}
   Corner2: {fileID: 0}
   maxHealth: 20

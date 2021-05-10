@@ -1327,8 +1327,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 755.5, y: -215.47751}
-  m_SizeDelta: {x: 511, y: 288.95502}
+  m_AnchoredPosition: {x: 543, y: -233.4175}
+  m_SizeDelta: {x: 776, y: 324.835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &628383800
 MonoBehaviour:
@@ -1354,7 +1354,22 @@ MonoBehaviour:
 
 
     In the dungeon there will be 1 enemy that will be a
-    slightly different colour who when killed will unlock the gate to the boss'
+    slightly different colour who when killed will unlock the gate to the boss
+
+
+    Controls
+    are 1,2,3 to select weapons
+
+
+    1 - basic handle
+
+    2 - sword
+
+    3 - bow
+
+
+    shift
+    - Sprint, cntrl - Crouch, space - Jump'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1381,8 +1396,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 23.17
+  m_fontSizeBase: 23.17
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3115,8 +3130,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 755.5, y: -473.1275}
-  m_SizeDelta: {x: 511, y: 171.745}
+  m_AnchoredPosition: {x: 543, y: -491.06747}
+  m_SizeDelta: {x: 776, y: 135.86499}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1384894618
 MonoBehaviour:

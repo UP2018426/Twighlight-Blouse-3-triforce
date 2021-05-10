@@ -32431,7 +32431,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390993198036020222, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
       propertyPath: PatrolPos.Array.size
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4390993198036020222, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
       propertyPath: PatrolPos.Array.data[0]
@@ -32444,7 +32444,15 @@ PrefabInstance:
     - target: {fileID: 4390993198036020222, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
       propertyPath: PatrolPos.Array.data[2]
       value: 
+      objectReference: {fileID: 7810910744315108360}
+    - target: {fileID: 4390993198036020222, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
+      propertyPath: PatrolPos.Array.data[3]
+      value: 
       objectReference: {fileID: 7482224696750707145}
+    - target: {fileID: 6693888815468495057, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
+      propertyPath: m_Radius
+      value: 0.51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af8cfc46a3d38ef4cacd1d254f968beb, type: 3}
 --- !u!4 &3919393709043784011 stripped
