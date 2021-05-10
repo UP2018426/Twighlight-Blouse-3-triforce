@@ -25,9 +25,17 @@ public class boss : MonoBehaviour
 
         nma = GetComponent<NavMeshAgent>();
 
-        player = GameObject.FindGameObjectWithTag("Player");
 
         retreatStatus = false;
+
+        StartCoroutine("plyr",5);
+        
+    }
+
+    IEnumerator plyr(float time)
+    {
+        yield return new WaitForSeconds(time);
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
 
@@ -77,7 +85,7 @@ public class boss : MonoBehaviour
 
             if(retreatStatus == true)
             {
-                nma.speed = 6;
+                nma.speed = 10;
                 
                 if(Vector3.Distance(Corner1.position, transform.position) > Vector3.Distance(Corner1.position, transform.position)) //corner1 is further. GO THERE
                 {

@@ -220,8 +220,8 @@ public class PlayerController : MonoBehaviour
         {
             audScource.PlayOneShot(swordSwing);
 
-            Sword.GetComponent<Animator>().SetTrigger("swordSwing");
-            Short.GetComponent<Animator>().SetTrigger("swordSwing");
+            //Sword.GetComponent<Animator>().SetTrigger("swordSwing");
+            //Short.GetComponent<Animator>().SetTrigger("swordSwing");
             
             Collider[] enemies = Physics.OverlapBox(shootPos.position, attackSize, Quaternion.identity,enemyMask);
             
@@ -230,11 +230,25 @@ public class PlayerController : MonoBehaviour
             {
                 if (weaponSelected == 1)
                 {
-                    enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg * 2);
+                    if(enemies[i].GetComponent<EnemyNav>())
+                    { 
+                        enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg * 2);
+                    }
+                    else
+                    {
+                        enemies[i].GetComponent<boss>().TakeDamage(dmg * 2);
+                    }
                 }
                 else
                 {
-                    enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                    if (enemies[i].GetComponent<EnemyNav>())
+                    {
+                        enemies[i].GetComponent<EnemyNav>().TakeDamage(dmg);
+                    }
+                    else
+                    {
+                        enemies[i].GetComponent<boss>().TakeDamage(dmg);
+                    }
                 }
             }
             timeBetweenAttacks = startTimeBetweenAttacks;

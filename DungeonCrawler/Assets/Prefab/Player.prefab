@@ -1585,7 +1585,7 @@ MonoBehaviour:
   shaderScript: {fileID: 1684986580}
   Sword: {fileID: 3493910039477479191}
   Bow: {fileID: 5181532237124972801}
-  Short: {fileID: 0}
+  Short: {fileID: 545255421140497510}
   weaponSelected: 0
   audScource: {fileID: 7657517527699755190}
 --- !u!82 &7657517527699755190
