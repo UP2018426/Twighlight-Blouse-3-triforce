@@ -9,7 +9,7 @@ public class boss : MonoBehaviour
     public Animator anim;
     bool dead = false;
 
-    private NavMeshAgent nma;
+    public NavMeshAgent nma;
 
     EnemyFOV FOVScript;
 
